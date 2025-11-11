@@ -1,6 +1,7 @@
+/* src\styles\index.css */
+
 @import "tailwindcss";
 
-/*@import "./figma-theme.css";*/
 @import "./tokens.css";
 @import "./theme-light.css";
 @import "./base.css";
