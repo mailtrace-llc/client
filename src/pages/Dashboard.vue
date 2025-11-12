@@ -123,8 +123,8 @@ onBeforeUnmount(() => {
 
       <!-- Upload + KPIs -->
       <div id="cmp-hero">
-        <UploadCard class="card" @mapping-required="onMappingRequired" />
-        <KpiSummaryCard id="cmp-kpis" class="card" :run-id="runId" />
+        <UploadCard class="h-full" @mapping-required="onMappingRequired" />
+        <KpiSummaryCard id="cmp-kpis" class="h-full" :run-id="runId" />
       </div>
 
       <!-- YoY Chart -->
@@ -243,7 +243,7 @@ onBeforeUnmount(() => {
   display: grid;
   grid-template-columns: minmax(380px, 520px) 1fr;
   gap: 16px;
-  align-items: start;
+  align-items: stretch;
 }
 #cmp-hero .card {
   width: 100%;

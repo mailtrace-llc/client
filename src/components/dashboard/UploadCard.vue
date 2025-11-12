@@ -1,34 +1,83 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-// IMPORTANT: `?url` so Vite gives us a URL string, not a module.
 import UploadIconUrl from "@/assets/upload_fi-10009684.svg?url";
 
-const emit = defineEmits<{ (e: "mapping-required", payload: any): void }>();
+import { useRun } from "@/composables/useRun";
+import { uploadSource, type Source } from "@/api/uploads";
+import { createRun } from "@/api/runs";
+import { log } from "@/utils/logger";
 
+const emit = defineEmits<{
+  (e: "mapping-required", missing: Record<string, string[]>): void;
+  (e: "need-both-files"): void;
+}>();
+
+/* ---- state --------------------------------------- */
+const runId = ref<string>("");
 const mailInput = ref<HTMLInputElement | null>(null);
 const crmInput = ref<HTMLInputElement | null>(null);
-
-const mailFile = ref<File | null>(null);
-const crmFile = ref<File | null>(null);
 
 const mailDrag = ref(false);
 const crmDrag = ref(false);
 
-function browseMail() {
-  mailInput.value?.click();
-}
-function browseCrm() {
-  crmInput.value?.click();
-}
-
-function onPickMail(e: Event) {
-  mailFile.value = (e.target as HTMLInputElement).files?.[0] ?? null;
-}
-function onPickCrm(e: Event) {
-  crmFile.value = (e.target as HTMLInputElement).files?.[0] ?? null;
+/* ---- helpers ------------------------------------------------------------ */
+async function ensureRun() {
+  if (!runId.value) {
+    log.debug("UI ▶ ensureRun: creating run…");
+    const { run_id } = await createRun();
+    runId.value = run_id;
+    (window as any).MT_CONTEXT = { ...(window as any).MT_CONTEXT, run_id };
+    log.info("UI ▶ ensureRun: run created", { runId: run_id });
+  }
 }
 
+function csvGuard(file: File): boolean {
+  const ok =
+    file.type?.includes("csv") || file.name.toLowerCase().endsWith(".csv");
+  if (!ok) alert("Please select a CSV file.");
+  return ok;
+}
+
+async function handleFile(source: Source, file: File) {
+  if (!file) return;
+  if (!csvGuard(file)) return;
+
+  await ensureRun();
+  try {
+    log.info("UI ▶ upload start", {
+      runId: runId.value,
+      source,
+      name: file.name,
+      size: file.size,
+    });
+    const res = await uploadSource(runId.value, source, file);
+    log.info("UI ▶ upload done", { source, res });
+
+    // If backend says mapping is required, open mapper
+    if ((res as any).state === "raw_only") {
+      window.dispatchEvent(
+        new CustomEvent("mt:open-mapper", {
+          detail: { run_id: runId.value, source },
+        })
+      );
+    }
+  } catch (e: any) {
+    log.error("UI ▶ upload failed", e);
+    alert(`Upload failed: ${e?.message || "unknown error"}`);
+    const el = source === "mail" ? mailInput.value : crmInput.value;
+    if (el) el.value = "";
+  }
+}
+
+/* ---- pick (file input) -------------------------------------------------- */
+function onPick(source: Source) {
+  const el = source === "mail" ? mailInput.value : crmInput.value;
+  const f = el?.files?.[0];
+  if (f) void handleFile(source, f);
+}
+
+/* ---- drag & drop (drop-zone) ------------------------------------------- */
 function onDragOverMail(e: DragEvent) {
   e.preventDefault();
   mailDrag.value = true;
@@ -40,7 +89,7 @@ function onDropMail(e: DragEvent) {
   e.preventDefault();
   mailDrag.value = false;
   const f = e.dataTransfer?.files?.[0];
-  if (f) mailFile.value = f;
+  if (f) void handleFile("mail", f);
 }
 
 function onDragOverCrm(e: DragEvent) {
@@ -54,16 +103,55 @@ function onDropCrm(e: DragEvent) {
   e.preventDefault();
   crmDrag.value = false;
   const f = e.dataTransfer?.files?.[0];
-  if (f) crmFile.value = f;
+  if (f) void handleFile("crm", f);
 }
 
-// keep buttons wiring
-function runMatching() {
-  // call your pipeline; placeholder kept
-  // emit("mapping-required", {...});
+/* ---- mapper / run (original names & flow) ------------------------------- */
+function openMapper(source?: Source) {
+  if (!runId.value) {
+    alert("Create a run by uploading at least one CSV first.");
+    return;
+  }
+  log.info("UI ▶ open mapper clicked", { runId: runId.value, source });
+  window.dispatchEvent(
+    new CustomEvent("mt:open-mapper", {
+      detail: { run_id: runId.value, ...(source ? { source } : {}) },
+    })
+  );
 }
-function openMapper() {
-  emit("mapping-required", {});
+
+const { running, kickOffAndPoll } = useRun();
+
+async function onRun(ev?: Event) {
+  ev?.preventDefault?.();
+
+  const hasMail = !!mailInput.value?.files?.[0];
+  const hasCrm = !!crmInput.value?.files?.[0];
+  if (!hasMail || !hasCrm) {
+    emit("need-both-files");
+    return;
+  }
+
+  await ensureRun();
+  log.info("UI ▶ Run clicked", { runId: runId.value });
+
+  await kickOffAndPoll(runId.value, (missing) => {
+    log.warn("UI ▶ needs mapping (409)", { runId: runId.value, missing });
+    emit("mapping-required", missing);
+    window.dispatchEvent(
+      new CustomEvent("mt:open-mapper", {
+        detail: { run_id: runId.value, missing },
+      })
+    );
+  });
+}
+
+/* convenience for click-to-browse */
+function browseMail() {
+  mailInput.value?.click();
+}
+function browseCrm() {
+  crmInput.value?.click();
 }
 </script>
 
@@ -107,7 +195,7 @@ function openMapper() {
           type="file"
           accept=".csv,text/csv"
           class="sr-only"
-          @change="onPickMail"
+          @change="onPick('mail')"
         />
       </div>
     </div>
@@ -150,17 +238,23 @@ function openMapper() {
           type="file"
           accept=".csv,text/csv"
           class="sr-only"
-          @change="onPickCrm"
+          @change="onPick('crm')"
         />
       </div>
     </div>
 
     <!-- Buttons -->
     <div class="actions">
-      <button class="btn btn-primary" type="button" @click="runMatching">
-        Run Matching
+      <button
+        class="btn btn-primary"
+        :disabled="running"
+        type="button"
+        @click="onRun"
+      >
+        <span v-if="!running">Run Matching</span>
+        <span v-else>Running…</span>
       </button>
-      <button class="btn btn-ghost" type="button" @click="openMapper">
+      <button class="btn btn-ghost" type="button" @click="openMapper()">
         Edit Mapping
       </button>
     </div>

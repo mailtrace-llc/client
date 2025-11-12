@@ -112,15 +112,14 @@ const matchRateText = computed(() => fmtPct(basic.value.match_rate));
 <template>
   <section class="card border border-[#0c2d50]/10 rounded-xl bg-white">
     <!-- Header row -->
-    <div
-      class="flex items-center justify-between bg-[#f4f5f7] rounded-t-xl px-4 py-3"
-    >
-      <div class="flex items-center gap-4">
+    <div class="flex items-center bg-[#f4f5f7] rounded-t-xl px-4 py-3">
+      <div class="flex items-center gap-4 flex-1">
         <span class="text-[18px] font-semibold text-[#0c2d50]">Results:</span>
-        <span class="h-6 w-px bg-[#47bfa9]"></span>
       </div>
 
-      <div class="flex items-center gap-3">
+      <span class="h-6 w-px bg-[#47bfa9]"></span>
+
+      <div class="flex items-center gap-3 flex-1 justify-end">
         <span class="text-[18px] font-semibold text-[#0c2d50]"
           >Hide Advanced KPIs</span
         >

@@ -247,8 +247,7 @@ watch(showYoy, syncVisibility);
         <span class="text-[#0c2d50] font-semibold text-[15px]"
           >Show YoY Overlay</span
         >
-
-        <!-- FIXED pill switch (uses existing showYoy state) -->
+        <!-- pill switch (uses existing showYoy state) -->
         <button
           type="button"
           class="switch"
@@ -261,9 +260,8 @@ watch(showYoy, syncVisibility);
           <span class="switch__track"></span>
           <span class="switch__thumb"></span>
         </button>
+        <div class="hidden md:block h-8 w-px bg-[#47bfa9]/50" />
       </div>
-
-      <div class="hidden md:block h-8 w-px bg-[#47bfa9]/50" />
 
       <ul
         class="yoy-legend flex items-center gap-6 flex-wrap text-[14px] text-black/80"
