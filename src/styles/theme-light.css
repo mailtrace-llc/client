@@ -1,5 +1,0 @@
-/* src/styles/theme-light.css */
-:root {
-  /* Only overrides — keep this minimal */
-  --elev-2: 0 24px 60px rgba(var(--shadow-rgb) / 0.18);
-}
