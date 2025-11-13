@@ -1,0 +1,4287 @@
+{
+  "id": "20:237",
+  "type": "FRAME",
+  "name": "Dashboard 01",
+  "visible": true,
+  "z": 0,
+  "path": "Dashboard 01",
+  "box": {
+    "x": -2376,
+    "y": -9,
+    "w": 1920,
+    "h": 1024
+  },
+  "bg": "#f4f5f7",
+  "clip": true,
+  "kind": "frame",
+  "children": [
+    {
+      "id": "20:254",
+      "type": "RECTANGLE",
+      "name": "Rectangle 1",
+      "visible": true,
+      "z": 0,
+      "path": "Dashboard 01 > Rectangle 1",
+      "box": {
+        "x": -2356,
+        "y": 11,
+        "w": 318,
+        "h": 984
+      },
+      "bg": "#ffffff",
+      "radius": 10,
+      "shadow": true,
+      "kind": "shape"
+    },
+    {
+      "id": "20:238",
+      "type": "RECTANGLE",
+      "name": "Rectangle 2",
+      "visible": true,
+      "z": 1,
+      "path": "Dashboard 01 > Rectangle 2",
+      "box": {
+        "x": -2028,
+        "y": 11,
+        "w": 1552,
+        "h": 68
+      },
+      "bg": "#ffffff",
+      "radius": 10,
+      "shadow": true,
+      "kind": "shape"
+    },
+    {
+      "id": "20:248",
+      "type": "RECTANGLE",
+      "name": "Rectangle 3",
+      "visible": true,
+      "z": 2,
+      "path": "Dashboard 01 > Rectangle 3",
+      "box": {
+        "x": -1247,
+        "y": 21,
+        "w": 420,
+        "h": 48
+      },
+      "bg": "#f4f5f7",
+      "radius": 10,
+      "shadow": true,
+      "kind": "shape"
+    },
+    {
+      "id": "20:445",
+      "type": "ELLIPSE",
+      "name": "Ellipse 1",
+      "visible": true,
+      "z": 3,
+      "path": "Dashboard 01 > Ellipse 1",
+      "box": {
+        "x": -797,
+        "y": 24,
+        "w": 42,
+        "h": 42
+      },
+      "kind": "image"
+    },
+    {
+      "id": "20:243",
+      "type": "ELLIPSE",
+      "name": "Ellipse 2",
+      "visible": true,
+      "z": 4,
+      "path": "Dashboard 01 > Ellipse 2",
+      "box": {
+        "x": -548,
+        "y": 24,
+        "w": 42,
+        "h": 42
+      },
+      "bg": "#f4f5f7",
+      "kind": "shape"
+    },
+    {
+      "id": "20:329",
+      "type": "TEXT",
+      "name": "Christopher Carrel",
+      "visible": true,
+      "z": 5,
+      "path": "Dashboard 01 > Christopher Carrel",
+      "box": {
+        "x": -743,
+        "y": 25,
+        "w": 143,
+        "h": 20
+      },
+      "bg": "#000000",
+      "kind": "text",
+      "text": "Christopher Carrel",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 16,
+        "lh": 19.520000457763672,
+        "fw": 600,
+        "ls": 0.16,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#000000"
+    },
+    {
+      "id": "20:330",
+      "type": "TEXT",
+      "name": "Dashboard",
+      "visible": true,
+      "z": 6,
+      "path": "Dashboard 01 > Dashboard",
+      "box": {
+        "x": -2008,
+        "y": 28,
+        "w": 139,
+        "h": 27
+      },
+      "bg": "#0c2d50",
+      "kind": "text",
+      "text": "Dashboard",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 28,
+        "lh": 34.15999984741211,
+        "fw": 500,
+        "ls": -0.56,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#0c2d50"
+    },
+    {
+      "id": "20:249",
+      "type": "FRAME",
+      "name": "fi_54481",
+      "visible": true,
+      "z": 7,
+      "path": "Dashboard 01 > fi_54481",
+      "box": {
+        "x": -869,
+        "y": 34,
+        "w": 22,
+        "h": 22
+      },
+      "bg": "#ffffff",
+      "clip": true,
+      "kind": "frame",
+      "children": [
+        {
+          "id": "20:250",
+          "type": "GROUP",
+          "name": "Group",
+          "visible": true,
+          "z": 0,
+          "path": "Dashboard 01 > fi_54481 > Group",
+          "box": {
+            "x": -869,
+            "y": 34,
+            "w": 22,
+            "h": 22
+          },
+          "kind": "group",
+          "children": [
+            {
+              "id": "20:251",
+              "type": "GROUP",
+              "name": "_x34__4_",
+              "visible": true,
+              "z": 0,
+              "path": "Dashboard 01 > fi_54481 > Group > _x34__4_",
+              "box": {
+                "x": -869,
+                "y": 34,
+                "w": 22,
+                "h": 22
+              },
+              "kind": "group",
+              "children": [
+                {
+                  "id": "20:252",
+                  "type": "GROUP",
+                  "name": "Group",
+                  "visible": true,
+                  "z": 0,
+                  "path": "Dashboard 01 > fi_54481 > Group > _x34__4_ > Group",
+                  "box": {
+                    "x": -869,
+                    "y": 34,
+                    "w": 22,
+                    "h": 22
+                  },
+                  "kind": "group",
+                  "children": [
+                    {
+                      "id": "20:253",
+                      "type": "VECTOR",
+                      "name": "Vector",
+                      "visible": true,
+                      "z": 0,
+                      "path": "Dashboard 01 > fi_54481 > Group > _x34__4_ > Group > Vector",
+                      "box": {
+                        "x": -869,
+                        "y": 34,
+                        "w": 22,
+                        "h": 22
+                      },
+                      "bg": "#47bfa9",
+                      "kind": "shape"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "20:244",
+      "type": "FRAME",
+      "name": "fi_747376",
+      "visible": true,
+      "z": 8,
+      "path": "Dashboard 01 > fi_747376",
+      "box": {
+        "x": -538,
+        "y": 34,
+        "w": 22,
+        "h": 22
+      },
+      "bg": "#ffffff",
+      "clip": true,
+      "kind": "frame",
+      "children": [
+        {
+          "id": "20:245",
+          "type": "GROUP",
+          "name": "Group",
+          "visible": true,
+          "z": 0,
+          "path": "Dashboard 01 > fi_747376 > Group",
+          "box": {
+            "x": -538,
+            "y": 34,
+            "w": 22,
+            "h": 22
+          },
+          "kind": "group",
+          "children": [
+            {
+              "id": "20:246",
+              "type": "GROUP",
+              "name": "Group",
+              "visible": true,
+              "z": 0,
+              "path": "Dashboard 01 > fi_747376 > Group > Group",
+              "box": {
+                "x": -538,
+                "y": 34,
+                "w": 22,
+                "h": 22
+              },
+              "kind": "group",
+              "children": [
+                {
+                  "id": "20:247",
+                  "type": "VECTOR",
+                  "name": "Vector",
+                  "visible": true,
+                  "z": 0,
+                  "path": "Dashboard 01 > fi_747376 > Group > Group > Vector",
+                  "box": {
+                    "x": -538,
+                    "y": 34,
+                    "w": 22,
+                    "h": 22
+                  },
+                  "bg": "#47bfa9",
+                  "kind": "shape"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "161:2",
+      "type": "RECTANGLE",
+      "name": "logo-02 1",
+      "visible": true,
+      "z": 9,
+      "path": "Dashboard 01 > logo-02 1",
+      "box": {
+        "x": -2331,
+        "y": 36,
+        "w": 180,
+        "h": 43
+      },
+      "kind": "image"
+    },
+    {
+      "id": "20:438",
+      "type": "TEXT",
+      "name": "Search",
+      "visible": true,
+      "z": 10,
+      "path": "Dashboard 01 > Search",
+      "box": {
+        "x": -1223,
+        "y": 36,
+        "w": 53,
+        "h": 14
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "Search",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 16,
+        "lh": 19.520000457763672,
+        "fw": 500,
+        "ls": 0,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "20:437",
+      "type": "TEXT",
+      "name": "Admin 1",
+      "visible": true,
+      "z": 11,
+      "path": "Dashboard 01 > Admin 1",
+      "box": {
+        "x": -743,
+        "y": 48,
+        "w": 53,
+        "h": 14
+      },
+      "bg": "#47bfa9",
+      "kind": "text",
+      "text": "Admin 1",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 500,
+        "ls": 0.14,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#47bfa9"
+    },
+    {
+      "id": "19:775",
+      "type": "RECTANGLE",
+      "name": "Rectangle 9",
+      "visible": true,
+      "z": 12,
+      "path": "Dashboard 01 > Rectangle 9",
+      "box": {
+        "x": -2028,
+        "y": 89,
+        "w": 540,
+        "h": 395
+      },
+      "bg": "#ffffff",
+      "radius": 10,
+      "shadow": true,
+      "kind": "shape"
+    },
+    {
+      "id": "28:1003",
+      "type": "RECTANGLE",
+      "name": "Rectangle 26",
+      "visible": true,
+      "z": 13,
+      "path": "Dashboard 01 > Rectangle 26",
+      "box": {
+        "x": -1478,
+        "y": 89,
+        "w": 1002,
+        "h": 395
+      },
+      "bg": "#ffffff",
+      "radius": 10,
+      "shadow": true,
+      "kind": "shape"
+    },
+    {
+      "id": "28:790",
+      "type": "RECTANGLE",
+      "name": "Rectangle 18",
+      "visible": true,
+      "z": 14,
+      "path": "Dashboard 01 > Rectangle 18",
+      "box": {
+        "x": -2018,
+        "y": 99,
+        "w": 520,
+        "h": 152
+      },
+      "bg": "#f4f5f7",
+      "radius": 10,
+      "kind": "shape"
+    },
+    {
+      "id": "34:1052",
+      "type": "RECTANGLE",
+      "name": "Rectangle 27",
+      "visible": true,
+      "z": 15,
+      "path": "Dashboard 01 > Rectangle 27",
+      "box": {
+        "x": -1468,
+        "y": 99,
+        "w": 982,
+        "h": 48
+      },
+      "bg": "#f4f5f7",
+      "radius": 10,
+      "kind": "shape"
+    },
+    {
+      "id": "20:440",
+      "type": "LINE",
+      "name": "Line 1",
+      "visible": true,
+      "z": 16,
+      "path": "Dashboard 01 > Line 1",
+      "box": {
+        "x": -2331,
+        "y": 104,
+        "w": 268,
+        "h": 0
+      },
+      "stroke": {
+        "color": "#47bfa9",
+        "w": 1
+      },
+      "kind": "rule"
+    },
+    {
+      "id": "34:1101",
+      "type": "LINE",
+      "name": "Line 19",
+      "visible": true,
+      "z": 17,
+      "path": "Dashboard 01 > Line 19",
+      "box": {
+        "x": -977,
+        "y": 104,
+        "w": 0,
+        "h": 38
+      },
+      "stroke": {
+        "color": "#47bfa9",
+        "w": 1
+      },
+      "kind": "rule"
+    },
+    {
+      "id": "34:1104",
+      "type": "RECTANGLE",
+      "name": "Rectangle 29",
+      "visible": true,
+      "z": 18,
+      "path": "Dashboard 01 > Rectangle 29",
+      "box": {
+        "x": -1858,
+        "y": 109,
+        "w": 350,
+        "h": 132
+      },
+      "bg": "#f4f5f7",
+      "radius": 10,
+      "shadow": true,
+      "kind": "shape"
+    },
+    {
+      "id": "34:1102",
+      "type": "ELLIPSE",
+      "name": "Ellipse 3",
+      "visible": true,
+      "z": 19,
+      "path": "Dashboard 01 > Ellipse 3",
+      "box": {
+        "x": -550,
+        "y": 110,
+        "w": 26,
+        "h": 26
+      },
+      "bg": "#47bfa9",
+      "kind": "shape"
+    },
+    {
+      "id": "41:1216",
+      "type": "TEXT",
+      "name": "Results:",
+      "visible": true,
+      "z": 20,
+      "path": "Dashboard 01 > Results:",
+      "box": {
+        "x": -1458,
+        "y": 112,
+        "w": 65,
+        "h": 22
+      },
+      "bg": "#0c2d50",
+      "kind": "text",
+      "text": "Results:",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 18,
+        "lh": 21.96000099182129,
+        "fw": 600,
+        "ls": -0.36,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#0c2d50"
+    },
+    {
+      "id": "34:1054",
+      "type": "TEXT",
+      "name": "Hide Advanced KIPs",
+      "visible": true,
+      "z": 21,
+      "path": "Dashboard 01 > Hide Advanced KIPs",
+      "box": {
+        "x": -957,
+        "y": 112,
+        "w": 164,
+        "h": 22
+      },
+      "bg": "#0c2d50",
+      "kind": "text",
+      "text": "Hide Advanced KIPs",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 18,
+        "lh": 21.96000099182129,
+        "fw": 600,
+        "ls": -0.36,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#0c2d50"
+    },
+    {
+      "id": "34:1055",
+      "type": "RECTANGLE",
+      "name": "Rectangle 28",
+      "visible": true,
+      "z": 22,
+      "path": "Dashboard 01 > Rectangle 28",
+      "box": {
+        "x": -550,
+        "y": 115,
+        "w": 49,
+        "h": 16
+      },
+      "bg": "#ffffff",
+      "radius": 25,
+      "stroke": {
+        "color": "#000000",
+        "w": 2
+      },
+      "shadow": true,
+      "kind": "shape"
+    },
+    {
+      "id": "34:1107",
+      "type": "RECTANGLE",
+      "name": "Rectangle 30",
+      "visible": true,
+      "z": 23,
+      "path": "Dashboard 01 > Rectangle 30",
+      "box": {
+        "x": -1696,
+        "y": 136,
+        "w": 27,
+        "h": 27
+      },
+      "bg": "#ffffff",
+      "radius": 5,
+      "shadow": true,
+      "kind": "shape"
+    },
+    {
+      "id": "34:1108",
+      "type": "FRAME",
+      "name": "fi_10009684",
+      "visible": true,
+      "z": 24,
+      "path": "Dashboard 01 > fi_10009684",
+      "box": {
+        "x": -1690,
+        "y": 142,
+        "w": 15,
+        "h": 15
+      },
+      "bg": "#ffffff",
+      "clip": true,
+      "kind": "frame",
+      "children": [
+        {
+          "id": "34:1109",
+          "type": "GROUP",
+          "name": "Layer_2_00000097469747894302416050000002917915783155835571_",
+          "visible": true,
+          "z": 0,
+          "path": "Dashboard 01 > fi_10009684 > Layer_2_00000097469747894302416050000002917915783155835571_",
+          "box": {
+            "x": -1689,
+            "y": 142,
+            "w": 13,
+            "h": 15
+          },
+          "kind": "group",
+          "children": [
+            {
+              "id": "34:1110",
+              "type": "GROUP",
+              "name": "upload_arrow",
+              "visible": true,
+              "z": 0,
+              "path": "Dashboard 01 > fi_10009684 > Layer_2_00000097469747894302416050000002917915783155835571_ > upload_arrow",
+              "box": {
+                "x": -1689,
+                "y": 142,
+                "w": 13,
+                "h": 15
+              },
+              "kind": "group",
+              "children": [
+                {
+                  "id": "34:1112",
+                  "type": "VECTOR",
+                  "name": "Vector",
+                  "visible": true,
+                  "z": 0,
+                  "path": "Dashboard 01 > fi_10009684 > Layer_2_00000097469747894302416050000002917915783155835571_ > upload_arrow > Vector",
+                  "box": {
+                    "x": -1687,
+                    "y": 142,
+                    "w": 9,
+                    "h": 10
+                  },
+                  "bg": "#6d8196",
+                  "kind": "shape"
+                },
+                {
+                  "id": "34:1111",
+                  "type": "VECTOR",
+                  "name": "Vector",
+                  "visible": true,
+                  "z": 1,
+                  "path": "Dashboard 01 > fi_10009684 > Layer_2_00000097469747894302416050000002917915783155835571_ > upload_arrow > Vector",
+                  "box": {
+                    "x": -1689,
+                    "y": 151,
+                    "w": 13,
+                    "h": 6
+                  },
+                  "bg": "#6d8196",
+                  "kind": "shape"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "20:266",
+      "type": "FRAME",
+      "name": "fi_7532624",
+      "visible": true,
+      "z": 25,
+      "path": "Dashboard 01 > fi_7532624",
+      "box": {
+        "x": -2320,
+        "y": 144,
+        "w": 22,
+        "h": 22
+      },
+      "bg": "#ffffff",
+      "clip": true,
+      "kind": "frame",
+      "children": [
+        {
+          "id": "20:267",
+          "type": "GROUP",
+          "name": "Group",
+          "visible": true,
+          "z": 0,
+          "path": "Dashboard 01 > fi_7532624 > Group",
+          "box": {
+            "x": -2320,
+            "y": 144,
+            "w": 22,
+            "h": 22
+          },
+          "kind": "group",
+          "children": [
+            {
+              "id": "20:268",
+              "type": "VECTOR",
+              "name": "Vector",
+              "visible": true,
+              "z": 0,
+              "path": "Dashboard 01 > fi_7532624 > Group > Vector",
+              "box": {
+                "x": -2320,
+                "y": 144,
+                "w": 22,
+                "h": 22
+              },
+              "bg": "#0c2d50",
+              "kind": "shape"
+            },
+            {
+              "id": "20:271",
+              "type": "VECTOR",
+              "name": "Vector",
+              "visible": true,
+              "z": 1,
+              "path": "Dashboard 01 > fi_7532624 > Group > Vector",
+              "box": {
+                "x": -2317,
+                "y": 147,
+                "w": 9,
+                "h": 9
+              },
+              "bg": "#0c2d50",
+              "kind": "shape"
+            },
+            {
+              "id": "20:270",
+              "type": "VECTOR",
+              "name": "Vector",
+              "visible": true,
+              "z": 2,
+              "path": "Dashboard 01 > fi_7532624 > Group > Vector",
+              "box": {
+                "x": -2306,
+                "y": 147,
+                "w": 5,
+                "h": 2
+              },
+              "bg": "#0c2d50",
+              "kind": "shape"
+            },
+            {
+              "id": "20:269",
+              "type": "VECTOR",
+              "name": "Vector",
+              "visible": true,
+              "z": 3,
+              "path": "Dashboard 01 > fi_7532624 > Group > Vector",
+              "box": {
+                "x": -2306,
+                "y": 151,
+                "w": 5,
+                "h": 2
+              },
+              "bg": "#0c2d50",
+              "kind": "shape"
+            },
+            {
+              "id": "20:274",
+              "type": "VECTOR",
+              "name": "Vector",
+              "visible": true,
+              "z": 4,
+              "path": "Dashboard 01 > fi_7532624 > Group > Vector",
+              "box": {
+                "x": -2303,
+                "y": 154,
+                "w": 2,
+                "h": 9
+              },
+              "bg": "#0c2d50",
+              "kind": "shape"
+            },
+            {
+              "id": "20:276",
+              "type": "VECTOR",
+              "name": "Vector",
+              "visible": true,
+              "z": 5,
+              "path": "Dashboard 01 > fi_7532624 > Group > Vector",
+              "box": {
+                "x": -2317,
+                "y": 158,
+                "w": 5,
+                "h": 2
+              },
+              "bg": "#0c2d50",
+              "kind": "shape"
+            },
+            {
+              "id": "20:273",
+              "type": "VECTOR",
+              "name": "Vector",
+              "visible": true,
+              "z": 6,
+              "path": "Dashboard 01 > fi_7532624 > Group > Vector",
+              "box": {
+                "x": -2306,
+                "y": 158,
+                "w": 2,
+                "h": 5
+              },
+              "bg": "#0c2d50",
+              "kind": "shape"
+            },
+            {
+              "id": "20:272",
+              "type": "VECTOR",
+              "name": "Vector",
+              "visible": true,
+              "z": 7,
+              "path": "Dashboard 01 > fi_7532624 > Group > Vector",
+              "box": {
+                "x": -2310,
+                "y": 159,
+                "w": 2,
+                "h": 3
+              },
+              "bg": "#0c2d50",
+              "kind": "shape"
+            },
+            {
+              "id": "20:275",
+              "type": "VECTOR",
+              "name": "Vector",
+              "visible": true,
+              "z": 8,
+              "path": "Dashboard 01 > fi_7532624 > Group > Vector",
+              "box": {
+                "x": -2317,
+                "y": 161,
+                "w": 5,
+                "h": 2
+              },
+              "bg": "#0c2d50",
+              "kind": "shape"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "20:265",
+      "type": "TEXT",
+      "name": "Overview",
+      "visible": true,
+      "z": 26,
+      "path": "Dashboard 01 > Overview",
+      "box": {
+        "x": -2283,
+        "y": 145,
+        "w": 69,
+        "h": 20
+      },
+      "bg": "#47bfa9",
+      "kind": "text",
+      "text": "Overview",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 16,
+        "lh": 19.520000457763672,
+        "fw": 500,
+        "ls": -0.16,
+        "align": "LEFT",
+        "valign": "TOP"
+      },
+      "color": "#47bfa9"
+    },
+    {
+      "id": "19:773",
+      "type": "TEXT",
+      "name": "Mail CSV",
+      "visible": true,
+      "z": 27,
+      "path": "Dashboard 01 > Mail CSV",
+      "box": {
+        "x": -1978,
+        "y": 167,
+        "w": 82,
+        "h": 17
+      },
+      "bg": "#0c2d50",
+      "kind": "text",
+      "text": "Mail CSV",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 18,
+        "lh": 21.96000099182129,
+        "fw": 600,
+        "ls": -0.36,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#0c2d50"
+    },
+    {
+      "id": "28:1012",
+      "type": "TEXT",
+      "name": "Total Mail",
+      "visible": true,
+      "z": 28,
+      "path": "Dashboard 01 > Total Mail",
+      "box": {
+        "x": -1458,
+        "y": 167,
+        "w": 87,
+        "h": 17
+      },
+      "bg": "#0c2d50",
+      "kind": "text",
+      "text": "Total Mail",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 20,
+        "lh": 24.400001525878906,
+        "fw": 400,
+        "ls": -0.4,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#0c2d50"
+    },
+    {
+      "id": "34:1056",
+      "type": "LINE",
+      "name": "Line 13",
+      "visible": true,
+      "z": 29,
+      "path": "Dashboard 01 > Line 13",
+      "box": {
+        "x": -977,
+        "y": 167,
+        "w": 0,
+        "h": 307
+      },
+      "stroke": {
+        "color": "#6d8196",
+        "w": 1
+      },
+      "opacity": 0.3,
+      "kind": "rule"
+    },
+    {
+      "id": "34:1084",
+      "type": "TEXT",
+      "name": "Revenue per Mailer",
+      "visible": true,
+      "z": 30,
+      "path": "Dashboard 01 > Revenue per Mailer",
+      "box": {
+        "x": -957,
+        "y": 167,
+        "w": 251,
+        "h": 17
+      },
+      "bg": "#0c2d50",
+      "kind": "text",
+      "text": "Revenue per Mailer",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 20,
+        "lh": 24.400001525878906,
+        "fw": 400,
+        "ls": -0.4,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#0c2d50"
+    },
+    {
+      "id": "28:1018",
+      "type": "TEXT",
+      "name": "31,500",
+      "visible": true,
+      "z": 31,
+      "path": "Dashboard 01 > 31,500",
+      "box": {
+        "x": -1055,
+        "y": 170,
+        "w": 58,
+        "h": 22
+      },
+      "bg": "#000000",
+      "kind": "text",
+      "text": "31,500",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 18,
+        "lh": 21.96000099182129,
+        "fw": 600,
+        "ls": 0.36,
+        "align": "RIGHT",
+        "valign": "TOP",
+        "case": "UPPER"
+      },
+      "color": "#000000"
+    },
+    {
+      "id": "34:1095",
+      "type": "TEXT",
+      "name": "$12.44",
+      "visible": true,
+      "z": 32,
+      "path": "Dashboard 01 > $12.44",
+      "box": {
+        "x": -554,
+        "y": 170,
+        "w": 57,
+        "h": 22
+      },
+      "bg": "#000000",
+      "kind": "text",
+      "text": "$12.44",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 18,
+        "lh": 21.96000099182129,
+        "fw": 600,
+        "ls": 0.36,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "UPPER"
+      },
+      "color": "#000000"
+    },
+    {
+      "id": "34:1105",
+      "type": "TEXT",
+      "name": "Drop your files here or browse",
+      "visible": true,
+      "z": 33,
+      "path": "Dashboard 01 > Drop your files here or browse",
+      "box": {
+        "x": -1775,
+        "y": 179,
+        "w": 184,
+        "h": 17
+      },
+      "bg": "#000000",
+      "kind": "text",
+      "text": "Drop your files here or browse",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "LEFT",
+        "valign": "TOP"
+      },
+      "color": "#000000"
+    },
+    {
+      "id": "28:1006",
+      "type": "RECTANGLE",
+      "name": "Rectangle 4",
+      "visible": true,
+      "z": 34,
+      "path": "Dashboard 01 > Rectangle 4",
+      "box": {
+        "x": -2336,
+        "y": 194,
+        "w": 278,
+        "h": 52
+      },
+      "bg": "#f4f5f7",
+      "radius": 10,
+      "shadow": true,
+      "kind": "shape"
+    },
+    {
+      "id": "34:1106",
+      "type": "TEXT",
+      "name": "Max file size up to 20 MB",
+      "visible": true,
+      "z": 35,
+      "path": "Dashboard 01 > Max file size up to 20 MB",
+      "box": {
+        "x": -1748,
+        "y": 200,
+        "w": 130,
+        "h": 15
+      },
+      "bg": "#000000",
+      "opacity": 0.66,
+      "kind": "text",
+      "text": "Max file size up to 20 MB",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 12,
+        "lh": 14.640000343322754,
+        "fw": 400,
+        "ls": -0.24,
+        "align": "LEFT",
+        "valign": "TOP"
+      },
+      "color": "#000000"
+    },
+    {
+      "id": "28:1015",
+      "type": "LINE",
+      "name": "Line 4",
+      "visible": true,
+      "z": 36,
+      "path": "Dashboard 01 > Line 4",
+      "box": {
+        "x": -1458,
+        "y": 207,
+        "w": 461,
+        "h": 0
+      },
+      "stroke": {
+        "color": "#6d8196",
+        "w": 1
+      },
+      "opacity": 0.3,
+      "kind": "rule"
+    },
+    {
+      "id": "34:1090",
+      "type": "LINE",
+      "name": "Line 14",
+      "visible": true,
+      "z": 37,
+      "path": "Dashboard 01 > Line 14",
+      "box": {
+        "x": -957,
+        "y": 207,
+        "w": 461,
+        "h": 0
+      },
+      "stroke": {
+        "color": "#6d8196",
+        "w": 1
+      },
+      "opacity": 0.3,
+      "kind": "rule"
+    },
+    {
+      "id": "20:278",
+      "type": "FRAME",
+      "name": "fi_1388417",
+      "visible": true,
+      "z": 38,
+      "path": "Dashboard 01 > fi_1388417",
+      "box": {
+        "x": -2320,
+        "y": 210,
+        "w": 22,
+        "h": 22
+      },
+      "bg": "#ffffff",
+      "clip": true,
+      "kind": "frame",
+      "children": [
+        {
+          "id": "20:279",
+          "type": "VECTOR",
+          "name": "Vector",
+          "visible": true,
+          "z": 0,
+          "path": "Dashboard 01 > fi_1388417 > Vector",
+          "box": {
+            "x": -2320,
+            "y": 210,
+            "w": 22,
+            "h": 22
+          },
+          "bg": "#0c2d50",
+          "kind": "shape"
+        }
+      ]
+    },
+    {
+      "id": "20:277",
+      "type": "TEXT",
+      "name": "ROI Analytics",
+      "visible": true,
+      "z": 39,
+      "path": "Dashboard 01 > ROI Analytics",
+      "box": {
+        "x": -2283,
+        "y": 211,
+        "w": 98,
+        "h": 20
+      },
+      "bg": "#47bfa9",
+      "kind": "text",
+      "text": "ROI Analytics",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 16,
+        "lh": 19.520000457763672,
+        "fw": 500,
+        "ls": -0.16,
+        "align": "LEFT",
+        "valign": "TOP"
+      },
+      "color": "#47bfa9"
+    },
+    {
+      "id": "28:1028",
+      "type": "TEXT",
+      "name": "Unique Mail Addresses",
+      "visible": true,
+      "z": 40,
+      "path": "Dashboard 01 > Unique Mail Addresses",
+      "box": {
+        "x": -1458,
+        "y": 222,
+        "w": 211,
+        "h": 17
+      },
+      "bg": "#0c2d50",
+      "kind": "text",
+      "text": "Unique Mail Addresses",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 20,
+        "lh": 24.400001525878906,
+        "fw": 400,
+        "ls": -0.4,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#0c2d50"
+    },
+    {
+      "id": "34:1087",
+      "type": "TEXT",
+      "name": "Avg Ticket (per match)",
+      "visible": true,
+      "z": 41,
+      "path": "Dashboard 01 > Avg Ticket (per match)",
+      "box": {
+        "x": -957,
+        "y": 222,
+        "w": 342,
+        "h": 17
+      },
+      "bg": "#0c2d50",
+      "kind": "text",
+      "text": "Avg Ticket (per match)",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 20,
+        "lh": 24.400001525878906,
+        "fw": 400,
+        "ls": -0.4,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#0c2d50"
+    },
+    {
+      "id": "28:1032",
+      "type": "TEXT",
+      "name": "1,151",
+      "visible": true,
+      "z": 42,
+      "path": "Dashboard 01 > 1,151",
+      "box": {
+        "x": -1032,
+        "y": 225,
+        "w": 35,
+        "h": 22
+      },
+      "bg": "#000000",
+      "kind": "text",
+      "text": "1,151",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 18,
+        "lh": 21.96000099182129,
+        "fw": 600,
+        "ls": 0.36,
+        "align": "RIGHT",
+        "valign": "TOP",
+        "case": "UPPER"
+      },
+      "color": "#000000"
+    },
+    {
+      "id": "34:1098",
+      "type": "TEXT",
+      "name": "$119.99",
+      "visible": true,
+      "z": 43,
+      "path": "Dashboard 01 > $119.99",
+      "box": {
+        "x": -561,
+        "y": 225,
+        "w": 65,
+        "h": 22
+      },
+      "bg": "#000000",
+      "kind": "text",
+      "text": "$119.99",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 18,
+        "lh": 21.96000099182129,
+        "fw": 600,
+        "ls": 0.36,
+        "align": "RIGHT",
+        "valign": "TOP",
+        "case": "UPPER"
+      },
+      "color": "#000000"
+    },
+    {
+      "id": "28:792",
+      "type": "RECTANGLE",
+      "name": "Rectangle 19",
+      "visible": true,
+      "z": 44,
+      "path": "Dashboard 01 > Rectangle 19",
+      "box": {
+        "x": -2018,
+        "y": 262,
+        "w": 520,
+        "h": 152
+      },
+      "bg": "#f4f5f7",
+      "radius": 10,
+      "kind": "shape"
+    },
+    {
+      "id": "28:1030",
+      "type": "LINE",
+      "name": "Line 6",
+      "visible": true,
+      "z": 45,
+      "path": "Dashboard 01 > Line 6",
+      "box": {
+        "x": -1458,
+        "y": 262,
+        "w": 461,
+        "h": 0
+      },
+      "stroke": {
+        "color": "#6d8196",
+        "w": 1
+      },
+      "opacity": 0.3,
+      "kind": "rule"
+    },
+    {
+      "id": "34:1093",
+      "type": "LINE",
+      "name": "Line 17",
+      "visible": true,
+      "z": 46,
+      "path": "Dashboard 01 > Line 17",
+      "box": {
+        "x": -957,
+        "y": 262,
+        "w": 461,
+        "h": 0
+      },
+      "stroke": {
+        "color": "#6d8196",
+        "w": 1
+      },
+      "opacity": 0.3,
+      "kind": "rule"
+    },
+    {
+      "id": "28:847",
+      "type": "RECTANGLE",
+      "name": "Rectangle 21",
+      "visible": true,
+      "z": 47,
+      "path": "Dashboard 01 > Rectangle 21",
+      "box": {
+        "x": -1858,
+        "y": 272,
+        "w": 350,
+        "h": 132
+      },
+      "bg": "#f4f5f7",
+      "radius": 10,
+      "shadow": true,
+      "kind": "shape"
+    },
+    {
+      "id": "20:308",
+      "type": "FRAME",
+      "name": "fi_2139618",
+      "visible": true,
+      "z": 48,
+      "path": "Dashboard 01 > fi_2139618",
+      "box": {
+        "x": -2320,
+        "y": 275,
+        "w": 22,
+        "h": 22
+      },
+      "bg": "#ffffff",
+      "clip": true,
+      "kind": "frame",
+      "children": [
+        {
+          "id": "20:309",
+          "type": "VECTOR",
+          "name": "Vector",
+          "visible": true,
+          "z": 0,
+          "path": "Dashboard 01 > fi_2139618 > Vector",
+          "box": {
+            "x": -2320,
+            "y": 277,
+            "w": 22,
+            "h": 19
+          },
+          "bg": "#0c2d50",
+          "kind": "shape"
+        }
+      ]
+    },
+    {
+      "id": "20:307",
+      "type": "TEXT",
+      "name": "Match Performance",
+      "visible": true,
+      "z": 49,
+      "path": "Dashboard 01 > Match Performance",
+      "box": {
+        "x": -2283,
+        "y": 276,
+        "w": 146,
+        "h": 20
+      },
+      "bg": "#47bfa9",
+      "kind": "text",
+      "text": "Match Performance",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 16,
+        "lh": 19.520000457763672,
+        "fw": 500,
+        "ls": -0.16,
+        "align": "LEFT",
+        "valign": "TOP"
+      },
+      "color": "#47bfa9"
+    },
+    {
+      "id": "28:1040",
+      "type": "TEXT",
+      "name": "Total Jobs",
+      "visible": true,
+      "z": 50,
+      "path": "Dashboard 01 > Total Jobs",
+      "box": {
+        "x": -1458,
+        "y": 277,
+        "w": 235,
+        "h": 17
+      },
+      "bg": "#0c2d50",
+      "kind": "text",
+      "text": "Total Jobs",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 20,
+        "lh": 24.400001525878906,
+        "fw": 400,
+        "ls": -0.4,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#0c2d50"
+    },
+    {
+      "id": "34:1085",
+      "type": "TEXT",
+      "name": "Median Days to Convert",
+      "visible": true,
+      "z": 51,
+      "path": "Dashboard 01 > Median Days to Convert",
+      "box": {
+        "x": -957,
+        "y": 277,
+        "w": 275,
+        "h": 17
+      },
+      "bg": "#0c2d50",
+      "kind": "text",
+      "text": "Median Days to Convert",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 20,
+        "lh": 24.400001525878906,
+        "fw": 400,
+        "ls": -0.4,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#0c2d50"
+    },
+    {
+      "id": "28:1044",
+      "type": "TEXT",
+      "name": "10,000",
+      "visible": true,
+      "z": 52,
+      "path": "Dashboard 01 > 10,000",
+      "box": {
+        "x": -1055,
+        "y": 280,
+        "w": 61,
+        "h": 22
+      },
+      "bg": "#000000",
+      "kind": "text",
+      "text": "10,000",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 18,
+        "lh": 21.96000099182129,
+        "fw": 600,
+        "ls": 0.36,
+        "align": "RIGHT",
+        "valign": "TOP",
+        "case": "UPPER"
+      },
+      "color": "#000000"
+    },
+    {
+      "id": "34:1096",
+      "type": "TEXT",
+      "name": "123",
+      "visible": true,
+      "z": 53,
+      "path": "Dashboard 01 > 123",
+      "box": {
+        "x": -525,
+        "y": 280,
+        "w": 29,
+        "h": 22
+      },
+      "bg": "#000000",
+      "kind": "text",
+      "text": "123",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 18,
+        "lh": 21.96000099182129,
+        "fw": 600,
+        "ls": 0.36,
+        "align": "RIGHT",
+        "valign": "TOP",
+        "case": "UPPER"
+      },
+      "color": "#000000"
+    },
+    {
+      "id": "28:984",
+      "type": "RECTANGLE",
+      "name": "Rectangle 23",
+      "visible": true,
+      "z": 54,
+      "path": "Dashboard 01 > Rectangle 23",
+      "box": {
+        "x": -1696,
+        "y": 299,
+        "w": 27,
+        "h": 27
+      },
+      "bg": "#ffffff",
+      "radius": 5,
+      "shadow": true,
+      "kind": "shape"
+    },
+    {
+      "id": "28:991",
+      "type": "FRAME",
+      "name": "fi_10009684",
+      "visible": true,
+      "z": 55,
+      "path": "Dashboard 01 > fi_10009684",
+      "box": {
+        "x": -1690,
+        "y": 305,
+        "w": 15,
+        "h": 15
+      },
+      "bg": "#ffffff",
+      "clip": true,
+      "kind": "frame",
+      "children": [
+        {
+          "id": "28:992",
+          "type": "GROUP",
+          "name": "Layer_2_00000097469747894302416050000002917915783155835571_",
+          "visible": true,
+          "z": 0,
+          "path": "Dashboard 01 > fi_10009684 > Layer_2_00000097469747894302416050000002917915783155835571_",
+          "box": {
+            "x": -1689,
+            "y": 305,
+            "w": 13,
+            "h": 15
+          },
+          "kind": "group",
+          "children": [
+            {
+              "id": "28:993",
+              "type": "GROUP",
+              "name": "upload_arrow",
+              "visible": true,
+              "z": 0,
+              "path": "Dashboard 01 > fi_10009684 > Layer_2_00000097469747894302416050000002917915783155835571_ > upload_arrow",
+              "box": {
+                "x": -1689,
+                "y": 305,
+                "w": 13,
+                "h": 15
+              },
+              "kind": "group",
+              "children": [
+                {
+                  "id": "28:995",
+                  "type": "VECTOR",
+                  "name": "Vector",
+                  "visible": true,
+                  "z": 0,
+                  "path": "Dashboard 01 > fi_10009684 > Layer_2_00000097469747894302416050000002917915783155835571_ > upload_arrow > Vector",
+                  "box": {
+                    "x": -1687,
+                    "y": 305,
+                    "w": 9,
+                    "h": 10
+                  },
+                  "bg": "#6d8196",
+                  "kind": "shape"
+                },
+                {
+                  "id": "28:994",
+                  "type": "VECTOR",
+                  "name": "Vector",
+                  "visible": true,
+                  "z": 1,
+                  "path": "Dashboard 01 > fi_10009684 > Layer_2_00000097469747894302416050000002917915783155835571_ > upload_arrow > Vector",
+                  "box": {
+                    "x": -1689,
+                    "y": 314,
+                    "w": 13,
+                    "h": 6
+                  },
+                  "bg": "#6d8196",
+                  "kind": "shape"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "28:1042",
+      "type": "LINE",
+      "name": "Line 9",
+      "visible": true,
+      "z": 56,
+      "path": "Dashboard 01 > Line 9",
+      "box": {
+        "x": -1458,
+        "y": 317,
+        "w": 461,
+        "h": 0
+      },
+      "stroke": {
+        "color": "#6d8196",
+        "w": 1
+      },
+      "opacity": 0.3,
+      "kind": "rule"
+    },
+    {
+      "id": "34:1091",
+      "type": "LINE",
+      "name": "Line 15",
+      "visible": true,
+      "z": 57,
+      "path": "Dashboard 01 > Line 15",
+      "box": {
+        "x": -957,
+        "y": 317,
+        "w": 461,
+        "h": 0
+      },
+      "stroke": {
+        "color": "#6d8196",
+        "w": 1
+      },
+      "opacity": 0.3,
+      "kind": "rule"
+    },
+    {
+      "id": "19:776",
+      "type": "TEXT",
+      "name": "CRM CSV",
+      "visible": true,
+      "z": 58,
+      "path": "Dashboard 01 > CRM CSV",
+      "box": {
+        "x": -1978,
+        "y": 327,
+        "w": 81,
+        "h": 22
+      },
+      "bg": "#0c2d50",
+      "kind": "text",
+      "text": "CRM CSV",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 18,
+        "lh": 21.96000099182129,
+        "fw": 600,
+        "ls": -0.36,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#0c2d50"
+    },
+    {
+      "id": "28:1041",
+      "type": "TEXT",
+      "name": "Matches",
+      "visible": true,
+      "z": 59,
+      "path": "Dashboard 01 > Matches",
+      "box": {
+        "x": -1458,
+        "y": 332,
+        "w": 262,
+        "h": 17
+      },
+      "bg": "#0c2d50",
+      "kind": "text",
+      "text": "Matches",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 20,
+        "lh": 24.400001525878906,
+        "fw": 400,
+        "ls": -0.4,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#0c2d50"
+    },
+    {
+      "id": "34:1088",
+      "type": "TEXT",
+      "name": "Convert ≤ 30 Days",
+      "visible": true,
+      "z": 60,
+      "path": "Dashboard 01 > Convert ≤ 30 Days",
+      "box": {
+        "x": -957,
+        "y": 332,
+        "w": 307,
+        "h": 17
+      },
+      "bg": "#0c2d50",
+      "kind": "text",
+      "text": "Convert ≤ 30 Days",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 20,
+        "lh": 24.400001525878906,
+        "fw": 400,
+        "ls": -0.4,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#0c2d50"
+    },
+    {
+      "id": "28:1045",
+      "type": "TEXT",
+      "name": "3275",
+      "visible": true,
+      "z": 61,
+      "path": "Dashboard 01 > 3275",
+      "box": {
+        "x": -1039,
+        "y": 335,
+        "w": 42,
+        "h": 22
+      },
+      "bg": "#000000",
+      "kind": "text",
+      "text": "3275",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 18,
+        "lh": 21.96000099182129,
+        "fw": 600,
+        "ls": 0.36,
+        "align": "RIGHT",
+        "valign": "TOP",
+        "case": "UPPER"
+      },
+      "color": "#000000"
+    },
+    {
+      "id": "34:1099",
+      "type": "TEXT",
+      "name": "14%",
+      "visible": true,
+      "z": 62,
+      "path": "Dashboard 01 > 14%",
+      "box": {
+        "x": -529,
+        "y": 335,
+        "w": 33,
+        "h": 22
+      },
+      "bg": "#000000",
+      "kind": "text",
+      "text": "14%",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 18,
+        "lh": 21.96000099182129,
+        "fw": 600,
+        "ls": 0.36,
+        "align": "RIGHT",
+        "valign": "TOP",
+        "case": "UPPER"
+      },
+      "color": "#000000"
+    },
+    {
+      "id": "20:281",
+      "type": "FRAME",
+      "name": "fi_18364766",
+      "visible": true,
+      "z": 63,
+      "path": "Dashboard 01 > fi_18364766",
+      "box": {
+        "x": -2321,
+        "y": 339,
+        "w": 24,
+        "h": 24
+      },
+      "bg": "#ffffff",
+      "clip": true,
+      "kind": "frame",
+      "children": [
+        {
+          "id": "20:282",
+          "type": "VECTOR",
+          "name": "Vector",
+          "visible": true,
+          "z": 0,
+          "path": "Dashboard 01 > fi_18364766 > Vector",
+          "box": {
+            "x": -2320,
+            "y": 340,
+            "w": 22,
+            "h": 5
+          },
+          "bg": "#0c2d50",
+          "kind": "shape"
+        },
+        {
+          "id": "20:283",
+          "type": "VECTOR",
+          "name": "Vector",
+          "visible": true,
+          "z": 1,
+          "path": "Dashboard 01 > fi_18364766 > Vector",
+          "box": {
+            "x": -2319,
+            "y": 343,
+            "w": 20,
+            "h": 16
+          },
+          "bg": "#0c2d50",
+          "kind": "shape"
+        },
+        {
+          "id": "20:286",
+          "type": "VECTOR",
+          "name": "Vector",
+          "visible": true,
+          "z": 2,
+          "path": "Dashboard 01 > fi_18364766 > Vector",
+          "box": {
+            "x": -2316,
+            "y": 346,
+            "w": 10,
+            "h": 10
+          },
+          "bg": "#0c2d50",
+          "kind": "shape"
+        },
+        {
+          "id": "20:287",
+          "type": "VECTOR",
+          "name": "Vector",
+          "visible": true,
+          "z": 3,
+          "path": "Dashboard 01 > fi_18364766 > Vector",
+          "box": {
+            "x": -2312,
+            "y": 346,
+            "w": 6,
+            "h": 6
+          },
+          "bg": "#0c2d50",
+          "kind": "shape"
+        },
+        {
+          "id": "20:288",
+          "type": "VECTOR",
+          "name": "Vector",
+          "visible": true,
+          "z": 4,
+          "path": "Dashboard 01 > fi_18364766 > Vector",
+          "box": {
+            "x": -2305,
+            "y": 346,
+            "w": 4,
+            "h": 2
+          },
+          "bg": "#0c2d50",
+          "kind": "shape"
+        },
+        {
+          "id": "20:289",
+          "type": "VECTOR",
+          "name": "Vector",
+          "visible": true,
+          "z": 5,
+          "path": "Dashboard 01 > fi_18364766 > Vector",
+          "box": {
+            "x": -2305,
+            "y": 349,
+            "w": 4,
+            "h": 2
+          },
+          "bg": "#0c2d50",
+          "kind": "shape"
+        },
+        {
+          "id": "20:290",
+          "type": "VECTOR",
+          "name": "Vector",
+          "visible": true,
+          "z": 6,
+          "path": "Dashboard 01 > fi_18364766 > Vector",
+          "box": {
+            "x": -2305,
+            "y": 351,
+            "w": 4,
+            "h": 2
+          },
+          "bg": "#0c2d50",
+          "kind": "shape"
+        },
+        {
+          "id": "20:291",
+          "type": "VECTOR",
+          "name": "Vector",
+          "visible": true,
+          "z": 7,
+          "path": "Dashboard 01 > fi_18364766 > Vector",
+          "box": {
+            "x": -2306,
+            "y": 354,
+            "w": 5,
+            "h": 2
+          },
+          "bg": "#0c2d50",
+          "kind": "shape"
+        },
+        {
+          "id": "20:284",
+          "type": "VECTOR",
+          "name": "Vector",
+          "visible": true,
+          "z": 8,
+          "path": "Dashboard 01 > fi_18364766 > Vector",
+          "box": {
+            "x": -2310,
+            "y": 357,
+            "w": 2,
+            "h": 5
+          },
+          "bg": "#0c2d50",
+          "kind": "shape"
+        },
+        {
+          "id": "20:285",
+          "type": "VECTOR",
+          "name": "Vector",
+          "visible": true,
+          "z": 9,
+          "path": "Dashboard 01 > fi_18364766 > Vector",
+          "box": {
+            "x": -2311,
+            "y": 360,
+            "w": 4,
+            "h": 2
+          },
+          "bg": "#0c2d50",
+          "kind": "shape"
+        }
+      ]
+    },
+    {
+      "id": "20:280",
+      "type": "TEXT",
+      "name": "Campaign Insights",
+      "visible": true,
+      "z": 64,
+      "path": "Dashboard 01 > Campaign Insights",
+      "box": {
+        "x": -2283,
+        "y": 341,
+        "w": 137,
+        "h": 20
+      },
+      "bg": "#47bfa9",
+      "kind": "text",
+      "text": "Campaign Insights",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 16,
+        "lh": 19.520000457763672,
+        "fw": 500,
+        "ls": -0.16,
+        "align": "LEFT",
+        "valign": "TOP"
+      },
+      "color": "#47bfa9"
+    },
+    {
+      "id": "28:982",
+      "type": "TEXT",
+      "name": "Drop your files here or browse",
+      "visible": true,
+      "z": 65,
+      "path": "Dashboard 01 > Drop your files here or browse",
+      "box": {
+        "x": -1775,
+        "y": 342,
+        "w": 184,
+        "h": 17
+      },
+      "bg": "#000000",
+      "kind": "text",
+      "text": "Drop your files here or browse",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "LEFT",
+        "valign": "TOP"
+      },
+      "color": "#000000"
+    },
+    {
+      "id": "28:983",
+      "type": "TEXT",
+      "name": "Max file size up to 20 MB",
+      "visible": true,
+      "z": 66,
+      "path": "Dashboard 01 > Max file size up to 20 MB",
+      "box": {
+        "x": -1748,
+        "y": 363,
+        "w": 130,
+        "h": 15
+      },
+      "bg": "#000000",
+      "opacity": 0.66,
+      "kind": "text",
+      "text": "Max file size up to 20 MB",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 12,
+        "lh": 14.640000343322754,
+        "fw": 400,
+        "ls": -0.24,
+        "align": "LEFT",
+        "valign": "TOP"
+      },
+      "color": "#000000"
+    },
+    {
+      "id": "28:1043",
+      "type": "LINE",
+      "name": "Line 10",
+      "visible": true,
+      "z": 67,
+      "path": "Dashboard 01 > Line 10",
+      "box": {
+        "x": -1458,
+        "y": 372,
+        "w": 461,
+        "h": 0
+      },
+      "stroke": {
+        "color": "#6d8196",
+        "w": 1
+      },
+      "opacity": 0.3,
+      "kind": "rule"
+    },
+    {
+      "id": "34:1094",
+      "type": "LINE",
+      "name": "Line 18",
+      "visible": true,
+      "z": 68,
+      "path": "Dashboard 01 > Line 18",
+      "box": {
+        "x": -957,
+        "y": 372,
+        "w": 461,
+        "h": 0
+      },
+      "stroke": {
+        "color": "#6d8196",
+        "w": 1
+      },
+      "opacity": 0.3,
+      "kind": "rule"
+    },
+    {
+      "id": "28:1046",
+      "type": "TEXT",
+      "name": "match Rate",
+      "visible": true,
+      "z": 69,
+      "path": "Dashboard 01 > match Rate",
+      "box": {
+        "x": -1458,
+        "y": 387,
+        "w": 221,
+        "h": 17
+      },
+      "bg": "#0c2d50",
+      "kind": "text",
+      "text": "match Rate",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 20,
+        "lh": 24.400001525878906,
+        "fw": 400,
+        "ls": -0.4,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#0c2d50"
+    },
+    {
+      "id": "34:1086",
+      "type": "TEXT",
+      "name": "Convert ≤ 60 Days",
+      "visible": true,
+      "z": 70,
+      "path": "Dashboard 01 > Convert ≤ 60 Days",
+      "box": {
+        "x": -957,
+        "y": 387,
+        "w": 214,
+        "h": 17
+      },
+      "bg": "#0c2d50",
+      "kind": "text",
+      "text": "Convert ≤ 60 Days",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 20,
+        "lh": 24.400001525878906,
+        "fw": 400,
+        "ls": -0.4,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#0c2d50"
+    },
+    {
+      "id": "28:1050",
+      "type": "TEXT",
+      "name": "10.4%",
+      "visible": true,
+      "z": 71,
+      "path": "Dashboard 01 > 10.4%",
+      "box": {
+        "x": -1046,
+        "y": 390,
+        "w": 49,
+        "h": 22
+      },
+      "bg": "#000000",
+      "kind": "text",
+      "text": "10.4%",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 18,
+        "lh": 21.96000099182129,
+        "fw": 600,
+        "ls": 0.36,
+        "align": "RIGHT",
+        "valign": "TOP",
+        "case": "UPPER"
+      },
+      "color": "#000000"
+    },
+    {
+      "id": "34:1097",
+      "type": "TEXT",
+      "name": "37%",
+      "visible": true,
+      "z": 72,
+      "path": "Dashboard 01 > 37%",
+      "box": {
+        "x": -532,
+        "y": 390,
+        "w": 36,
+        "h": 22
+      },
+      "bg": "#000000",
+      "kind": "text",
+      "text": "37%",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 18,
+        "lh": 21.96000099182129,
+        "fw": 600,
+        "ls": 0.36,
+        "align": "RIGHT",
+        "valign": "TOP",
+        "case": "UPPER"
+      },
+      "color": "#000000"
+    },
+    {
+      "id": "20:311",
+      "type": "FRAME",
+      "name": "fi_15171253",
+      "visible": true,
+      "z": 73,
+      "path": "Dashboard 01 > fi_15171253",
+      "box": {
+        "x": -2320,
+        "y": 405,
+        "w": 22,
+        "h": 22
+      },
+      "bg": "#ffffff",
+      "clip": true,
+      "kind": "frame",
+      "children": [
+        {
+          "id": "20:312",
+          "type": "GROUP",
+          "name": "Group",
+          "visible": true,
+          "z": 0,
+          "path": "Dashboard 01 > fi_15171253 > Group",
+          "box": {
+            "x": -2319,
+            "y": 405,
+            "w": 21,
+            "h": 22
+          },
+          "kind": "group",
+          "children": [
+            {
+              "id": "20:313",
+              "type": "VECTOR",
+              "name": "Vector",
+              "visible": true,
+              "z": 0,
+              "path": "Dashboard 01 > fi_15171253 > Group > Vector",
+              "box": {
+                "x": -2319,
+                "y": 405,
+                "w": 21,
+                "h": 22
+              },
+              "bg": "#0c2d50",
+              "kind": "shape"
+            },
+            {
+              "id": "20:314",
+              "type": "VECTOR",
+              "name": "Vector",
+              "visible": true,
+              "z": 1,
+              "path": "Dashboard 01 > fi_15171253 > Group > Vector",
+              "box": {
+                "x": -2305,
+                "y": 408,
+                "w": 4,
+                "h": 4
+              },
+              "bg": "#0c2d50",
+              "kind": "shape"
+            },
+            {
+              "id": "20:315",
+              "type": "VECTOR",
+              "name": "Vector",
+              "visible": true,
+              "z": 2,
+              "path": "Dashboard 01 > fi_15171253 > Group > Vector",
+              "box": {
+                "x": -2315,
+                "y": 417,
+                "w": 4,
+                "h": 8
+              },
+              "bg": "#0c2d50",
+              "kind": "shape"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "20:310",
+      "type": "TEXT",
+      "name": "Address Heatmap",
+      "visible": true,
+      "z": 74,
+      "path": "Dashboard 01 > Address Heatmap",
+      "box": {
+        "x": -2283,
+        "y": 406,
+        "w": 132,
+        "h": 20
+      },
+      "bg": "#47bfa9",
+      "kind": "text",
+      "text": "Address Heatmap",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 16,
+        "lh": 19.520000457763672,
+        "fw": 500,
+        "ls": -0.16,
+        "align": "LEFT",
+        "valign": "TOP"
+      },
+      "color": "#47bfa9"
+    },
+    {
+      "id": "28:996",
+      "type": "RECTANGLE",
+      "name": "Rectangle 24",
+      "visible": true,
+      "z": 75,
+      "path": "Dashboard 01 > Rectangle 24",
+      "box": {
+        "x": -2018,
+        "y": 424,
+        "w": 255,
+        "h": 50
+      },
+      "bg": "#47bfa9",
+      "radius": 10,
+      "stroke": {
+        "color": "#47bfa9",
+        "w": 1
+      },
+      "kind": "shape"
+    },
+    {
+      "id": "28:1000",
+      "type": "RECTANGLE",
+      "name": "Rectangle 25",
+      "visible": true,
+      "z": 76,
+      "path": "Dashboard 01 > Rectangle 25",
+      "box": {
+        "x": -1753,
+        "y": 424,
+        "w": 255,
+        "h": 50
+      },
+      "bg": "#ffffff",
+      "radius": 10,
+      "stroke": {
+        "color": "#47bfa9",
+        "w": 1
+      },
+      "kind": "shape"
+    },
+    {
+      "id": "28:1048",
+      "type": "LINE",
+      "name": "Line 11",
+      "visible": true,
+      "z": 77,
+      "path": "Dashboard 01 > Line 11",
+      "box": {
+        "x": -1458,
+        "y": 427,
+        "w": 461,
+        "h": 0
+      },
+      "stroke": {
+        "color": "#6d8196",
+        "w": 1
+      },
+      "opacity": 0.3,
+      "kind": "rule"
+    },
+    {
+      "id": "34:1092",
+      "type": "LINE",
+      "name": "Line 16",
+      "visible": true,
+      "z": 78,
+      "path": "Dashboard 01 > Line 16",
+      "box": {
+        "x": -957,
+        "y": 427,
+        "w": 461,
+        "h": 0
+      },
+      "stroke": {
+        "color": "#6d8196",
+        "w": 1
+      },
+      "opacity": 0.3,
+      "kind": "rule"
+    },
+    {
+      "id": "28:1002",
+      "type": "TEXT",
+      "name": "Edit Mapping",
+      "visible": true,
+      "z": 79,
+      "path": "Dashboard 01 > Edit Mapping",
+      "box": {
+        "x": -1679,
+        "y": 438,
+        "w": 107,
+        "h": 22
+      },
+      "bg": "#0c2d50",
+      "kind": "text",
+      "text": "Edit Mapping",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 18,
+        "lh": 21.96000099182129,
+        "fw": 600,
+        "ls": -0.54,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#0c2d50"
+    },
+    {
+      "id": "28:1001",
+      "type": "TEXT",
+      "name": "Run Matching",
+      "visible": true,
+      "z": 80,
+      "path": "Dashboard 01 > Run Matching",
+      "box": {
+        "x": -1946,
+        "y": 439,
+        "w": 112,
+        "h": 22
+      },
+      "bg": "#ffffff",
+      "kind": "text",
+      "text": "Run Matching",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 18,
+        "lh": 21.96000099182129,
+        "fw": 600,
+        "ls": -0.54,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#ffffff"
+    },
+    {
+      "id": "28:1047",
+      "type": "TEXT",
+      "name": "Match Revenue",
+      "visible": true,
+      "z": 81,
+      "path": "Dashboard 01 > Match Revenue",
+      "box": {
+        "x": -1458,
+        "y": 442,
+        "w": 300,
+        "h": 17
+      },
+      "bg": "#0c2d50",
+      "kind": "text",
+      "text": "Match Revenue",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 20,
+        "lh": 24.400001525878906,
+        "fw": 400,
+        "ls": -0.4,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#0c2d50"
+    },
+    {
+      "id": "34:1089",
+      "type": "TEXT",
+      "name": "Convert ≤ 90 Days",
+      "visible": true,
+      "z": 82,
+      "path": "Dashboard 01 > Convert ≤ 90 Days",
+      "box": {
+        "x": -957,
+        "y": 442,
+        "w": 297,
+        "h": 17
+      },
+      "bg": "#0c2d50",
+      "kind": "text",
+      "text": "Convert ≤ 90 Days",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 20,
+        "lh": 24.400001525878906,
+        "fw": 400,
+        "ls": -0.4,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#0c2d50"
+    },
+    {
+      "id": "28:1051",
+      "type": "TEXT",
+      "name": "$392,496.38",
+      "visible": true,
+      "z": 83,
+      "path": "Dashboard 01 > $392,496.38",
+      "box": {
+        "x": -1107,
+        "y": 445,
+        "w": 110,
+        "h": 22
+      },
+      "bg": "#000000",
+      "kind": "text",
+      "text": "$392,496.38",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 18,
+        "lh": 21.96000099182129,
+        "fw": 600,
+        "ls": 0.36,
+        "align": "RIGHT",
+        "valign": "TOP",
+        "case": "UPPER"
+      },
+      "color": "#000000"
+    },
+    {
+      "id": "34:1100",
+      "type": "TEXT",
+      "name": "44%",
+      "visible": true,
+      "z": 84,
+      "path": "Dashboard 01 > 44%",
+      "box": {
+        "x": -533,
+        "y": 445,
+        "w": 37,
+        "h": 22
+      },
+      "bg": "#000000",
+      "kind": "text",
+      "text": "44%",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 18,
+        "lh": 21.96000099182129,
+        "fw": 600,
+        "ls": 0.36,
+        "align": "RIGHT",
+        "valign": "TOP",
+        "case": "UPPER"
+      },
+      "color": "#000000"
+    },
+    {
+      "id": "20:293",
+      "type": "FRAME",
+      "name": "fi_3083741",
+      "visible": true,
+      "z": 85,
+      "path": "Dashboard 01 > fi_3083741",
+      "box": {
+        "x": -2320,
+        "y": 470,
+        "w": 22,
+        "h": 22
+      },
+      "bg": "#ffffff",
+      "clip": true,
+      "kind": "frame",
+      "children": [
+        {
+          "id": "20:294",
+          "type": "GROUP",
+          "name": "Group",
+          "visible": true,
+          "z": 0,
+          "path": "Dashboard 01 > fi_3083741 > Group",
+          "box": {
+            "x": -2320,
+            "y": 470,
+            "w": 22,
+            "h": 22
+          },
+          "kind": "group",
+          "children": [
+            {
+              "id": "20:295",
+              "type": "VECTOR",
+              "name": "Vector",
+              "visible": true,
+              "z": 0,
+              "path": "Dashboard 01 > fi_3083741 > Group > Vector",
+              "box": {
+                "x": -2320,
+                "y": 470,
+                "w": 22,
+                "h": 22
+              },
+              "bg": "#0c2d50",
+              "kind": "shape"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "20:292",
+      "type": "TEXT",
+      "name": "Uploads & Mapping",
+      "visible": true,
+      "z": 86,
+      "path": "Dashboard 01 > Uploads & Mapping",
+      "box": {
+        "x": -2283,
+        "y": 471,
+        "w": 143,
+        "h": 20
+      },
+      "bg": "#47bfa9",
+      "kind": "text",
+      "text": "Uploads & Mapping",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 16,
+        "lh": 19.520000457763672,
+        "fw": 500,
+        "ls": -0.16,
+        "align": "LEFT",
+        "valign": "TOP"
+      },
+      "color": "#47bfa9"
+    },
+    {
+      "id": "39:1147",
+      "type": "LINE",
+      "name": "Line 20",
+      "visible": true,
+      "z": 87,
+      "path": "Dashboard 01 > Line 20",
+      "box": {
+        "x": -1478,
+        "y": 496,
+        "w": 0,
+        "h": 62
+      },
+      "stroke": {
+        "color": "#47bfa9",
+        "w": 1
+      },
+      "kind": "rule"
+    },
+    {
+      "id": "34:1125",
+      "type": "ELLIPSE",
+      "name": "Ellipse 4",
+      "visible": true,
+      "z": 88,
+      "path": "Dashboard 01 > Ellipse 4",
+      "box": {
+        "x": -1524,
+        "y": 514,
+        "w": 26,
+        "h": 26
+      },
+      "kind": "shape"
+    },
+    {
+      "id": "34:1123",
+      "type": "TEXT",
+      "name": "Show YoY Overlay",
+      "visible": true,
+      "z": 89,
+      "path": "Dashboard 01 > Show YoY Overlay",
+      "box": {
+        "x": -2018,
+        "y": 516,
+        "w": 146,
+        "h": 22
+      },
+      "bg": "#0c2d50",
+      "kind": "text",
+      "text": "Show YoY Overlay",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 18,
+        "lh": 21.96000099182129,
+        "fw": 600,
+        "ls": -0.36,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#0c2d50"
+    },
+    {
+      "id": "34:1130",
+      "type": "TEXT",
+      "name": "Mail Volume",
+      "visible": true,
+      "z": 90,
+      "path": "Dashboard 01 > Mail Volume",
+      "box": {
+        "x": -1084,
+        "y": 517,
+        "w": 88,
+        "h": 20
+      },
+      "bg": "#000000",
+      "kind": "text",
+      "text": "Mail Volume",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 16,
+        "lh": 19.520000457763672,
+        "fw": 400,
+        "ls": -0.32,
+        "align": "LEFT",
+        "valign": "TOP"
+      },
+      "color": "#000000"
+    },
+    {
+      "id": "34:1131",
+      "type": "TEXT",
+      "name": "CRM Jobs",
+      "visible": true,
+      "z": 91,
+      "path": "Dashboard 01 > CRM Jobs",
+      "box": {
+        "x": -925,
+        "y": 517,
+        "w": 72,
+        "h": 20
+      },
+      "bg": "#000000",
+      "kind": "text",
+      "text": "CRM Jobs",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 16,
+        "lh": 19.520000457763672,
+        "fw": 400,
+        "ls": -0.32,
+        "align": "LEFT",
+        "valign": "TOP"
+      },
+      "color": "#000000"
+    },
+    {
+      "id": "34:1132",
+      "type": "TEXT",
+      "name": "Matches",
+      "visible": true,
+      "z": 92,
+      "path": "Dashboard 01 > Matches",
+      "box": {
+        "x": -782,
+        "y": 517,
+        "w": 62,
+        "h": 20
+      },
+      "bg": "#000000",
+      "kind": "text",
+      "text": "Matches",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 16,
+        "lh": 19.520000457763672,
+        "fw": 400,
+        "ls": -0.32,
+        "align": "LEFT",
+        "valign": "TOP"
+      },
+      "color": "#000000"
+    },
+    {
+      "id": "34:1133",
+      "type": "TEXT",
+      "name": "Dashed = Previous Year",
+      "visible": true,
+      "z": 93,
+      "path": "Dashboard 01 > Dashed = Previous Year",
+      "box": {
+        "x": -650,
+        "y": 517,
+        "w": 164,
+        "h": 20
+      },
+      "bg": "#000000",
+      "kind": "text",
+      "text": "Dashed = Previous Year",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 16,
+        "lh": 19.520000457763672,
+        "fw": 400,
+        "ls": -0.32,
+        "align": "LEFT",
+        "valign": "TOP"
+      },
+      "color": "#000000"
+    },
+    {
+      "id": "34:1124",
+      "type": "RECTANGLE",
+      "name": "Rectangle 31",
+      "visible": true,
+      "z": 94,
+      "path": "Dashboard 01 > Rectangle 31",
+      "box": {
+        "x": -1548,
+        "y": 519,
+        "w": 49,
+        "h": 16
+      },
+      "bg": "#ffffff",
+      "radius": 25,
+      "stroke": {
+        "color": "#000000",
+        "w": 2
+      },
+      "shadow": true,
+      "kind": "shape"
+    },
+    {
+      "id": "34:1134",
+      "type": "RECTANGLE",
+      "name": "Rectangle 33",
+      "visible": true,
+      "z": 95,
+      "path": "Dashboard 01 > Rectangle 33",
+      "box": {
+        "x": -1115,
+        "y": 525,
+        "w": 21,
+        "h": 4
+      },
+      "bg": "#163b69",
+      "radius": 25,
+      "kind": "shape"
+    },
+    {
+      "id": "39:1135",
+      "type": "RECTANGLE",
+      "name": "Rectangle 34",
+      "visible": true,
+      "z": 96,
+      "path": "Dashboard 01 > Rectangle 34",
+      "box": {
+        "x": -956,
+        "y": 525,
+        "w": 21,
+        "h": 4
+      },
+      "bg": "#47bfa9",
+      "radius": 25,
+      "kind": "shape"
+    },
+    {
+      "id": "39:1136",
+      "type": "RECTANGLE",
+      "name": "Rectangle 35",
+      "visible": true,
+      "z": 97,
+      "path": "Dashboard 01 > Rectangle 35",
+      "box": {
+        "x": -813,
+        "y": 525,
+        "w": 21,
+        "h": 4
+      },
+      "bg": "#6b6b6b",
+      "radius": 25,
+      "kind": "shape"
+    },
+    {
+      "id": "39:1137",
+      "type": "RECTANGLE",
+      "name": "Rectangle 36",
+      "visible": true,
+      "z": 98,
+      "path": "Dashboard 01 > Rectangle 36",
+      "box": {
+        "x": -682,
+        "y": 527,
+        "w": 22,
+        "h": 1
+      },
+      "stroke": {
+        "color": "#000000",
+        "w": 1
+      },
+      "kind": "shape"
+    },
+    {
+      "id": "20:296",
+      "type": "FRAME",
+      "name": "fi_9338858",
+      "visible": true,
+      "z": 99,
+      "path": "Dashboard 01 > fi_9338858",
+      "box": {
+        "x": -2320,
+        "y": 535,
+        "w": 22,
+        "h": 22
+      },
+      "bg": "#ffffff",
+      "clip": true,
+      "kind": "frame",
+      "children": [
+        {
+          "id": "20:300",
+          "type": "VECTOR",
+          "name": "Vector",
+          "visible": true,
+          "z": 0,
+          "path": "Dashboard 01 > fi_9338858 > Vector",
+          "box": {
+            "x": -2319,
+            "y": 536,
+            "w": 10,
+            "h": 1
+          },
+          "bg": "#0c2d50",
+          "kind": "rule",
+          "stroke": {
+            "color": "#0c2d50",
+            "w": 1
+          }
+        },
+        {
+          "id": "20:299",
+          "type": "VECTOR",
+          "name": "Vector",
+          "visible": true,
+          "z": 1,
+          "path": "Dashboard 01 > fi_9338858 > Vector",
+          "box": {
+            "x": -2304,
+            "y": 536,
+            "w": 6,
+            "h": 6
+          },
+          "bg": "#0c2d50",
+          "kind": "shape"
+        },
+        {
+          "id": "20:301",
+          "type": "VECTOR",
+          "name": "Vector",
+          "visible": true,
+          "z": 2,
+          "path": "Dashboard 01 > fi_9338858 > Vector",
+          "box": {
+            "x": -2319,
+            "y": 538,
+            "w": 6,
+            "h": 1
+          },
+          "bg": "#0c2d50",
+          "kind": "rule",
+          "stroke": {
+            "color": "#0c2d50",
+            "w": 1
+          }
+        },
+        {
+          "id": "20:298",
+          "type": "VECTOR",
+          "name": "Vector",
+          "visible": true,
+          "z": 3,
+          "path": "Dashboard 01 > fi_9338858 > Vector",
+          "box": {
+            "x": -2311,
+            "y": 538,
+            "w": 10,
+            "h": 10
+          },
+          "bg": "#0c2d50",
+          "kind": "shape"
+        },
+        {
+          "id": "20:297",
+          "type": "VECTOR",
+          "name": "Vector",
+          "visible": true,
+          "z": 4,
+          "path": "Dashboard 01 > fi_9338858 > Vector",
+          "box": {
+            "x": -2319,
+            "y": 543,
+            "w": 21,
+            "h": 13
+          },
+          "bg": "#0c2d50",
+          "kind": "shape"
+        }
+      ]
+    },
+    {
+      "id": "20:316",
+      "type": "TEXT",
+      "name": "Reports & Exports",
+      "visible": true,
+      "z": 100,
+      "path": "Dashboard 01 > Reports & Exports",
+      "box": {
+        "x": -2283,
+        "y": 536,
+        "w": 134,
+        "h": 20
+      },
+      "bg": "#47bfa9",
+      "kind": "text",
+      "text": "Reports & Exports",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 16,
+        "lh": 19.520000457763672,
+        "fw": 500,
+        "ls": -0.16,
+        "align": "LEFT",
+        "valign": "TOP"
+      },
+      "color": "#47bfa9"
+    },
+    {
+      "id": "34:1126",
+      "type": "RECTANGLE",
+      "name": "Rectangle 32",
+      "visible": true,
+      "z": 101,
+      "path": "Dashboard 01 > Rectangle 32",
+      "box": {
+        "x": -2028,
+        "y": 570,
+        "w": 1552,
+        "h": 395
+      },
+      "bg": "#ffffff",
+      "radius": 10,
+      "shadow": true,
+      "kind": "shape"
+    },
+    {
+      "id": "39:1144",
+      "type": "VECTOR",
+      "name": "Arrow 1",
+      "visible": true,
+      "z": 102,
+      "path": "Dashboard 01 > Arrow 1",
+      "box": {
+        "x": -1993,
+        "y": 590,
+        "w": 0,
+        "h": 301
+      },
+      "stroke": {
+        "color": "#47bfa9",
+        "w": 2
+      },
+      "kind": "shape"
+    },
+    {
+      "id": "39:1151",
+      "type": "VECTOR",
+      "name": "Arrow 2",
+      "visible": true,
+      "z": 103,
+      "path": "Dashboard 01 > Arrow 2",
+      "box": {
+        "x": -1221,
+        "y": 590,
+        "w": 0,
+        "h": 301
+      },
+      "stroke": {
+        "color": "#47bfa9",
+        "w": 2
+      },
+      "kind": "image"
+    },
+    {
+      "id": "20:303",
+      "type": "FRAME",
+      "name": "fi_3503786",
+      "visible": true,
+      "z": 104,
+      "path": "Dashboard 01 > fi_3503786",
+      "box": {
+        "x": -2320,
+        "y": 600,
+        "w": 22,
+        "h": 22
+      },
+      "bg": "#ffffff",
+      "clip": true,
+      "kind": "frame",
+      "children": [
+        {
+          "id": "20:304",
+          "type": "GROUP",
+          "name": "Group",
+          "visible": true,
+          "z": 0,
+          "path": "Dashboard 01 > fi_3503786 > Group",
+          "box": {
+            "x": -2320,
+            "y": 601,
+            "w": 22,
+            "h": 20
+          },
+          "kind": "group",
+          "children": [
+            {
+              "id": "20:305",
+              "type": "VECTOR",
+              "name": "Vector",
+              "visible": true,
+              "z": 0,
+              "path": "Dashboard 01 > fi_3503786 > Group > Vector",
+              "box": {
+                "x": -2320,
+                "y": 601,
+                "w": 22,
+                "h": 20
+              },
+              "bg": "#0c2d50",
+              "kind": "shape"
+            },
+            {
+              "id": "20:306",
+              "type": "VECTOR",
+              "name": "Vector",
+              "visible": true,
+              "z": 1,
+              "path": "Dashboard 01 > fi_3503786 > Group > Vector",
+              "box": {
+                "x": -2309,
+                "y": 605,
+                "w": 5,
+                "h": 9
+              },
+              "bg": "#0c2d50",
+              "kind": "shape"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "20:302",
+      "type": "TEXT",
+      "name": "History & Comparisons",
+      "visible": true,
+      "z": 105,
+      "path": "Dashboard 01 > History & Comparisons",
+      "box": {
+        "x": -2283,
+        "y": 601,
+        "w": 169,
+        "h": 20
+      },
+      "bg": "#47bfa9",
+      "kind": "text",
+      "text": "History & Comparisons",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 16,
+        "lh": 19.520000457763672,
+        "fw": 500,
+        "ls": -0.16,
+        "align": "LEFT",
+        "valign": "TOP"
+      },
+      "color": "#47bfa9"
+    },
+    {
+      "id": "41:1237",
+      "type": "RECTANGLE",
+      "name": "Untitled-1 1",
+      "visible": true,
+      "z": 106,
+      "path": "Dashboard 01 > Untitled-1 1",
+      "box": {
+        "x": -1937,
+        "y": 601,
+        "w": 1429,
+        "h": 312
+      },
+      "opacity": 0.4,
+      "kind": "image"
+    },
+    {
+      "id": "41:1169",
+      "type": "TEXT",
+      "name": "*This is a dummy graph, Will be replaced in DEVELOPMENT*",
+      "visible": true,
+      "z": 107,
+      "path": "Dashboard 01 > *This is a dummy graph, Will be replaced in DEVELOPMENT*",
+      "box": {
+        "x": -1155,
+        "y": 601,
+        "w": 479,
+        "h": 22
+      },
+      "bg": "#0c2d50",
+      "kind": "text",
+      "text": "*This is a dummy graph, Will be replaced in DEVELOPMENT*",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 18,
+        "lh": 21.96000099182129,
+        "fw": 600,
+        "ls": -0.54,
+        "align": "LEFT",
+        "valign": "TOP"
+      },
+      "color": "#0c2d50"
+    },
+    {
+      "id": "20:444",
+      "type": "LINE",
+      "name": "Line 2",
+      "visible": true,
+      "z": 108,
+      "path": "Dashboard 01 > Line 2",
+      "box": {
+        "x": -2331,
+        "y": 662,
+        "w": 268,
+        "h": 0
+      },
+      "stroke": {
+        "color": "#47bfa9",
+        "w": 1
+      },
+      "kind": "rule"
+    },
+    {
+      "id": "20:318",
+      "type": "FRAME",
+      "name": "fi_2956788",
+      "visible": true,
+      "z": 109,
+      "path": "Dashboard 01 > fi_2956788",
+      "box": {
+        "x": -2320,
+        "y": 867,
+        "w": 22,
+        "h": 22
+      },
+      "bg": "#ffffff",
+      "clip": true,
+      "kind": "frame",
+      "children": [
+        {
+          "id": "20:319",
+          "type": "VECTOR",
+          "name": "Vector",
+          "visible": true,
+          "z": 0,
+          "path": "Dashboard 01 > fi_2956788 > Vector",
+          "box": {
+            "x": -2319,
+            "y": 868,
+            "w": 21,
+            "h": 21
+          },
+          "bg": "#0c2d50",
+          "kind": "shape"
+        },
+        {
+          "id": "20:320",
+          "type": "VECTOR",
+          "name": "Vector",
+          "visible": true,
+          "z": 1,
+          "path": "Dashboard 01 > fi_2956788 > Vector",
+          "box": {
+            "x": -2314,
+            "y": 873,
+            "w": 10,
+            "h": 10
+          },
+          "bg": "#0c2d50",
+          "kind": "shape"
+        }
+      ]
+    },
+    {
+      "id": "20:317",
+      "type": "TEXT",
+      "name": "Settings",
+      "visible": true,
+      "z": 110,
+      "path": "Dashboard 01 > Settings",
+      "box": {
+        "x": -2283,
+        "y": 868,
+        "w": 62,
+        "h": 20
+      },
+      "bg": "#47bfa9",
+      "kind": "text",
+      "text": "Settings",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 16,
+        "lh": 19.520000457763672,
+        "fw": 500,
+        "ls": -0.16,
+        "align": "LEFT",
+        "valign": "TOP"
+      },
+      "color": "#47bfa9"
+    },
+    {
+      "id": "39:1148",
+      "type": "TEXT",
+      "name": "Jan 2024",
+      "visible": true,
+      "z": 111,
+      "path": "Dashboard 01 > Jan 2024",
+      "box": {
+        "x": -2009,
+        "y": 911,
+        "w": 32,
+        "h": 34
+      },
+      "bg": "#0c2d50",
+      "kind": "text",
+      "text": "Jan\n2024",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 500,
+        "ls": -0.56,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "UPPER"
+      },
+      "color": "#0c2d50"
+    },
+    {
+      "id": "39:1150",
+      "type": "TEXT",
+      "name": "Jan 2025",
+      "visible": true,
+      "z": 112,
+      "path": "Dashboard 01 > Jan 2025",
+      "box": {
+        "x": -1237,
+        "y": 911,
+        "w": 32,
+        "h": 34
+      },
+      "bg": "#0c2d50",
+      "kind": "text",
+      "text": "Jan\n2025",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 500,
+        "ls": -0.56,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "UPPER"
+      },
+      "color": "#0c2d50"
+    },
+    {
+      "id": "39:1152",
+      "type": "TEXT",
+      "name": "Feb",
+      "visible": true,
+      "z": 113,
+      "path": "Dashboard 01 > Feb",
+      "box": {
+        "x": -1937,
+        "y": 920,
+        "w": 25,
+        "h": 17
+      },
+      "bg": "#47bfa9",
+      "kind": "text",
+      "text": "Feb",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 500,
+        "ls": -0.56,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "UPPER"
+      },
+      "color": "#47bfa9"
+    },
+    {
+      "id": "39:1154",
+      "type": "TEXT",
+      "name": "Mar",
+      "visible": true,
+      "z": 114,
+      "path": "Dashboard 01 > Mar",
+      "box": {
+        "x": -1876,
+        "y": 920,
+        "w": 31,
+        "h": 17
+      },
+      "bg": "#47bfa9",
+      "kind": "text",
+      "text": "Mar",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 500,
+        "ls": -0.56,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "UPPER"
+      },
+      "color": "#47bfa9"
+    },
+    {
+      "id": "39:1155",
+      "type": "TEXT",
+      "name": "Apr",
+      "visible": true,
+      "z": 115,
+      "path": "Dashboard 01 > Apr",
+      "box": {
+        "x": -1811,
+        "y": 920,
+        "w": 28,
+        "h": 17
+      },
+      "bg": "#47bfa9",
+      "kind": "text",
+      "text": "Apr",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 500,
+        "ls": -0.56,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "UPPER"
+      },
+      "color": "#47bfa9"
+    },
+    {
+      "id": "39:1156",
+      "type": "TEXT",
+      "name": "May",
+      "visible": true,
+      "z": 116,
+      "path": "Dashboard 01 > May",
+      "box": {
+        "x": -1747,
+        "y": 920,
+        "w": 30,
+        "h": 17
+      },
+      "bg": "#47bfa9",
+      "kind": "text",
+      "text": "May",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 500,
+        "ls": -0.56,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "UPPER"
+      },
+      "color": "#47bfa9"
+    },
+    {
+      "id": "39:1157",
+      "type": "TEXT",
+      "name": "Jun",
+      "visible": true,
+      "z": 117,
+      "path": "Dashboard 01 > Jun",
+      "box": {
+        "x": -1680,
+        "y": 920,
+        "w": 26,
+        "h": 17
+      },
+      "bg": "#47bfa9",
+      "kind": "text",
+      "text": "Jun",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 500,
+        "ls": -0.56,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "UPPER"
+      },
+      "color": "#47bfa9"
+    },
+    {
+      "id": "39:1158",
+      "type": "TEXT",
+      "name": "Jul",
+      "visible": true,
+      "z": 118,
+      "path": "Dashboard 01 > Jul",
+      "box": {
+        "x": -1620,
+        "y": 920,
+        "w": 24,
+        "h": 17
+      },
+      "bg": "#47bfa9",
+      "kind": "text",
+      "text": "Jul",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 500,
+        "ls": -0.56,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "UPPER"
+      },
+      "color": "#47bfa9"
+    },
+    {
+      "id": "39:1159",
+      "type": "TEXT",
+      "name": "Aug",
+      "visible": true,
+      "z": 119,
+      "path": "Dashboard 01 > Aug",
+      "box": {
+        "x": -1561,
+        "y": 920,
+        "w": 30,
+        "h": 17
+      },
+      "bg": "#47bfa9",
+      "kind": "text",
+      "text": "Aug",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 500,
+        "ls": -0.56,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "UPPER"
+      },
+      "color": "#47bfa9"
+    },
+    {
+      "id": "39:1160",
+      "type": "TEXT",
+      "name": "Sep",
+      "visible": true,
+      "z": 120,
+      "path": "Dashboard 01 > Sep",
+      "box": {
+        "x": -1494,
+        "y": 920,
+        "w": 26,
+        "h": 17
+      },
+      "bg": "#47bfa9",
+      "kind": "text",
+      "text": "Sep",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 500,
+        "ls": -0.56,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "UPPER"
+      },
+      "color": "#47bfa9"
+    },
+    {
+      "id": "39:1161",
+      "type": "TEXT",
+      "name": "Oct",
+      "visible": true,
+      "z": 121,
+      "path": "Dashboard 01 > Oct",
+      "box": {
+        "x": -1432,
+        "y": 920,
+        "w": 29,
+        "h": 17
+      },
+      "bg": "#47bfa9",
+      "kind": "text",
+      "text": "Oct",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 500,
+        "ls": -0.56,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "UPPER"
+      },
+      "color": "#47bfa9"
+    },
+    {
+      "id": "39:1162",
+      "type": "TEXT",
+      "name": "Nov",
+      "visible": true,
+      "z": 122,
+      "path": "Dashboard 01 > Nov",
+      "box": {
+        "x": -1369,
+        "y": 920,
+        "w": 30,
+        "h": 17
+      },
+      "bg": "#47bfa9",
+      "kind": "text",
+      "text": "Nov",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 500,
+        "ls": -0.56,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "UPPER"
+      },
+      "color": "#47bfa9"
+    },
+    {
+      "id": "39:1163",
+      "type": "TEXT",
+      "name": "Dec",
+      "visible": true,
+      "z": 123,
+      "path": "Dashboard 01 > Dec",
+      "box": {
+        "x": -1303,
+        "y": 920,
+        "w": 29,
+        "h": 17
+      },
+      "bg": "#47bfa9",
+      "kind": "text",
+      "text": "Dec",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 500,
+        "ls": -0.56,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "UPPER"
+      },
+      "color": "#47bfa9"
+    },
+    {
+      "id": "41:1203",
+      "type": "TEXT",
+      "name": "Feb",
+      "visible": true,
+      "z": 124,
+      "path": "Dashboard 01 > Feb",
+      "box": {
+        "x": -1169,
+        "y": 920,
+        "w": 25,
+        "h": 17
+      },
+      "bg": "#47bfa9",
+      "kind": "text",
+      "text": "Feb",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 500,
+        "ls": -0.56,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "UPPER"
+      },
+      "color": "#47bfa9"
+    },
+    {
+      "id": "41:1204",
+      "type": "TEXT",
+      "name": "Mar",
+      "visible": true,
+      "z": 125,
+      "path": "Dashboard 01 > Mar",
+      "box": {
+        "x": -1108,
+        "y": 920,
+        "w": 31,
+        "h": 17
+      },
+      "bg": "#47bfa9",
+      "kind": "text",
+      "text": "Mar",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 500,
+        "ls": -0.56,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "UPPER"
+      },
+      "color": "#47bfa9"
+    },
+    {
+      "id": "41:1205",
+      "type": "TEXT",
+      "name": "Apr",
+      "visible": true,
+      "z": 126,
+      "path": "Dashboard 01 > Apr",
+      "box": {
+        "x": -1043,
+        "y": 920,
+        "w": 28,
+        "h": 17
+      },
+      "bg": "#47bfa9",
+      "kind": "text",
+      "text": "Apr",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 500,
+        "ls": -0.56,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "UPPER"
+      },
+      "color": "#47bfa9"
+    },
+    {
+      "id": "41:1206",
+      "type": "TEXT",
+      "name": "May",
+      "visible": true,
+      "z": 127,
+      "path": "Dashboard 01 > May",
+      "box": {
+        "x": -979,
+        "y": 920,
+        "w": 30,
+        "h": 17
+      },
+      "bg": "#47bfa9",
+      "kind": "text",
+      "text": "May",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 500,
+        "ls": -0.56,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "UPPER"
+      },
+      "color": "#47bfa9"
+    },
+    {
+      "id": "41:1207",
+      "type": "TEXT",
+      "name": "Jun",
+      "visible": true,
+      "z": 128,
+      "path": "Dashboard 01 > Jun",
+      "box": {
+        "x": -912,
+        "y": 920,
+        "w": 26,
+        "h": 17
+      },
+      "bg": "#47bfa9",
+      "kind": "text",
+      "text": "Jun",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 500,
+        "ls": -0.56,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "UPPER"
+      },
+      "color": "#47bfa9"
+    },
+    {
+      "id": "41:1208",
+      "type": "TEXT",
+      "name": "Jul",
+      "visible": true,
+      "z": 129,
+      "path": "Dashboard 01 > Jul",
+      "box": {
+        "x": -852,
+        "y": 920,
+        "w": 24,
+        "h": 17
+      },
+      "bg": "#47bfa9",
+      "kind": "text",
+      "text": "Jul",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 500,
+        "ls": -0.56,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "UPPER"
+      },
+      "color": "#47bfa9"
+    },
+    {
+      "id": "41:1209",
+      "type": "TEXT",
+      "name": "Aug",
+      "visible": true,
+      "z": 130,
+      "path": "Dashboard 01 > Aug",
+      "box": {
+        "x": -793,
+        "y": 920,
+        "w": 30,
+        "h": 17
+      },
+      "bg": "#47bfa9",
+      "kind": "text",
+      "text": "Aug",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 500,
+        "ls": -0.56,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "UPPER"
+      },
+      "color": "#47bfa9"
+    },
+    {
+      "id": "41:1210",
+      "type": "TEXT",
+      "name": "Sep",
+      "visible": true,
+      "z": 131,
+      "path": "Dashboard 01 > Sep",
+      "box": {
+        "x": -726,
+        "y": 920,
+        "w": 26,
+        "h": 17
+      },
+      "bg": "#47bfa9",
+      "kind": "text",
+      "text": "Sep",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 500,
+        "ls": -0.56,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "UPPER"
+      },
+      "color": "#47bfa9"
+    },
+    {
+      "id": "41:1211",
+      "type": "TEXT",
+      "name": "Oct",
+      "visible": true,
+      "z": 132,
+      "path": "Dashboard 01 > Oct",
+      "box": {
+        "x": -664,
+        "y": 920,
+        "w": 29,
+        "h": 17
+      },
+      "bg": "#47bfa9",
+      "kind": "text",
+      "text": "Oct",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 500,
+        "ls": -0.56,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "UPPER"
+      },
+      "color": "#47bfa9"
+    },
+    {
+      "id": "41:1212",
+      "type": "TEXT",
+      "name": "Nov",
+      "visible": true,
+      "z": 133,
+      "path": "Dashboard 01 > Nov",
+      "box": {
+        "x": -601,
+        "y": 920,
+        "w": 30,
+        "h": 17
+      },
+      "bg": "#47bfa9",
+      "kind": "text",
+      "text": "Nov",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 500,
+        "ls": -0.56,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "UPPER"
+      },
+      "color": "#47bfa9"
+    },
+    {
+      "id": "41:1213",
+      "type": "TEXT",
+      "name": "Dec",
+      "visible": true,
+      "z": 134,
+      "path": "Dashboard 01 > Dec",
+      "box": {
+        "x": -535,
+        "y": 920,
+        "w": 29,
+        "h": 17
+      },
+      "bg": "#47bfa9",
+      "kind": "text",
+      "text": "Dec",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 500,
+        "ls": -0.56,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "UPPER"
+      },
+      "color": "#47bfa9"
+    },
+    {
+      "id": "20:328",
+      "type": "TEXT",
+      "name": "Sign Out",
+      "visible": true,
+      "z": 135,
+      "path": "Dashboard 01 > Sign Out",
+      "box": {
+        "x": -2283,
+        "y": 934,
+        "w": 64,
+        "h": 20
+      },
+      "bg": "#47bfa9",
+      "kind": "text",
+      "text": "Sign Out",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 16,
+        "lh": 19.520000457763672,
+        "fw": 500,
+        "ls": -0.16,
+        "align": "LEFT",
+        "valign": "TOP"
+      },
+      "color": "#47bfa9"
+    },
+    {
+      "id": "20:321",
+      "type": "FRAME",
+      "name": "fi_992680",
+      "visible": true,
+      "z": 136,
+      "path": "Dashboard 01 > fi_992680",
+      "box": {
+        "x": -2319,
+        "y": 935,
+        "w": 20,
+        "h": 20
+      },
+      "bg": "#ffffff",
+      "clip": true,
+      "kind": "frame",
+      "children": [
+        {
+          "id": "20:322",
+          "type": "GROUP",
+          "name": "Group",
+          "visible": true,
+          "z": 0,
+          "path": "Dashboard 01 > fi_992680 > Group",
+          "box": {
+            "x": -2319,
+            "y": 935,
+            "w": 11,
+            "h": 20
+          },
+          "kind": "group",
+          "children": [
+            {
+              "id": "20:323",
+              "type": "GROUP",
+              "name": "Group",
+              "visible": true,
+              "z": 0,
+              "path": "Dashboard 01 > fi_992680 > Group > Group",
+              "box": {
+                "x": -2319,
+                "y": 935,
+                "w": 11,
+                "h": 20
+              },
+              "kind": "group",
+              "children": [
+                {
+                  "id": "20:324",
+                  "type": "VECTOR",
+                  "name": "Vector",
+                  "visible": true,
+                  "z": 0,
+                  "path": "Dashboard 01 > fi_992680 > Group > Group > Vector",
+                  "box": {
+                    "x": -2319,
+                    "y": 935,
+                    "w": 11,
+                    "h": 20
+                  },
+                  "bg": "#0c2d50",
+                  "kind": "shape"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "20:325",
+          "type": "GROUP",
+          "name": "Group",
+          "visible": true,
+          "z": 1,
+          "path": "Dashboard 01 > fi_992680 > Group",
+          "box": {
+            "x": -2312,
+            "y": 939,
+            "w": 13,
+            "h": 12
+          },
+          "kind": "group",
+          "children": [
+            {
+              "id": "20:326",
+              "type": "GROUP",
+              "name": "Group",
+              "visible": true,
+              "z": 0,
+              "path": "Dashboard 01 > fi_992680 > Group > Group",
+              "box": {
+                "x": -2312,
+                "y": 939,
+                "w": 13,
+                "h": 12
+              },
+              "kind": "group",
+              "children": [
+                {
+                  "id": "20:327",
+                  "type": "VECTOR",
+                  "name": "Vector",
+                  "visible": true,
+                  "z": 0,
+                  "path": "Dashboard 01 > fi_992680 > Group > Group > Vector",
+                  "box": {
+                    "x": -2312,
+                    "y": 939,
+                    "w": 13,
+                    "h": 12
+                  },
+                  "bg": "#0c2d50",
+                  "kind": "shape"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "_palette": [
+    {
+      "hex": "#0c2d50",
+      "count": 80
+    },
+    {
+      "hex": "#47bfa9",
+      "count": 79
+    },
+    {
+      "hex": "#000000",
+      "count": 45
+    },
+    {
+      "hex": "#ffffff",
+      "count": 26
+    },
+    {
+      "hex": "#6d8196",
+      "count": 15
+    },
+    {
+      "hex": "#f4f5f7",
+      "count": 9
+    },
+    {
+      "hex": "#6b6b6b",
+      "count": 3
+    },
+    {
+      "hex": "#163b69",
+      "count": 1
+    }
+  ]
+}
