@@ -93,12 +93,6 @@ const rowsToShow = computed<Row[]>(() =>
   color: #47bfa9;
   text-transform: uppercase;
 }
-.col-total {
-  justify-self: end;
-}
-.col-rate {
-  justify-self: end;
-}
 
 /* Divider (Line 4 @ 30% opacity) */
 .rule {
@@ -132,13 +126,17 @@ const rowsToShow = computed<Row[]>(() =>
   background: #f4f5f7;
 }
 
-.cell.zip {
-  justify-self: start;
+/* header labels */
+.col-total,
+.col-rate {
+  justify-self: center;
+  text-align: center;
 }
-.cell.total {
-  justify-self: end;
-}
-.cell.rate {
-  justify-self: end;
+
+/* row values */
+.total,
+.rate {
+  justify-self: center;
+  text-align: center;
 }
 </style>

@@ -75,7 +75,7 @@ const rows: Row[] = [
 /* Column labels */
 .cols {
   display: grid;
-  grid-template-columns: 1fr 160px 120px; /* adjust to match your layout */
+  grid-template-columns: 120px 1fr 140px; /* adjust to match your layout */
   align-items: center;
   gap: 12px;
 }
@@ -86,14 +86,6 @@ const rows: Row[] = [
   letter-spacing: -0.28px; /* ls:-0.28 */
   color: #47bfa9; /* header accent from JSON */
   text-transform: uppercase;
-}
-.col-city {
-}
-.col-total {
-  justify-self: end;
-}
-.col-rate {
-  justify-self: end;
 }
 
 /* Divider (Line 3: color #6d8196 @ 30% opacity, 1px) */
@@ -113,12 +105,12 @@ const rows: Row[] = [
 }
 .row {
   display: grid;
-  grid-template-columns: 1fr 160px 120px;
+  grid-template-columns: 120px 1fr 140px;
   align-items: center;
-  min-height: 47px; /* rectangles 6/7/8: h 47 */
+  min-height: 47px; /* row rects: h 47 (33 on last in some designs—OK to keep 47) */
   padding: 0 12px;
   border-radius: 10px;
-  color: #6b6b6b; /* body text color from JSON */
+  color: #6b6b6b;
   font-size: 14px;
   line-height: 17px;
   letter-spacing: -0.28px;
@@ -128,13 +120,17 @@ const rows: Row[] = [
   background: #f4f5f7;
 } /* even rows: Rectangle 6/7/8 bg */
 
-.cell.city {
-  justify-self: start;
+/* header labels */
+.col-total,
+.col-rate {
+  justify-self: center;
+  text-align: center;
 }
-.cell.total {
-  justify-self: end;
-}
-.cell.rate {
-  justify-self: end;
+
+/* row values */
+.total,
+.rate {
+  justify-self: center;
+  text-align: center;
 }
 </style>
