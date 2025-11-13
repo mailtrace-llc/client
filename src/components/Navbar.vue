@@ -1,133 +1,155 @@
-<!-- client/src/components/Navbar.vue -->
+<!-- src/components/layout/Navbar.vue -->
 <script setup lang="ts">
-import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
-import { useRoute, RouterLink } from 'vue-router'
-import { storeToRefs } from 'pinia'
-import { useRuns } from '@/stores/runs'
+import { ref, watch, onMounted, computed } from "vue";
 
-const route = useRoute()
+const props = withDefaults(
+  defineProps<{
+    title?: string;
+    userName?: string;
+    userRole?: string;
+    avatarUrl?: string;
+    /** If you want the search box hidden (e.g., on small pages) */
+    showSearch?: boolean;
+    /** Emits on Enter or click of the search icon */
+    modelValue?: string;
+  }>(),
+  {
+    title: "Dashboard",
+    userName: "Matthew McNey",
+    userRole: "Admin 1",
+    avatarUrl: "",
+    showSearch: true,
+    modelValue: "",
+  }
+);
 
-// active-state helpers (mirrors the old request.endpoint checks)
-const isDash = computed(() => route.path === '/' || route.name === 'dashboard')
-const isMap  = computed(() => route.path.startsWith('/map') || route.name === 'map')
+const q = ref(props.modelValue);
+const emit = defineEmits<{
+  (e: "update:modelValue", v: string): void;
+  (e: "search", v: string): void;
+  (e: "profile-click"): void;
+  (e: "settings-click"): void;
+}>();
 
-// History dropdown (keep your existing behavior)
-const open = ref(false)
-function toggle() {
-  open.value = !open.value
-  // lazy-load on first open
-  if (open.value && !runs.items.length && !runs.loading) runs.load(25)
+watch(
+  () => props.modelValue,
+  (v) => (q.value = v)
+);
+
+function doSearch() {
+  emit("update:modelValue", q.value);
+  emit("search", q.value);
 }
-function close() { open.value = false }
 
-function onKey(e: KeyboardEvent) {
-  if (e.key === 'Escape') close()
-}
-function onClickAway(e: MouseEvent) {
-  const root = document.getElementById('mt-hist')
-  if (root && !root.contains(e.target as Node)) close()
-}
-
-// ---- Runs store wiring (NEW) ----
-const runs = useRuns()
-const { items, loading, error, activeRunId } = storeToRefs(runs)
-
-async function selectRun(id: string) {
-  await runs.setActive(id)  // will also refresh KPI (per store action)
-  close()
-}
+// Simple fallback avatar (initials)
+const initials = computed(() => {
+  const name = (props.userName ?? "").trim();
+  if (!name) return "U";
+  const parts = name.split(/\s+/).filter(Boolean);
+  const a = parts[0]?.charAt(0) ?? "";
+  const b = parts[1]?.charAt(0) ?? "";
+  const letters = (a + b || a || "U").toUpperCase();
+  return letters;
+});
 
 onMounted(() => {
-  document.addEventListener('keydown', onKey)
-  document.addEventListener('click', onClickAway)
-  // optional eager load (comment out if you prefer lazy in toggle):
-  // runs.load(25)
-})
-onBeforeUnmount(() => {
-  document.removeEventListener('keydown', onKey)
-  document.removeEventListener('click', onClickAway)
-})
+  // autofocus search when you want; keep off by default
+});
 </script>
 
 <template>
-  <!-- keep classes/structure so existing CSS applies -->
-  <nav class="mt-nav" role="navigation" aria-label="Main">
-    <div class="wrap">
-      <div class="left logo">
-        <RouterLink to="/" aria-label="MailTrace home">
-          <img class="mt-logo" src="/src/assets/logo.svg" alt="MailTrace logo" />
-        </RouterLink>
-      </div>
+  <!-- Outer container is a card that sits under the top bar but INSIDE the content column -->
+  <div
+    class="rounded-xl bg-white shadow-[0_1px_3px_rgba(12,45,80,.08),0_10px_24px_rgba(12,45,80,.06)] px-5 py-3 flex items-center gap-4"
+  >
+    <!-- Title (left, aligns to the content column start) -->
+    <h1
+      class="text-[28px] leading-[34px] font-medium tracking-[-0.02em] text-[#0c2d50]"
+    >
+      {{ props.title }}
+    </h1>
 
-      <div class="right">
-        <RouterLink id="mt-link-dash" to="/" :class="{ active: isDash }">
-          Dashboard
-        </RouterLink>
+    <!-- Spacer before search -->
+    <div class="grow"></div>
 
-        <RouterLink id="mt-link-map" to="/map" :class="{ active: isMap }">
-          Map
-        </RouterLink>
+    <!-- Search box -->
+    <div
+      v-if="props.showSearch"
+      class="hidden md:flex items-center gap-3 rounded-xl bg-[#f4f5f7] h-12 px-4 min-w-[360px] max-w-[520px] shadow-[inset_0_1px_0_rgba(0,0,0,.04)]"
+    >
+      <!-- Search icon -->
+      <input
+        v-model="q"
+        type="text"
+        placeholder="Search"
+        class="bg-transparent outline-none w-full text-[16px] placeholder-[#6b6b6b]"
+        @keydown.enter.prevent="doSearch"
+      />
 
-        <!-- history dropdown (IDs preserved for any legacy wiring) -->
-        <div class="hist" id="mt-hist">
-          <button
-            class="hist-btn"
-            type="button"
-            aria-haspopup="true"
-            :aria-expanded="open ? 'true' : 'false'"
-            @click="toggle"
-          >
-            History ▾
-          </button>
-
-          <div class="hist-panel" role="menu" v-show="open">
-            <!-- Replaced legacy placeholders with actual data rendering -->
-            <div v-if="loading" class="hist-empty" id="mt-hist-empty">Loading…</div>
-            <div v-else-if="error" class="hist-empty text-amber-600">
-              {{ error }}
-            </div>
-            <div v-else-if="!items.length" class="hist-empty" id="mt-hist-empty">
-              No runs yet.
-            </div>
-            <div v-else id="mt-hist-list" class="hist-list">
-              <button
-                v-for="r in items"
-                :key="r.id"
-                class="hist-item"
-                :class="{ active: r.id === activeRunId }"
-                @click="selectRun(r.id)"
-              >
-                <div class="hist-line-1">
-                  {{ new Date(r.started_at).toLocaleString() }}
-                </div>
-                <div v-if="r.summary" class="hist-line-2">
-                  {{ r.summary }}
-                </div>
-              </button>
-            </div>
-
-            <!-- optional refresh button inside panel -->
-            <div class="hist-footer">
-              <button class="hist-refresh" @click="runs.load(25)" :disabled="loading">
-                Refresh
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
+      <button
+        class="rounded-lg p-2 hover:bg-white/70 transition"
+        @click="doSearch"
+        aria-label="Search"
+      >
+        <svg viewBox="0 0 24 24" class="w-5 h-5">
+          <path
+            d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15z"
+            fill="none"
+            stroke="#47bfa9"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </button>
     </div>
-  </nav>
-</template>
 
-<style scoped>
-/* Optional minimal styles to match your existing classes;
-   remove if you already style .hist-*, .hist-item, etc. */
-.hist-list { display: flex; flex-direction: column; max-height: 20rem; overflow: auto; }
-.hist-item { text-align: left; padding: 0.5rem 0.75rem; border-radius: 0.5rem; }
-.hist-item:hover { background: rgba(0,0,0,0.04); }
-.hist-item.active { background: rgba(0,0,0,0.06); }
-.hist-line-1 { font-size: 0.875rem; font-weight: 600; }
-.hist-line-2 { font-size: 0.75rem; color: #6b7280; }
-.hist-footer { padding: 0.5rem; border-top: 1px solid rgba(0,0,0,0.06); display: flex; justify-content: flex-end; }
-.hist-refresh { font-size: 0.75rem; padding: 0.25rem 0.5rem; border-radius: 0.375rem; }
-</style>
+    <!-- User area -->
+    <div class="hidden sm:flex items-center gap-3 pl-2">
+      <!-- Avatar circle -->
+      <button
+        class="w-[42px] h-[42px] rounded-full overflow-hidden bg-[#f4f5f7] ring-1 ring-black/5 flex items-center justify-center"
+        @click="$emit('profile-click')"
+        aria-label="Profile"
+      >
+        <img
+          v-if="props.avatarUrl"
+          :src="props.avatarUrl"
+          alt=""
+          class="w-full h-full object-cover"
+        />
+        <span v-else class="text-sm font-semibold text-[#0c2d50]">{{
+          initials
+        }}</span>
+      </button>
+
+      <!-- Name + role -->
+      <div class="leading-tight">
+        <div class="text-[16px] font-semibold tracking-[0.01em] text-black">
+          {{ props.userName }}
+        </div>
+        <div class="text-[14px] text-[#47bfa9]">{{ props.userRole }}</div>
+      </div>
+
+      <!-- Spacer between user and round buttons -->
+      <div class="w-2"></div>
+
+      <!-- Notifications -->
+      <button
+        class="w-[42px] h-[42px] rounded-full bg-[#f4f5f7] grid place-items-center hover:bg-[#e9ecef] transition"
+        aria-label="Notifications"
+      >
+        <svg viewBox="0 0 24 24" class="w-5 h-5">
+          <path
+            d="M18 8a6 6 0 1 0-12 0c0 7-3 7-3 7h18s-3 0-3-7M13.73 21a2 2 0 0 1-3.46 0"
+            fill="none"
+            stroke="#47bfa9"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </button>
+    </div>
+  </div>
+</template>

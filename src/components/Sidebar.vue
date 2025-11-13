@@ -1,118 +1,188 @@
-<!-- src/components/Sidebar.vue -->
+<!-- client/src/components/Sidebar.vue -->
+<script setup lang="ts">
+import { useRouter, useRoute } from "vue-router";
+
+/* Assets */
+import LogoUrl from "@/assets/source-logo-02.png";
+/* IMPORTANT: import SVGs as URLs so <img :src> works even if vite-svg-loader is present */
+import IcOverview from "@/assets/overview-icon-fi_7532624.svg?url";
+import IcRoi from "@/assets/roi-icon-fi_1388417.svg?url";
+import IcMatch from "@/assets/match-performance-icon-fi_2139618.svg?url";
+import IcCampaign from "@/assets/campaign-insights-icon-fi_18364766.svg?url";
+import IcHeatmap from "@/assets/heatmap-icon-fi_15171253.svg?url";
+import IcUploads from "@/assets/uploads-mapping-icon-fi_3083741.svg?url";
+import IcReports from "@/assets/reports-exports-icon-fi_9338858.svg?url";
+import IcHistory from "@/assets/history-icon-fi_3503786.svg?url";
+import IcSettings from "@/assets/settings-icon-fi_2956788.svg?url";
+import IcLogout from "@/assets/logout-icon-fi_992680.svg?url";
+
+const router = useRouter();
+const route = useRoute();
+
+const items = [
+  { to: "/", label: "Overview", icon: IcOverview },
+  { to: "/roi", label: "ROI Analytics", icon: IcRoi },
+  { to: "/match", label: "Match Performance", icon: IcMatch },
+  { to: "/campaigns", label: "Campaign Insights", icon: IcCampaign },
+  { to: "/heatmap", label: "Address Heatmap", icon: IcHeatmap },
+  { to: "/upload", label: "Uploads & Mapping", icon: IcUploads },
+  { to: "/reports", label: "Reports & Exports", icon: IcReports },
+  { to: "/history", label: "History & Comparisons", icon: IcHistory },
+];
+
+function isActive(path: string) {
+  return route.path === path;
+}
+function go(path: string) {
+  router.push(path);
+}
+</script>
+
 <template>
-  <aside
-    class="bg-white rounded-[10px] shadow-[0_3px_15px_rgba(0,0,0,0.06)]
-           min-h-[calc(100dvh-40px)] w-[318px] flex flex-col"
-    role="navigation"
-    aria-label="Primary"
-  >
-    <!-- Brand + optional toggle -->
-    <div class="flex items-center justify-between px-5 pt-5 pb-4 border-b border-var(--line-color)/60">
-      <RouterLink to="/" class="flex items-center min-w-0" aria-label="MailTrace" title="MailTrace">
-        <LogoMark class="h-auto w-[180px]" aria-hidden="true" />
-      </RouterLink>
+  <!-- sticky keeps the card pinned and visually full-height next to content -->
+  <aside class="sidebar-wrap">
+    <nav class="sidebar-card">
+      <div class="logo-row">
+        <img :src="LogoUrl" alt="MailTrace" class="logo" draggable="false" />
+      </div>
 
-      <!-- keep if you still want collapse -->
-      <button
-        class="p-2 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 transition"
-        :aria-label="collapsed ? 'Expand sidebar' : 'Collapse sidebar'"
-        @click="$emit('toggle')"
-      >
-        <component :is="collapsed ? ChevronRight : ChevronLeft" class="size-5" aria-hidden="true" />
-      </button>
-    </div>
+      <hr class="sep" />
 
-    <!-- Nav -->
-    <nav class="flex-1 overflow-y-auto py-3">
-      <ul class="space-y-2 px-5">
-        <li v-for="item in items" :key="item.to">
-          <RouterLink
-            :to="item.to"
-            class="c-pill"
-            :class="isActive(item.to) ? 'pill-active' : 'pill-idle'"
-            :title="collapsed ? item.label : undefined"
+      <ul class="nav-list">
+        <li v-for="i in items" :key="i.to">
+          <button
+            class="nav-btn"
+            :class="{ active: isActive(i.to) }"
+            @click="go(i.to)"
           >
-            <component :is="item.icon" class="c-ico" aria-hidden="true" />
-            <span class="truncate">{{ item.label }}</span>
-            <span v-if="item.badge" class="ml-auto text-xs px-2 py-0.5 rounded-full bg-black/5 dark:bg-white/10">
-              {{ item.badge }}
-            </span>
-          </RouterLink>
+            <img class="icon" :src="i.icon" :alt="i.label" draggable="false" />
+            <span class="label">{{ i.label }}</span>
+          </button>
         </li>
       </ul>
+
+      <hr class="sep sep-bottom" />
+
+      <div class="bottom">
+        <button class="nav-btn ghost" @click="go('/settings')">
+          <img class="icon" :src="IcSettings" alt="" draggable="false" />
+          <span class="label">Settings</span>
+        </button>
+        <button class="nav-btn ghost" @click="go('/signout')">
+          <img class="icon" :src="IcLogout" alt="" draggable="false" />
+          <span class="label">Sign Out</span>
+        </button>
+      </div>
     </nav>
-
-    <!-- Footer -->
-    <div class="border-t border-var(--line-color)/60 p-3 space-y-2">
-      <RouterLink to="/settings" class="c-pill pill-idle">
-        <Settings class="c-ico" aria-hidden="true" />
-        <span class="truncate">Settings</span>
-      </RouterLink>
-
-      <button class="w-full c-pill pill-idle" @click="onSignOut" aria-label="Sign out">
-        <LogOut class="c-ico" aria-hidden="true" />
-        <span class="truncate">Sign out</span>
-      </button>
-    </div>
   </aside>
 </template>
 
-<script setup lang="ts">
-import { computed } from 'vue'
-import { useRoute, RouterLink } from 'vue-router'
-import {
-  LayoutDashboard, Upload, History, MapPinned, CreditCard,
-  Settings, LogOut, ChevronLeft, ChevronRight
-} from 'lucide-vue-next'
-import LogoMark from '@/assets/logo_new.svg?component'
-
-type Item = { label: string; to: string; icon: any; badge?: string | number }
-
-withDefaults(defineProps<{ collapsed?: boolean }>(), { collapsed: false })
-
-const emit = defineEmits<{ (e:'toggle'): void; (e:'signout'): void }>()
-const route = useRoute()
-
-const items = computed<Item[]>(() => [
-  { label: 'Summary',        to: '/',         icon: LayoutDashboard },
-  { label: 'Upload & Match', to: '/upload',   icon: Upload },
-  { label: 'History',        to: '/history',  icon: History },
-  { label: 'Map',            to: '/map',      icon: MapPinned },
-  { label: 'Billing',        to: '/billing',  icon: CreditCard },
-])
-
-function isActive(path: string) {
-  if (path === '/') return route.path === '/'
-  return route.path.startsWith(path)
-}
-function onSignOut() { emit('signout') }
-</script>
-
 <style scoped>
-/* shared pill style */
-.c-pill {
-  display:flex; align-items:center; gap:12px;
-  padding: 10px 12px; border-radius: 10px; text-decoration:none;
-  color: var(--ink-color);
-}
-.c-ico { width:20px; height:20px; color: var(--brand-color); flex:0 0 20px; }
-
-/* idle/hover */
-.pill-idle { color: var(--ink-color); }
-.pill-idle:hover { background: color-mix(in srgb, var(--brand-color) 6%, transparent); }
-
-/* active (Figma: #F4F5F7 + subtle inset feel) */
-.pill-active {
-  background: #F4F5F7;
-  box-shadow: inset 0 0 9px rgba(0, 0, 0, 0.12);
-  color: var(--ink-color);
+/* Wrapper so the card is pinned and fills vertically beside content */
+.sidebar-wrap {
+  position: sticky;
+  top: 12px; /* matches the Figma gutter under the top bar */
+  align-self: start; /* so sticky works inside CSS grid layouts */
+  height: calc(100vh - 24px);
 }
 
-/* logo fix: prevent clipping and baseline cut */
-.logo-block { display:block; }
-:deep(svg) { overflow: visible; }
+/* Card container */
+.sidebar-card {
+  width: 318px; /* Figma width */
+  max-width: 318px;
+  height: 100%;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(12, 45, 80, 0.08);
+  padding: 18px 16px;
+  display: flex;
+  flex-direction: column;
+}
 
-/* custom thin scrollbar on the nav */
-nav::-webkit-scrollbar { width: 8px; }
-nav::-webkit-scrollbar-thumb { border-radius: 9999px; background: rgba(120,120,120,.25); }
+.logo-row {
+  padding: 6px 8px 10px;
+}
+.logo {
+  height: 43px;
+  width: auto;
+  object-fit: contain;
+}
+
+.sep {
+  border: none;
+  height: 1px;
+  background: #47bfa9;
+  margin: 10px 8px 12px;
+  border-radius: 1px;
+}
+.sep-bottom {
+  margin-top: 12px;
+}
+
+.nav-list {
+  display: grid;
+  row-gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nav-btn {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 22px minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  padding: 12px 12px;
+  border-radius: 10px;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  text-align: left;
+  transition: background 120ms ease;
+}
+.nav-btn:hover {
+  background: #f4f5f7;
+}
+.nav-btn.active {
+  background: #f4f5f7; /* selected row fill in Figma */
+  box-shadow: 0 1px 2px rgba(12, 45, 80, 0.06);
+}
+
+.icon {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+}
+.label {
+  font-family: "Instrument Sans", system-ui, -apple-system, Segoe UI, Roboto,
+    sans-serif;
+  font-size: 16px;
+  line-height: 19.5px;
+  font-weight: 500;
+  color: #47bfa9;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* Bottom group pinned to the end */
+.bottom {
+  margin-top: auto;
+  display: grid;
+  row-gap: 10px;
+  padding: 6px 0 4px;
+}
+.ghost .label {
+  color: #47bfa9;
+}
+
+/* Narrow screens: let it flex smaller if the layout stacks */
+@media (max-width: 1024px) {
+  .sidebar-card,
+  .sidebar-wrap {
+    width: 100%;
+    max-width: none;
+    height: auto;
+  }
+}
 </style>

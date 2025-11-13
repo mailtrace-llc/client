@@ -1,0 +1,5450 @@
+{
+  "id": "1:2",
+  "type": "FRAME",
+  "name": "Dashboard (Addresses) 02",
+  "visible": true,
+  "z": 0,
+  "path": "Dashboard (Addresses) 02",
+  "box": {
+    "x": -293,
+    "y": -9,
+    "w": 1920,
+    "h": 1024
+  },
+  "bg": "#f4f5f7",
+  "clip": true,
+  "kind": "frame",
+  "children": [
+    {
+      "id": "1:5",
+      "type": "RECTANGLE",
+      "name": "Rectangle 1",
+      "visible": true,
+      "z": 0,
+      "path": "Dashboard (Addresses) 02 > Rectangle 1",
+      "box": {
+        "x": -273,
+        "y": 11,
+        "w": 318,
+        "h": 984
+      },
+      "bg": "#ffffff",
+      "radius": 10,
+      "shadow": true,
+      "kind": "shape"
+    },
+    {
+      "id": "2:6",
+      "type": "RECTANGLE",
+      "name": "Rectangle 2",
+      "visible": true,
+      "z": 1,
+      "path": "Dashboard (Addresses) 02 > Rectangle 2",
+      "box": {
+        "x": 55,
+        "y": 11,
+        "w": 1552,
+        "h": 68
+      },
+      "bg": "#ffffff",
+      "radius": 10,
+      "shadow": true,
+      "kind": "shape"
+    },
+    {
+      "id": "2:76",
+      "type": "RECTANGLE",
+      "name": "Rectangle 3",
+      "visible": true,
+      "z": 2,
+      "path": "Dashboard (Addresses) 02 > Rectangle 3",
+      "box": {
+        "x": 836,
+        "y": 21,
+        "w": 420,
+        "h": 48
+      },
+      "bg": "#f4f5f7",
+      "radius": 10,
+      "shadow": true,
+      "kind": "shape"
+    },
+    {
+      "id": "2:11",
+      "type": "ELLIPSE",
+      "name": "Ellipse 1",
+      "visible": true,
+      "z": 3,
+      "path": "Dashboard (Addresses) 02 > Ellipse 1",
+      "box": {
+        "x": 1286,
+        "y": 24,
+        "w": 42,
+        "h": 42
+      },
+      "kind": "image"
+    },
+    {
+      "id": "2:83",
+      "type": "ELLIPSE",
+      "name": "Ellipse 2",
+      "visible": true,
+      "z": 4,
+      "path": "Dashboard (Addresses) 02 > Ellipse 2",
+      "box": {
+        "x": 1535,
+        "y": 24,
+        "w": 42,
+        "h": 42
+      },
+      "bg": "#f4f5f7",
+      "kind": "shape"
+    },
+    {
+      "id": "2:12",
+      "type": "TEXT",
+      "name": "Christopher Carrel",
+      "visible": true,
+      "z": 5,
+      "path": "Dashboard (Addresses) 02 > Christopher Carrel",
+      "box": {
+        "x": 1340,
+        "y": 25,
+        "w": 143,
+        "h": 20
+      },
+      "bg": "#000000",
+      "kind": "text",
+      "text": "Christopher Carrel",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 16,
+        "lh": 19.520000457763672,
+        "fw": 600,
+        "ls": 0.16,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#000000"
+    },
+    {
+      "id": "2:32",
+      "type": "TEXT",
+      "name": "Dashboard",
+      "visible": true,
+      "z": 6,
+      "path": "Dashboard (Addresses) 02 > Dashboard",
+      "box": {
+        "x": 75,
+        "y": 28,
+        "w": 139,
+        "h": 27
+      },
+      "bg": "#0c2d50",
+      "kind": "text",
+      "text": "Dashboard",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 28,
+        "lh": 34.15999984741211,
+        "fw": 500,
+        "ls": -0.56,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#0c2d50"
+    },
+    {
+      "id": "2:70",
+      "type": "FRAME",
+      "name": "fi_54481",
+      "visible": true,
+      "z": 7,
+      "path": "Dashboard (Addresses) 02 > fi_54481",
+      "box": {
+        "x": 1214,
+        "y": 34,
+        "w": 22,
+        "h": 22
+      },
+      "bg": "#ffffff",
+      "clip": true,
+      "kind": "frame",
+      "children": [
+        {
+          "id": "2:71",
+          "type": "GROUP",
+          "name": "Group",
+          "visible": true,
+          "z": 0,
+          "path": "Dashboard (Addresses) 02 > fi_54481 > Group",
+          "box": {
+            "x": 1214,
+            "y": 34,
+            "w": 22,
+            "h": 22
+          },
+          "kind": "group",
+          "children": [
+            {
+              "id": "2:72",
+              "type": "GROUP",
+              "name": "_x34__4_",
+              "visible": true,
+              "z": 0,
+              "path": "Dashboard (Addresses) 02 > fi_54481 > Group > _x34__4_",
+              "box": {
+                "x": 1214,
+                "y": 34,
+                "w": 22,
+                "h": 22
+              },
+              "kind": "group",
+              "children": [
+                {
+                  "id": "2:73",
+                  "type": "GROUP",
+                  "name": "Group",
+                  "visible": true,
+                  "z": 0,
+                  "path": "Dashboard (Addresses) 02 > fi_54481 > Group > _x34__4_ > Group",
+                  "box": {
+                    "x": 1214,
+                    "y": 34,
+                    "w": 22,
+                    "h": 22
+                  },
+                  "kind": "group",
+                  "children": [
+                    {
+                      "id": "2:74",
+                      "type": "VECTOR",
+                      "name": "Vector",
+                      "visible": true,
+                      "z": 0,
+                      "path": "Dashboard (Addresses) 02 > fi_54481 > Group > _x34__4_ > Group > Vector",
+                      "box": {
+                        "x": 1214,
+                        "y": 34,
+                        "w": 22,
+                        "h": 22
+                      },
+                      "bg": "#47bfa9",
+                      "kind": "shape"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2:77",
+      "type": "FRAME",
+      "name": "fi_747376",
+      "visible": true,
+      "z": 8,
+      "path": "Dashboard (Addresses) 02 > fi_747376",
+      "box": {
+        "x": 1545,
+        "y": 34,
+        "w": 22,
+        "h": 22
+      },
+      "bg": "#ffffff",
+      "clip": true,
+      "kind": "frame",
+      "children": [
+        {
+          "id": "2:78",
+          "type": "GROUP",
+          "name": "Group",
+          "visible": true,
+          "z": 0,
+          "path": "Dashboard (Addresses) 02 > fi_747376 > Group",
+          "box": {
+            "x": 1545,
+            "y": 34,
+            "w": 22,
+            "h": 22
+          },
+          "kind": "group",
+          "children": [
+            {
+              "id": "2:79",
+              "type": "GROUP",
+              "name": "Group",
+              "visible": true,
+              "z": 0,
+              "path": "Dashboard (Addresses) 02 > fi_747376 > Group > Group",
+              "box": {
+                "x": 1545,
+                "y": 34,
+                "w": 22,
+                "h": 22
+              },
+              "kind": "group",
+              "children": [
+                {
+                  "id": "2:80",
+                  "type": "VECTOR",
+                  "name": "Vector",
+                  "visible": true,
+                  "z": 0,
+                  "path": "Dashboard (Addresses) 02 > fi_747376 > Group > Group > Vector",
+                  "box": {
+                    "x": 1545,
+                    "y": 34,
+                    "w": 22,
+                    "h": 22
+                  },
+                  "bg": "#47bfa9",
+                  "kind": "shape"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "161:3",
+      "type": "RECTANGLE",
+      "name": "logo-02 2",
+      "visible": true,
+      "z": 9,
+      "path": "Dashboard (Addresses) 02 > logo-02 2",
+      "box": {
+        "x": -248,
+        "y": 36,
+        "w": 180,
+        "h": 43
+      },
+      "kind": "image"
+    },
+    {
+      "id": "2:82",
+      "type": "TEXT",
+      "name": "Search",
+      "visible": true,
+      "z": 10,
+      "path": "Dashboard (Addresses) 02 > Search",
+      "box": {
+        "x": 860,
+        "y": 36,
+        "w": 53,
+        "h": 14
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "Search",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 16,
+        "lh": 19.520000457763672,
+        "fw": 500,
+        "ls": 0,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "2:23",
+      "type": "TEXT",
+      "name": "Admin 1",
+      "visible": true,
+      "z": 11,
+      "path": "Dashboard (Addresses) 02 > Admin 1",
+      "box": {
+        "x": 1340,
+        "y": 48,
+        "w": 53,
+        "h": 14
+      },
+      "bg": "#47bfa9",
+      "kind": "text",
+      "text": "Admin 1",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 500,
+        "ls": 0.14,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#47bfa9"
+    },
+    {
+      "id": "10:51",
+      "type": "RECTANGLE",
+      "name": "Rectangle 5",
+      "visible": true,
+      "z": 12,
+      "path": "Dashboard (Addresses) 02 > Rectangle 5",
+      "box": {
+        "x": 55,
+        "y": 89,
+        "w": 771,
+        "h": 414
+      },
+      "bg": "#ffffff",
+      "radius": 10,
+      "shadow": true,
+      "kind": "shape"
+    },
+    {
+      "id": "10:112",
+      "type": "RECTANGLE",
+      "name": "Rectangle 9",
+      "visible": true,
+      "z": 13,
+      "path": "Dashboard (Addresses) 02 > Rectangle 9",
+      "box": {
+        "x": 836,
+        "y": 89,
+        "w": 771,
+        "h": 414
+      },
+      "bg": "#ffffff",
+      "radius": 10,
+      "shadow": true,
+      "kind": "shape"
+    },
+    {
+      "id": "2:9",
+      "type": "LINE",
+      "name": "Line 1",
+      "visible": true,
+      "z": 14,
+      "path": "Dashboard (Addresses) 02 > Line 1",
+      "box": {
+        "x": -248,
+        "y": 104,
+        "w": 268,
+        "h": 0
+      },
+      "stroke": {
+        "color": "#47bfa9",
+        "w": 1
+      },
+      "kind": "rule"
+    },
+    {
+      "id": "10:52",
+      "type": "TEXT",
+      "name": "Top Cities",
+      "visible": true,
+      "z": 15,
+      "path": "Dashboard (Addresses) 02 > Top Cities",
+      "box": {
+        "x": 75,
+        "y": 109,
+        "w": 82,
+        "h": 17
+      },
+      "bg": "#0c2d50",
+      "kind": "text",
+      "text": "Top Cities",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 18,
+        "lh": 21.96000099182129,
+        "fw": 600,
+        "ls": -0.36,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#0c2d50"
+    },
+    {
+      "id": "10:116",
+      "type": "TEXT",
+      "name": "Top ZIPs",
+      "visible": true,
+      "z": 16,
+      "path": "Dashboard (Addresses) 02 > Top ZIPs",
+      "box": {
+        "x": 856,
+        "y": 109,
+        "w": 82,
+        "h": 17
+      },
+      "bg": "#0c2d50",
+      "kind": "text",
+      "text": "Top ZIPs",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 18,
+        "lh": 21.96000099182129,
+        "fw": 600,
+        "ls": -0.36,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#0c2d50"
+    },
+    {
+      "id": "10:49",
+      "type": "RECTANGLE",
+      "name": "Rectangle 4",
+      "visible": true,
+      "z": 17,
+      "path": "Dashboard (Addresses) 02 > Rectangle 4",
+      "box": {
+        "x": -253,
+        "y": 129,
+        "w": 278,
+        "h": 52
+      },
+      "bg": "#f4f5f7",
+      "radius": 10,
+      "shadow": true,
+      "kind": "shape"
+    },
+    {
+      "id": "2:145",
+      "type": "FRAME",
+      "name": "fi_7532624",
+      "visible": true,
+      "z": 18,
+      "path": "Dashboard (Addresses) 02 > fi_7532624",
+      "box": {
+        "x": -237,
+        "y": 144,
+        "w": 22,
+        "h": 22
+      },
+      "bg": "#ffffff",
+      "clip": true,
+      "kind": "frame",
+      "children": [
+        {
+          "id": "2:146",
+          "type": "GROUP",
+          "name": "Group",
+          "visible": true,
+          "z": 0,
+          "path": "Dashboard (Addresses) 02 > fi_7532624 > Group",
+          "box": {
+            "x": -237,
+            "y": 144,
+            "w": 22,
+            "h": 22
+          },
+          "kind": "group",
+          "children": [
+            {
+              "id": "2:147",
+              "type": "VECTOR",
+              "name": "Vector",
+              "visible": true,
+              "z": 0,
+              "path": "Dashboard (Addresses) 02 > fi_7532624 > Group > Vector",
+              "box": {
+                "x": -237,
+                "y": 144,
+                "w": 22,
+                "h": 22
+              },
+              "bg": "#0c2d50",
+              "kind": "shape"
+            },
+            {
+              "id": "2:150",
+              "type": "VECTOR",
+              "name": "Vector",
+              "visible": true,
+              "z": 1,
+              "path": "Dashboard (Addresses) 02 > fi_7532624 > Group > Vector",
+              "box": {
+                "x": -234,
+                "y": 147,
+                "w": 9,
+                "h": 9
+              },
+              "bg": "#0c2d50",
+              "kind": "shape"
+            },
+            {
+              "id": "2:149",
+              "type": "VECTOR",
+              "name": "Vector",
+              "visible": true,
+              "z": 2,
+              "path": "Dashboard (Addresses) 02 > fi_7532624 > Group > Vector",
+              "box": {
+                "x": -223,
+                "y": 147,
+                "w": 5,
+                "h": 2
+              },
+              "bg": "#0c2d50",
+              "kind": "shape"
+            },
+            {
+              "id": "2:148",
+              "type": "VECTOR",
+              "name": "Vector",
+              "visible": true,
+              "z": 3,
+              "path": "Dashboard (Addresses) 02 > fi_7532624 > Group > Vector",
+              "box": {
+                "x": -223,
+                "y": 151,
+                "w": 5,
+                "h": 2
+              },
+              "bg": "#0c2d50",
+              "kind": "shape"
+            },
+            {
+              "id": "2:153",
+              "type": "VECTOR",
+              "name": "Vector",
+              "visible": true,
+              "z": 4,
+              "path": "Dashboard (Addresses) 02 > fi_7532624 > Group > Vector",
+              "box": {
+                "x": -220,
+                "y": 154,
+                "w": 2,
+                "h": 9
+              },
+              "bg": "#0c2d50",
+              "kind": "shape"
+            },
+            {
+              "id": "2:155",
+              "type": "VECTOR",
+              "name": "Vector",
+              "visible": true,
+              "z": 5,
+              "path": "Dashboard (Addresses) 02 > fi_7532624 > Group > Vector",
+              "box": {
+                "x": -234,
+                "y": 158,
+                "w": 5,
+                "h": 2
+              },
+              "bg": "#0c2d50",
+              "kind": "shape"
+            },
+            {
+              "id": "2:152",
+              "type": "VECTOR",
+              "name": "Vector",
+              "visible": true,
+              "z": 6,
+              "path": "Dashboard (Addresses) 02 > fi_7532624 > Group > Vector",
+              "box": {
+                "x": -223,
+                "y": 158,
+                "w": 2,
+                "h": 5
+              },
+              "bg": "#0c2d50",
+              "kind": "shape"
+            },
+            {
+              "id": "2:151",
+              "type": "VECTOR",
+              "name": "Vector",
+              "visible": true,
+              "z": 7,
+              "path": "Dashboard (Addresses) 02 > fi_7532624 > Group > Vector",
+              "box": {
+                "x": -227,
+                "y": 159,
+                "w": 2,
+                "h": 3
+              },
+              "bg": "#0c2d50",
+              "kind": "shape"
+            },
+            {
+              "id": "2:154",
+              "type": "VECTOR",
+              "name": "Vector",
+              "visible": true,
+              "z": 8,
+              "path": "Dashboard (Addresses) 02 > fi_7532624 > Group > Vector",
+              "box": {
+                "x": -234,
+                "y": 161,
+                "w": 5,
+                "h": 2
+              },
+              "bg": "#0c2d50",
+              "kind": "shape"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2:10",
+      "type": "TEXT",
+      "name": "Overview",
+      "visible": true,
+      "z": 19,
+      "path": "Dashboard (Addresses) 02 > Overview",
+      "box": {
+        "x": -200,
+        "y": 145,
+        "w": 69,
+        "h": 20
+      },
+      "bg": "#47bfa9",
+      "kind": "text",
+      "text": "Overview",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 16,
+        "lh": 19.520000457763672,
+        "fw": 500,
+        "ls": -0.16,
+        "align": "LEFT",
+        "valign": "TOP"
+      },
+      "color": "#47bfa9"
+    },
+    {
+      "id": "10:63",
+      "type": "TEXT",
+      "name": "City",
+      "visible": true,
+      "z": 20,
+      "path": "Dashboard (Addresses) 02 > City",
+      "box": {
+        "x": 80,
+        "y": 156,
+        "w": 34,
+        "h": 17
+      },
+      "bg": "#47bfa9",
+      "kind": "text",
+      "text": "City",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 600,
+        "ls": -0.28,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "UPPER"
+      },
+      "color": "#47bfa9"
+    },
+    {
+      "id": "10:75",
+      "type": "TEXT",
+      "name": "Total matches",
+      "visible": true,
+      "z": 21,
+      "path": "Dashboard (Addresses) 02 > Total matches",
+      "box": {
+        "x": 384,
+        "y": 156,
+        "w": 113,
+        "h": 17
+      },
+      "bg": "#47bfa9",
+      "kind": "text",
+      "text": "Total matches",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 600,
+        "ls": -0.28,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "UPPER"
+      },
+      "color": "#47bfa9"
+    },
+    {
+      "id": "10:76",
+      "type": "TEXT",
+      "name": "Match Rate",
+      "visible": true,
+      "z": 22,
+      "path": "Dashboard (Addresses) 02 > Match Rate",
+      "box": {
+        "x": 675,
+        "y": 156,
+        "w": 87,
+        "h": 17
+      },
+      "bg": "#47bfa9",
+      "kind": "text",
+      "text": "Match Rate",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 600,
+        "ls": -0.28,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "UPPER"
+      },
+      "color": "#47bfa9"
+    },
+    {
+      "id": "10:117",
+      "type": "TEXT",
+      "name": "ZIP",
+      "visible": true,
+      "z": 23,
+      "path": "Dashboard (Addresses) 02 > ZIP",
+      "box": {
+        "x": 861,
+        "y": 156,
+        "w": 34,
+        "h": 17
+      },
+      "bg": "#47bfa9",
+      "kind": "text",
+      "text": "ZIP",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 600,
+        "ls": -0.28,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "UPPER"
+      },
+      "color": "#47bfa9"
+    },
+    {
+      "id": "10:139",
+      "type": "TEXT",
+      "name": "Total matches",
+      "visible": true,
+      "z": 24,
+      "path": "Dashboard (Addresses) 02 > Total matches",
+      "box": {
+        "x": 1166,
+        "y": 156,
+        "w": 113,
+        "h": 17
+      },
+      "bg": "#47bfa9",
+      "kind": "text",
+      "text": "Total matches",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 600,
+        "ls": -0.28,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "UPPER"
+      },
+      "color": "#47bfa9"
+    },
+    {
+      "id": "10:140",
+      "type": "TEXT",
+      "name": "Match Rate",
+      "visible": true,
+      "z": 25,
+      "path": "Dashboard (Addresses) 02 > Match Rate",
+      "box": {
+        "x": 1456,
+        "y": 156,
+        "w": 87,
+        "h": 17
+      },
+      "bg": "#47bfa9",
+      "kind": "text",
+      "text": "Match Rate",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 600,
+        "ls": -0.28,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "UPPER"
+      },
+      "color": "#47bfa9"
+    },
+    {
+      "id": "10:77",
+      "type": "LINE",
+      "name": "Line 3",
+      "visible": true,
+      "z": 26,
+      "path": "Dashboard (Addresses) 02 > Line 3",
+      "box": {
+        "x": 65,
+        "y": 183,
+        "w": 751,
+        "h": 0
+      },
+      "stroke": {
+        "color": "#6d8196",
+        "w": 1
+      },
+      "opacity": 0.3,
+      "kind": "rule"
+    },
+    {
+      "id": "10:141",
+      "type": "LINE",
+      "name": "Line 4",
+      "visible": true,
+      "z": 27,
+      "path": "Dashboard (Addresses) 02 > Line 4",
+      "box": {
+        "x": 846,
+        "y": 183,
+        "w": 751,
+        "h": 0
+      },
+      "stroke": {
+        "color": "#6d8196",
+        "w": 1
+      },
+      "opacity": 0.3,
+      "kind": "rule"
+    },
+    {
+      "id": "10:113",
+      "type": "RECTANGLE",
+      "name": "Rectangle 10",
+      "visible": true,
+      "z": 28,
+      "path": "Dashboard (Addresses) 02 > Rectangle 10",
+      "box": {
+        "x": 846,
+        "y": 188,
+        "w": 751,
+        "h": 47
+      },
+      "bg": "#f4f5f7",
+      "radius": 10,
+      "kind": "shape"
+    },
+    {
+      "id": "10:149",
+      "type": "TEXT",
+      "name": "892",
+      "visible": true,
+      "z": 29,
+      "path": "Dashboard (Addresses) 02 > 892",
+      "box": {
+        "x": 429,
+        "y": 202,
+        "w": 24,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "892",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:78",
+      "type": "TEXT",
+      "name": "Bloomington",
+      "visible": true,
+      "z": 30,
+      "path": "Dashboard (Addresses) 02 > Bloomington",
+      "box": {
+        "x": 80,
+        "y": 203,
+        "w": 84,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "Bloomington",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:105",
+      "type": "TEXT",
+      "name": "12%",
+      "visible": true,
+      "z": 31,
+      "path": "Dashboard (Addresses) 02 > 12%",
+      "box": {
+        "x": 697,
+        "y": 203,
+        "w": 43,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "12%",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:118",
+      "type": "TEXT",
+      "name": "55424",
+      "visible": true,
+      "z": 32,
+      "path": "Dashboard (Addresses) 02 > 55424",
+      "box": {
+        "x": 861,
+        "y": 203,
+        "w": 84,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "55424",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:119",
+      "type": "TEXT",
+      "name": "892",
+      "visible": true,
+      "z": 33,
+      "path": "Dashboard (Addresses) 02 > 892",
+      "box": {
+        "x": 1180,
+        "y": 203,
+        "w": 84,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "892",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:142",
+      "type": "TEXT",
+      "name": "12%",
+      "visible": true,
+      "z": 34,
+      "path": "Dashboard (Addresses) 02 > 12%",
+      "box": {
+        "x": 1478,
+        "y": 203,
+        "w": 43,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "12%",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "2:160",
+      "type": "FRAME",
+      "name": "fi_1388417",
+      "visible": true,
+      "z": 35,
+      "path": "Dashboard (Addresses) 02 > fi_1388417",
+      "box": {
+        "x": -237,
+        "y": 210,
+        "w": 22,
+        "h": 22
+      },
+      "bg": "#ffffff",
+      "clip": true,
+      "kind": "frame",
+      "children": [
+        {
+          "id": "2:161",
+          "type": "VECTOR",
+          "name": "Vector",
+          "visible": true,
+          "z": 0,
+          "path": "Dashboard (Addresses) 02 > fi_1388417 > Vector",
+          "box": {
+            "x": -237,
+            "y": 210,
+            "w": 22,
+            "h": 22
+          },
+          "bg": "#0c2d50",
+          "kind": "shape"
+        }
+      ]
+    },
+    {
+      "id": "2:24",
+      "type": "TEXT",
+      "name": "ROI Analytics",
+      "visible": true,
+      "z": 36,
+      "path": "Dashboard (Addresses) 02 > ROI Analytics",
+      "box": {
+        "x": -200,
+        "y": 211,
+        "w": 98,
+        "h": 20
+      },
+      "bg": "#47bfa9",
+      "kind": "text",
+      "text": "ROI Analytics",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 16,
+        "lh": 19.520000457763672,
+        "fw": 500,
+        "ls": -0.16,
+        "align": "LEFT",
+        "valign": "TOP"
+      },
+      "color": "#47bfa9"
+    },
+    {
+      "id": "10:90",
+      "type": "RECTANGLE",
+      "name": "Rectangle 6",
+      "visible": true,
+      "z": 37,
+      "path": "Dashboard (Addresses) 02 > Rectangle 6",
+      "box": {
+        "x": 65,
+        "y": 235,
+        "w": 751,
+        "h": 47
+      },
+      "bg": "#f4f5f7",
+      "radius": 10,
+      "kind": "shape"
+    },
+    {
+      "id": "10:84",
+      "type": "TEXT",
+      "name": "Edina",
+      "visible": true,
+      "z": 38,
+      "path": "Dashboard (Addresses) 02 > Edina",
+      "box": {
+        "x": 80,
+        "y": 250,
+        "w": 114,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "Edina",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:150",
+      "type": "TEXT",
+      "name": "849",
+      "visible": true,
+      "z": 39,
+      "path": "Dashboard (Addresses) 02 > 849",
+      "box": {
+        "x": 428,
+        "y": 250,
+        "w": 25,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "849",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:109",
+      "type": "TEXT",
+      "name": "12%",
+      "visible": true,
+      "z": 40,
+      "path": "Dashboard (Addresses) 02 > 12%",
+      "box": {
+        "x": 689,
+        "y": 250,
+        "w": 59,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "12%",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:130",
+      "type": "TEXT",
+      "name": "55431",
+      "visible": true,
+      "z": 41,
+      "path": "Dashboard (Addresses) 02 > 55431",
+      "box": {
+        "x": 861,
+        "y": 250,
+        "w": 114,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "55431",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:131",
+      "type": "TEXT",
+      "name": "849",
+      "visible": true,
+      "z": 42,
+      "path": "Dashboard (Addresses) 02 > 849",
+      "box": {
+        "x": 1165,
+        "y": 250,
+        "w": 114,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "849",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:146",
+      "type": "TEXT",
+      "name": "12%",
+      "visible": true,
+      "z": 43,
+      "path": "Dashboard (Addresses) 02 > 12%",
+      "box": {
+        "x": 1470,
+        "y": 250,
+        "w": 59,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "12%",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "2:191",
+      "type": "FRAME",
+      "name": "fi_2139618",
+      "visible": true,
+      "z": 44,
+      "path": "Dashboard (Addresses) 02 > fi_2139618",
+      "box": {
+        "x": -237,
+        "y": 275,
+        "w": 22,
+        "h": 22
+      },
+      "bg": "#ffffff",
+      "clip": true,
+      "kind": "frame",
+      "children": [
+        {
+          "id": "2:192",
+          "type": "VECTOR",
+          "name": "Vector",
+          "visible": true,
+          "z": 0,
+          "path": "Dashboard (Addresses) 02 > fi_2139618 > Vector",
+          "box": {
+            "x": -237,
+            "y": 277,
+            "w": 22,
+            "h": 19
+          },
+          "bg": "#0c2d50",
+          "kind": "shape"
+        }
+      ]
+    },
+    {
+      "id": "2:42",
+      "type": "TEXT",
+      "name": "Match Performance",
+      "visible": true,
+      "z": 45,
+      "path": "Dashboard (Addresses) 02 > Match Performance",
+      "box": {
+        "x": -200,
+        "y": 276,
+        "w": 146,
+        "h": 20
+      },
+      "bg": "#47bfa9",
+      "kind": "text",
+      "text": "Match Performance",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 16,
+        "lh": 19.520000457763672,
+        "fw": 500,
+        "ls": -0.16,
+        "align": "LEFT",
+        "valign": "TOP"
+      },
+      "color": "#47bfa9"
+    },
+    {
+      "id": "10:115",
+      "type": "RECTANGLE",
+      "name": "Rectangle 12",
+      "visible": true,
+      "z": 46,
+      "path": "Dashboard (Addresses) 02 > Rectangle 12",
+      "box": {
+        "x": 846,
+        "y": 282,
+        "w": 751,
+        "h": 47
+      },
+      "bg": "#f4f5f7",
+      "radius": 10,
+      "kind": "shape"
+    },
+    {
+      "id": "10:151",
+      "type": "TEXT",
+      "name": "819",
+      "visible": true,
+      "z": 47,
+      "path": "Dashboard (Addresses) 02 > 819",
+      "box": {
+        "x": 430,
+        "y": 294,
+        "w": 22,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "819",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:85",
+      "type": "TEXT",
+      "name": "Minneapolis",
+      "visible": true,
+      "z": 48,
+      "path": "Dashboard (Addresses) 02 > Minneapolis",
+      "box": {
+        "x": 80,
+        "y": 297,
+        "w": 81,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "Minneapolis",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:107",
+      "type": "TEXT",
+      "name": "13%",
+      "visible": true,
+      "z": 49,
+      "path": "Dashboard (Addresses) 02 > 13%",
+      "box": {
+        "x": 698,
+        "y": 297,
+        "w": 42,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "13%",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:124",
+      "type": "TEXT",
+      "name": "55491",
+      "visible": true,
+      "z": 50,
+      "path": "Dashboard (Addresses) 02 > 55491",
+      "box": {
+        "x": 861,
+        "y": 297,
+        "w": 81,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "55491",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:125",
+      "type": "TEXT",
+      "name": "819",
+      "visible": true,
+      "z": 51,
+      "path": "Dashboard (Addresses) 02 > 819",
+      "box": {
+        "x": 1182,
+        "y": 297,
+        "w": 81,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "819",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:144",
+      "type": "TEXT",
+      "name": "13%",
+      "visible": true,
+      "z": 52,
+      "path": "Dashboard (Addresses) 02 > 13%",
+      "box": {
+        "x": 1479,
+        "y": 297,
+        "w": 42,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "13%",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:91",
+      "type": "RECTANGLE",
+      "name": "Rectangle 7",
+      "visible": true,
+      "z": 53,
+      "path": "Dashboard (Addresses) 02 > Rectangle 7",
+      "box": {
+        "x": 65,
+        "y": 329,
+        "w": 751,
+        "h": 47
+      },
+      "bg": "#f4f5f7",
+      "radius": 10,
+      "kind": "shape"
+    },
+    {
+      "id": "2:194",
+      "type": "FRAME",
+      "name": "fi_18364766",
+      "visible": true,
+      "z": 54,
+      "path": "Dashboard (Addresses) 02 > fi_18364766",
+      "box": {
+        "x": -238,
+        "y": 339,
+        "w": 24,
+        "h": 24
+      },
+      "bg": "#ffffff",
+      "clip": true,
+      "kind": "frame",
+      "children": [
+        {
+          "id": "2:195",
+          "type": "VECTOR",
+          "name": "Vector",
+          "visible": true,
+          "z": 0,
+          "path": "Dashboard (Addresses) 02 > fi_18364766 > Vector",
+          "box": {
+            "x": -237,
+            "y": 340,
+            "w": 22,
+            "h": 5
+          },
+          "bg": "#0c2d50",
+          "kind": "shape"
+        },
+        {
+          "id": "2:196",
+          "type": "VECTOR",
+          "name": "Vector",
+          "visible": true,
+          "z": 1,
+          "path": "Dashboard (Addresses) 02 > fi_18364766 > Vector",
+          "box": {
+            "x": -236,
+            "y": 343,
+            "w": 20,
+            "h": 16
+          },
+          "bg": "#0c2d50",
+          "kind": "shape"
+        },
+        {
+          "id": "2:199",
+          "type": "VECTOR",
+          "name": "Vector",
+          "visible": true,
+          "z": 2,
+          "path": "Dashboard (Addresses) 02 > fi_18364766 > Vector",
+          "box": {
+            "x": -233,
+            "y": 346,
+            "w": 10,
+            "h": 10
+          },
+          "bg": "#0c2d50",
+          "kind": "shape"
+        },
+        {
+          "id": "2:200",
+          "type": "VECTOR",
+          "name": "Vector",
+          "visible": true,
+          "z": 3,
+          "path": "Dashboard (Addresses) 02 > fi_18364766 > Vector",
+          "box": {
+            "x": -229,
+            "y": 346,
+            "w": 6,
+            "h": 6
+          },
+          "bg": "#0c2d50",
+          "kind": "shape"
+        },
+        {
+          "id": "2:201",
+          "type": "VECTOR",
+          "name": "Vector",
+          "visible": true,
+          "z": 4,
+          "path": "Dashboard (Addresses) 02 > fi_18364766 > Vector",
+          "box": {
+            "x": -222,
+            "y": 346,
+            "w": 4,
+            "h": 2
+          },
+          "bg": "#0c2d50",
+          "kind": "shape"
+        },
+        {
+          "id": "2:202",
+          "type": "VECTOR",
+          "name": "Vector",
+          "visible": true,
+          "z": 5,
+          "path": "Dashboard (Addresses) 02 > fi_18364766 > Vector",
+          "box": {
+            "x": -222,
+            "y": 349,
+            "w": 4,
+            "h": 2
+          },
+          "bg": "#0c2d50",
+          "kind": "shape"
+        },
+        {
+          "id": "2:203",
+          "type": "VECTOR",
+          "name": "Vector",
+          "visible": true,
+          "z": 6,
+          "path": "Dashboard (Addresses) 02 > fi_18364766 > Vector",
+          "box": {
+            "x": -222,
+            "y": 351,
+            "w": 4,
+            "h": 2
+          },
+          "bg": "#0c2d50",
+          "kind": "shape"
+        },
+        {
+          "id": "2:204",
+          "type": "VECTOR",
+          "name": "Vector",
+          "visible": true,
+          "z": 7,
+          "path": "Dashboard (Addresses) 02 > fi_18364766 > Vector",
+          "box": {
+            "x": -223,
+            "y": 354,
+            "w": 5,
+            "h": 2
+          },
+          "bg": "#0c2d50",
+          "kind": "shape"
+        },
+        {
+          "id": "2:197",
+          "type": "VECTOR",
+          "name": "Vector",
+          "visible": true,
+          "z": 8,
+          "path": "Dashboard (Addresses) 02 > fi_18364766 > Vector",
+          "box": {
+            "x": -227,
+            "y": 357,
+            "w": 2,
+            "h": 5
+          },
+          "bg": "#0c2d50",
+          "kind": "shape"
+        },
+        {
+          "id": "2:198",
+          "type": "VECTOR",
+          "name": "Vector",
+          "visible": true,
+          "z": 9,
+          "path": "Dashboard (Addresses) 02 > fi_18364766 > Vector",
+          "box": {
+            "x": -228,
+            "y": 360,
+            "w": 4,
+            "h": 2
+          },
+          "bg": "#0c2d50",
+          "kind": "shape"
+        }
+      ]
+    },
+    {
+      "id": "2:62",
+      "type": "TEXT",
+      "name": "Campaign Insights",
+      "visible": true,
+      "z": 55,
+      "path": "Dashboard (Addresses) 02 > Campaign Insights",
+      "box": {
+        "x": -200,
+        "y": 341,
+        "w": 137,
+        "h": 20
+      },
+      "bg": "#47bfa9",
+      "kind": "text",
+      "text": "Campaign Insights",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 16,
+        "lh": 19.520000457763672,
+        "fw": 500,
+        "ls": -0.16,
+        "align": "LEFT",
+        "valign": "TOP"
+      },
+      "color": "#47bfa9"
+    },
+    {
+      "id": "10:86",
+      "type": "TEXT",
+      "name": "Saint Paul",
+      "visible": true,
+      "z": 56,
+      "path": "Dashboard (Addresses) 02 > Saint Paul",
+      "box": {
+        "x": 80,
+        "y": 344,
+        "w": 73,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "Saint Paul",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:152",
+      "type": "TEXT",
+      "name": "530",
+      "visible": true,
+      "z": 57,
+      "path": "Dashboard (Addresses) 02 > 530",
+      "box": {
+        "x": 428,
+        "y": 344,
+        "w": 26,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "530",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:111",
+      "type": "TEXT",
+      "name": "9%",
+      "visible": true,
+      "z": 58,
+      "path": "Dashboard (Addresses) 02 > 9%",
+      "box": {
+        "x": 700,
+        "y": 344,
+        "w": 38,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "9%",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:136",
+      "type": "TEXT",
+      "name": "55425",
+      "visible": true,
+      "z": 59,
+      "path": "Dashboard (Addresses) 02 > 55425",
+      "box": {
+        "x": 861,
+        "y": 344,
+        "w": 73,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "55425",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:137",
+      "type": "TEXT",
+      "name": "530",
+      "visible": true,
+      "z": 60,
+      "path": "Dashboard (Addresses) 02 > 530",
+      "box": {
+        "x": 1186,
+        "y": 344,
+        "w": 73,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "530",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:148",
+      "type": "TEXT",
+      "name": "9%",
+      "visible": true,
+      "z": 61,
+      "path": "Dashboard (Addresses) 02 > 9%",
+      "box": {
+        "x": 1481,
+        "y": 344,
+        "w": 38,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "9%",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:114",
+      "type": "RECTANGLE",
+      "name": "Rectangle 11",
+      "visible": true,
+      "z": 62,
+      "path": "Dashboard (Addresses) 02 > Rectangle 11",
+      "box": {
+        "x": 846,
+        "y": 376,
+        "w": 751,
+        "h": 47
+      },
+      "bg": "#f4f5f7",
+      "radius": 10,
+      "kind": "shape"
+    },
+    {
+      "id": "10:94",
+      "type": "TEXT",
+      "name": "Bloomington",
+      "visible": true,
+      "z": 63,
+      "path": "Dashboard (Addresses) 02 > Bloomington",
+      "box": {
+        "x": 80,
+        "y": 391,
+        "w": 84,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "Bloomington",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:153",
+      "type": "TEXT",
+      "name": "855",
+      "visible": true,
+      "z": 64,
+      "path": "Dashboard (Addresses) 02 > 855",
+      "box": {
+        "x": 429,
+        "y": 391,
+        "w": 24,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "855",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:106",
+      "type": "TEXT",
+      "name": "14%",
+      "visible": true,
+      "z": 65,
+      "path": "Dashboard (Addresses) 02 > 14%",
+      "box": {
+        "x": 697,
+        "y": 391,
+        "w": 43,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "14%",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:121",
+      "type": "TEXT",
+      "name": "55424",
+      "visible": true,
+      "z": 66,
+      "path": "Dashboard (Addresses) 02 > 55424",
+      "box": {
+        "x": 861,
+        "y": 391,
+        "w": 84,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "55424",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:122",
+      "type": "TEXT",
+      "name": "855",
+      "visible": true,
+      "z": 67,
+      "path": "Dashboard (Addresses) 02 > 855",
+      "box": {
+        "x": 1180,
+        "y": 391,
+        "w": 84,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "855",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:143",
+      "type": "TEXT",
+      "name": "14%",
+      "visible": true,
+      "z": 68,
+      "path": "Dashboard (Addresses) 02 > 14%",
+      "box": {
+        "x": 1478,
+        "y": 391,
+        "w": 43,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "14%",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "2:206",
+      "type": "FRAME",
+      "name": "fi_15171253",
+      "visible": true,
+      "z": 69,
+      "path": "Dashboard (Addresses) 02 > fi_15171253",
+      "box": {
+        "x": -237,
+        "y": 405,
+        "w": 22,
+        "h": 22
+      },
+      "bg": "#ffffff",
+      "clip": true,
+      "kind": "frame",
+      "children": [
+        {
+          "id": "2:207",
+          "type": "GROUP",
+          "name": "Group",
+          "visible": true,
+          "z": 0,
+          "path": "Dashboard (Addresses) 02 > fi_15171253 > Group",
+          "box": {
+            "x": -236,
+            "y": 405,
+            "w": 21,
+            "h": 22
+          },
+          "kind": "group",
+          "children": [
+            {
+              "id": "2:208",
+              "type": "VECTOR",
+              "name": "Vector",
+              "visible": true,
+              "z": 0,
+              "path": "Dashboard (Addresses) 02 > fi_15171253 > Group > Vector",
+              "box": {
+                "x": -236,
+                "y": 405,
+                "w": 21,
+                "h": 22
+              },
+              "bg": "#0c2d50",
+              "kind": "shape"
+            },
+            {
+              "id": "2:209",
+              "type": "VECTOR",
+              "name": "Vector",
+              "visible": true,
+              "z": 1,
+              "path": "Dashboard (Addresses) 02 > fi_15171253 > Group > Vector",
+              "box": {
+                "x": -222,
+                "y": 408,
+                "w": 4,
+                "h": 4
+              },
+              "bg": "#0c2d50",
+              "kind": "shape"
+            },
+            {
+              "id": "2:210",
+              "type": "VECTOR",
+              "name": "Vector",
+              "visible": true,
+              "z": 2,
+              "path": "Dashboard (Addresses) 02 > fi_15171253 > Group > Vector",
+              "box": {
+                "x": -232,
+                "y": 417,
+                "w": 4,
+                "h": 8
+              },
+              "bg": "#0c2d50",
+              "kind": "shape"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2:63",
+      "type": "TEXT",
+      "name": "Address Heatmap",
+      "visible": true,
+      "z": 70,
+      "path": "Dashboard (Addresses) 02 > Address Heatmap",
+      "box": {
+        "x": -200,
+        "y": 406,
+        "w": 132,
+        "h": 20
+      },
+      "bg": "#47bfa9",
+      "kind": "text",
+      "text": "Address Heatmap",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 16,
+        "lh": 19.520000457763672,
+        "fw": 500,
+        "ls": -0.16,
+        "align": "LEFT",
+        "valign": "TOP"
+      },
+      "color": "#47bfa9"
+    },
+    {
+      "id": "10:92",
+      "type": "RECTANGLE",
+      "name": "Rectangle 8",
+      "visible": true,
+      "z": 71,
+      "path": "Dashboard (Addresses) 02 > Rectangle 8",
+      "box": {
+        "x": 65,
+        "y": 423,
+        "w": 751,
+        "h": 47
+      },
+      "bg": "#f4f5f7",
+      "radius": 10,
+      "kind": "shape"
+    },
+    {
+      "id": "10:96",
+      "type": "TEXT",
+      "name": "Edina",
+      "visible": true,
+      "z": 72,
+      "path": "Dashboard (Addresses) 02 > Edina",
+      "box": {
+        "x": 80,
+        "y": 438,
+        "w": 114,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "Edina",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:154",
+      "type": "TEXT",
+      "name": "786",
+      "visible": true,
+      "z": 73,
+      "path": "Dashboard (Addresses) 02 > 786",
+      "box": {
+        "x": 429,
+        "y": 438,
+        "w": 24,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "786",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:110",
+      "type": "TEXT",
+      "name": "11%",
+      "visible": true,
+      "z": 74,
+      "path": "Dashboard (Addresses) 02 > 11%",
+      "box": {
+        "x": 689,
+        "y": 438,
+        "w": 59,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "11%",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:133",
+      "type": "TEXT",
+      "name": "55431",
+      "visible": true,
+      "z": 75,
+      "path": "Dashboard (Addresses) 02 > 55431",
+      "box": {
+        "x": 861,
+        "y": 438,
+        "w": 114,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "55431",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:134",
+      "type": "TEXT",
+      "name": "786",
+      "visible": true,
+      "z": 76,
+      "path": "Dashboard (Addresses) 02 > 786",
+      "box": {
+        "x": 1165,
+        "y": 438,
+        "w": 114,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "786",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:147",
+      "type": "TEXT",
+      "name": "11%",
+      "visible": true,
+      "z": 77,
+      "path": "Dashboard (Addresses) 02 > 11%",
+      "box": {
+        "x": 1470,
+        "y": 438,
+        "w": 59,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "11%",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "2:212",
+      "type": "FRAME",
+      "name": "fi_3083741",
+      "visible": true,
+      "z": 78,
+      "path": "Dashboard (Addresses) 02 > fi_3083741",
+      "box": {
+        "x": -237,
+        "y": 470,
+        "w": 22,
+        "h": 22
+      },
+      "bg": "#ffffff",
+      "clip": true,
+      "kind": "frame",
+      "children": [
+        {
+          "id": "2:213",
+          "type": "GROUP",
+          "name": "Group",
+          "visible": true,
+          "z": 0,
+          "path": "Dashboard (Addresses) 02 > fi_3083741 > Group",
+          "box": {
+            "x": -237,
+            "y": 470,
+            "w": 22,
+            "h": 22
+          },
+          "kind": "group",
+          "children": [
+            {
+              "id": "2:214",
+              "type": "VECTOR",
+              "name": "Vector",
+              "visible": true,
+              "z": 0,
+              "path": "Dashboard (Addresses) 02 > fi_3083741 > Group > Vector",
+              "box": {
+                "x": -237,
+                "y": 470,
+                "w": 22,
+                "h": 22
+              },
+              "bg": "#0c2d50",
+              "kind": "shape"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "10:157",
+      "type": "RECTANGLE",
+      "name": "Rectangle 13",
+      "visible": true,
+      "z": 79,
+      "path": "Dashboard (Addresses) 02 > Rectangle 13",
+      "box": {
+        "x": 846,
+        "y": 470,
+        "w": 751,
+        "h": 33
+      },
+      "bg": "#f4f5f7",
+      "radii": {
+        "tl": 10,
+        "tr": 10,
+        "br": 0,
+        "bl": 0
+      },
+      "kind": "shape"
+    },
+    {
+      "id": "2:64",
+      "type": "TEXT",
+      "name": "Uploads & Mapping",
+      "visible": true,
+      "z": 80,
+      "path": "Dashboard (Addresses) 02 > Uploads & Mapping",
+      "box": {
+        "x": -200,
+        "y": 471,
+        "w": 143,
+        "h": 20
+      },
+      "bg": "#47bfa9",
+      "kind": "text",
+      "text": "Uploads & Mapping",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 16,
+        "lh": 19.520000457763672,
+        "fw": 500,
+        "ls": -0.16,
+        "align": "LEFT",
+        "valign": "TOP"
+      },
+      "color": "#47bfa9"
+    },
+    {
+      "id": "10:155",
+      "type": "TEXT",
+      "name": "707",
+      "visible": true,
+      "z": 81,
+      "path": "Dashboard (Addresses) 02 > 707",
+      "box": {
+        "x": 429,
+        "y": 478,
+        "w": 23,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "707",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:95",
+      "type": "TEXT",
+      "name": "Minneapolis",
+      "visible": true,
+      "z": 82,
+      "path": "Dashboard (Addresses) 02 > Minneapolis",
+      "box": {
+        "x": 80,
+        "y": 485,
+        "w": 81,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "Minneapolis",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:108",
+      "type": "TEXT",
+      "name": "7%",
+      "visible": true,
+      "z": 83,
+      "path": "Dashboard (Addresses) 02 > 7%",
+      "box": {
+        "x": 698,
+        "y": 485,
+        "w": 42,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "7%",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:127",
+      "type": "TEXT",
+      "name": "55425",
+      "visible": true,
+      "z": 84,
+      "path": "Dashboard (Addresses) 02 > 55425",
+      "box": {
+        "x": 861,
+        "y": 485,
+        "w": 81,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "55425",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:128",
+      "type": "TEXT",
+      "name": "707",
+      "visible": true,
+      "z": 85,
+      "path": "Dashboard (Addresses) 02 > 707",
+      "box": {
+        "x": 1182,
+        "y": 485,
+        "w": 81,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "707",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:145",
+      "type": "TEXT",
+      "name": "7%",
+      "visible": true,
+      "z": 86,
+      "path": "Dashboard (Addresses) 02 > 7%",
+      "box": {
+        "x": 1479,
+        "y": 485,
+        "w": 42,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "7%",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:161",
+      "type": "RECTANGLE",
+      "name": "Rectangle 14",
+      "visible": true,
+      "z": 87,
+      "path": "Dashboard (Addresses) 02 > Rectangle 14",
+      "box": {
+        "x": 55,
+        "y": 513,
+        "w": 1552,
+        "h": 482
+      },
+      "bg": "#ffffff",
+      "radius": 10,
+      "shadow": true,
+      "kind": "shape"
+    },
+    {
+      "id": "10:162",
+      "type": "TEXT",
+      "name": "Summary",
+      "visible": true,
+      "z": 88,
+      "path": "Dashboard (Addresses) 02 > Summary",
+      "box": {
+        "x": 75,
+        "y": 533,
+        "w": 82,
+        "h": 17
+      },
+      "bg": "#0c2d50",
+      "kind": "text",
+      "text": "Summary",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 18,
+        "lh": 21.96000099182129,
+        "fw": 600,
+        "ls": -0.36,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#0c2d50"
+    },
+    {
+      "id": "10:2",
+      "type": "FRAME",
+      "name": "fi_9338858",
+      "visible": true,
+      "z": 89,
+      "path": "Dashboard (Addresses) 02 > fi_9338858",
+      "box": {
+        "x": -237,
+        "y": 535,
+        "w": 22,
+        "h": 22
+      },
+      "bg": "#ffffff",
+      "clip": true,
+      "kind": "frame",
+      "children": [
+        {
+          "id": "10:6",
+          "type": "VECTOR",
+          "name": "Vector",
+          "visible": true,
+          "z": 0,
+          "path": "Dashboard (Addresses) 02 > fi_9338858 > Vector",
+          "box": {
+            "x": -236,
+            "y": 536,
+            "w": 10,
+            "h": 1
+          },
+          "bg": "#0c2d50",
+          "kind": "rule",
+          "stroke": {
+            "color": "#0c2d50",
+            "w": 1
+          }
+        },
+        {
+          "id": "10:5",
+          "type": "VECTOR",
+          "name": "Vector",
+          "visible": true,
+          "z": 1,
+          "path": "Dashboard (Addresses) 02 > fi_9338858 > Vector",
+          "box": {
+            "x": -221,
+            "y": 536,
+            "w": 6,
+            "h": 6
+          },
+          "bg": "#0c2d50",
+          "kind": "shape"
+        },
+        {
+          "id": "10:7",
+          "type": "VECTOR",
+          "name": "Vector",
+          "visible": true,
+          "z": 2,
+          "path": "Dashboard (Addresses) 02 > fi_9338858 > Vector",
+          "box": {
+            "x": -236,
+            "y": 538,
+            "w": 6,
+            "h": 1
+          },
+          "bg": "#0c2d50",
+          "kind": "rule",
+          "stroke": {
+            "color": "#0c2d50",
+            "w": 1
+          }
+        },
+        {
+          "id": "10:4",
+          "type": "VECTOR",
+          "name": "Vector",
+          "visible": true,
+          "z": 3,
+          "path": "Dashboard (Addresses) 02 > fi_9338858 > Vector",
+          "box": {
+            "x": -228,
+            "y": 538,
+            "w": 10,
+            "h": 10
+          },
+          "bg": "#0c2d50",
+          "kind": "shape"
+        },
+        {
+          "id": "10:3",
+          "type": "VECTOR",
+          "name": "Vector",
+          "visible": true,
+          "z": 4,
+          "path": "Dashboard (Addresses) 02 > fi_9338858 > Vector",
+          "box": {
+            "x": -236,
+            "y": 543,
+            "w": 21,
+            "h": 13
+          },
+          "bg": "#0c2d50",
+          "kind": "shape"
+        }
+      ]
+    },
+    {
+      "id": "2:65",
+      "type": "TEXT",
+      "name": "Reports & Exports",
+      "visible": true,
+      "z": 90,
+      "path": "Dashboard (Addresses) 02 > Reports & Exports",
+      "box": {
+        "x": -200,
+        "y": 536,
+        "w": 134,
+        "h": 20
+      },
+      "bg": "#47bfa9",
+      "kind": "text",
+      "text": "Reports & Exports",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 16,
+        "lh": 19.520000457763672,
+        "fw": 500,
+        "ls": -0.16,
+        "align": "LEFT",
+        "valign": "TOP"
+      },
+      "color": "#47bfa9"
+    },
+    {
+      "id": "10:199",
+      "type": "TEXT",
+      "name": "Mail Address 1",
+      "visible": true,
+      "z": 91,
+      "path": "Dashboard (Addresses) 02 > Mail Address 1",
+      "box": {
+        "x": 80,
+        "y": 580,
+        "w": 109,
+        "h": 17
+      },
+      "bg": "#47bfa9",
+      "kind": "text",
+      "text": "Mail Address 1",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 600,
+        "ls": -0.28,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "UPPER"
+      },
+      "color": "#47bfa9"
+    },
+    {
+      "id": "10:201",
+      "type": "TEXT",
+      "name": "Mail Unit",
+      "visible": true,
+      "z": 92,
+      "path": "Dashboard (Addresses) 02 > Mail Unit",
+      "box": {
+        "x": 296,
+        "y": 580,
+        "w": 68,
+        "h": 17
+      },
+      "bg": "#47bfa9",
+      "kind": "text",
+      "text": "Mail Unit",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 600,
+        "ls": -0.28,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "UPPER"
+      },
+      "color": "#47bfa9"
+    },
+    {
+      "id": "10:205",
+      "type": "TEXT",
+      "name": "CRM Address 1",
+      "visible": true,
+      "z": 93,
+      "path": "Dashboard (Addresses) 02 > CRM Address 1",
+      "box": {
+        "x": 471,
+        "y": 580,
+        "w": 107,
+        "h": 17
+      },
+      "bg": "#47bfa9",
+      "kind": "text",
+      "text": "CRM Address 1",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 600,
+        "ls": -0.28,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "UPPER"
+      },
+      "color": "#47bfa9"
+    },
+    {
+      "id": "10:206",
+      "type": "TEXT",
+      "name": "CRM Unit",
+      "visible": true,
+      "z": 94,
+      "path": "Dashboard (Addresses) 02 > CRM Unit",
+      "box": {
+        "x": 685,
+        "y": 580,
+        "w": 66,
+        "h": 17
+      },
+      "bg": "#47bfa9",
+      "kind": "text",
+      "text": "CRM Unit",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 600,
+        "ls": -0.28,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "UPPER"
+      },
+      "color": "#47bfa9"
+    },
+    {
+      "id": "10:213",
+      "type": "TEXT",
+      "name": "City",
+      "visible": true,
+      "z": 95,
+      "path": "Dashboard (Addresses) 02 > City",
+      "box": {
+        "x": 858,
+        "y": 580,
+        "w": 33,
+        "h": 17
+      },
+      "bg": "#47bfa9",
+      "kind": "text",
+      "text": "City",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 600,
+        "ls": -0.28,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "UPPER"
+      },
+      "color": "#47bfa9"
+    },
+    {
+      "id": "10:218",
+      "type": "TEXT",
+      "name": "State",
+      "visible": true,
+      "z": 96,
+      "path": "Dashboard (Addresses) 02 > State",
+      "box": {
+        "x": 998,
+        "y": 580,
+        "w": 42,
+        "h": 17
+      },
+      "bg": "#47bfa9",
+      "kind": "text",
+      "text": "State",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 600,
+        "ls": -0.28,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "UPPER"
+      },
+      "color": "#47bfa9"
+    },
+    {
+      "id": "10:217",
+      "type": "TEXT",
+      "name": "ZIP",
+      "visible": true,
+      "z": 97,
+      "path": "Dashboard (Addresses) 02 > ZIP",
+      "box": {
+        "x": 1147,
+        "y": 580,
+        "w": 22,
+        "h": 17
+      },
+      "bg": "#47bfa9",
+      "kind": "text",
+      "text": "ZIP",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 600,
+        "ls": -0.28,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "UPPER"
+      },
+      "color": "#47bfa9"
+    },
+    {
+      "id": "10:219",
+      "type": "TEXT",
+      "name": "Mail Dates",
+      "visible": true,
+      "z": 98,
+      "path": "Dashboard (Addresses) 02 > Mail Dates",
+      "box": {
+        "x": 1276,
+        "y": 580,
+        "w": 80,
+        "h": 17
+      },
+      "bg": "#47bfa9",
+      "kind": "text",
+      "text": "Mail Dates",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 600,
+        "ls": -0.28,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "UPPER"
+      },
+      "color": "#47bfa9"
+    },
+    {
+      "id": "10:220",
+      "type": "TEXT",
+      "name": "CRM Date",
+      "visible": true,
+      "z": 99,
+      "path": "Dashboard (Addresses) 02 > CRM Date",
+      "box": {
+        "x": 1463,
+        "y": 580,
+        "w": 70,
+        "h": 17
+      },
+      "bg": "#47bfa9",
+      "kind": "text",
+      "text": "CRM Date",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 600,
+        "ls": -0.28,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "UPPER"
+      },
+      "color": "#47bfa9"
+    },
+    {
+      "id": "10:17",
+      "type": "FRAME",
+      "name": "fi_3503786",
+      "visible": true,
+      "z": 100,
+      "path": "Dashboard (Addresses) 02 > fi_3503786",
+      "box": {
+        "x": -237,
+        "y": 600,
+        "w": 22,
+        "h": 22
+      },
+      "bg": "#ffffff",
+      "clip": true,
+      "kind": "frame",
+      "children": [
+        {
+          "id": "10:18",
+          "type": "GROUP",
+          "name": "Group",
+          "visible": true,
+          "z": 0,
+          "path": "Dashboard (Addresses) 02 > fi_3503786 > Group",
+          "box": {
+            "x": -237,
+            "y": 601,
+            "w": 22,
+            "h": 20
+          },
+          "kind": "group",
+          "children": [
+            {
+              "id": "10:19",
+              "type": "VECTOR",
+              "name": "Vector",
+              "visible": true,
+              "z": 0,
+              "path": "Dashboard (Addresses) 02 > fi_3503786 > Group > Vector",
+              "box": {
+                "x": -237,
+                "y": 601,
+                "w": 22,
+                "h": 20
+              },
+              "bg": "#0c2d50",
+              "kind": "shape"
+            },
+            {
+              "id": "10:20",
+              "type": "VECTOR",
+              "name": "Vector",
+              "visible": true,
+              "z": 1,
+              "path": "Dashboard (Addresses) 02 > fi_3503786 > Group > Vector",
+              "box": {
+                "x": -226,
+                "y": 605,
+                "w": 5,
+                "h": 9
+              },
+              "bg": "#0c2d50",
+              "kind": "shape"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2:67",
+      "type": "TEXT",
+      "name": "History & Comparisons",
+      "visible": true,
+      "z": 101,
+      "path": "Dashboard (Addresses) 02 > History & Comparisons",
+      "box": {
+        "x": -200,
+        "y": 601,
+        "w": 169,
+        "h": 20
+      },
+      "bg": "#47bfa9",
+      "kind": "text",
+      "text": "History & Comparisons",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 16,
+        "lh": 19.520000457763672,
+        "fw": 500,
+        "ls": -0.16,
+        "align": "LEFT",
+        "valign": "TOP"
+      },
+      "color": "#47bfa9"
+    },
+    {
+      "id": "10:188",
+      "type": "LINE",
+      "name": "Line 5",
+      "visible": true,
+      "z": 102,
+      "path": "Dashboard (Addresses) 02 > Line 5",
+      "box": {
+        "x": 65,
+        "y": 607,
+        "w": 1532,
+        "h": 0
+      },
+      "stroke": {
+        "color": "#6d8196",
+        "w": 1
+      },
+      "opacity": 0.3,
+      "kind": "rule"
+    },
+    {
+      "id": "10:200",
+      "type": "TEXT",
+      "name": "3290 Sheridan S, Trail",
+      "visible": true,
+      "z": 103,
+      "path": "Dashboard (Addresses) 02 > 3290 Sheridan S, Trail",
+      "box": {
+        "x": 80,
+        "y": 632,
+        "w": 157,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "3290 Sheridan S, Trail",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:237",
+      "type": "TEXT",
+      "name": "02",
+      "visible": true,
+      "z": 104,
+      "path": "Dashboard (Addresses) 02 > 02",
+      "box": {
+        "x": 322,
+        "y": 632,
+        "w": 17,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "02",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:233",
+      "type": "TEXT",
+      "name": "3290 Sheridon S, Trail",
+      "visible": true,
+      "z": 105,
+      "path": "Dashboard (Addresses) 02 > 3290 Sheridon S, Trail",
+      "box": {
+        "x": 458,
+        "y": 632,
+        "w": 134,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "3290 Sheridon S, Trail",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:242",
+      "type": "TEXT",
+      "name": "02",
+      "visible": true,
+      "z": 106,
+      "path": "Dashboard (Addresses) 02 > 02",
+      "box": {
+        "x": 710,
+        "y": 632,
+        "w": 17,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "02",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:247",
+      "type": "TEXT",
+      "name": "Bloomington",
+      "visible": true,
+      "z": 107,
+      "path": "Dashboard (Addresses) 02 > Bloomington",
+      "box": {
+        "x": 833,
+        "y": 632,
+        "w": 84,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "Bloomington",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:251",
+      "type": "TEXT",
+      "name": "MN",
+      "visible": true,
+      "z": 108,
+      "path": "Dashboard (Addresses) 02 > MN",
+      "box": {
+        "x": 995,
+        "y": 632,
+        "w": 47,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "MN",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:255",
+      "type": "TEXT",
+      "name": "55424",
+      "visible": true,
+      "z": 109,
+      "path": "Dashboard (Addresses) 02 > 55424",
+      "box": {
+        "x": 1134,
+        "y": 632,
+        "w": 47,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "55424",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:273",
+      "type": "TEXT",
+      "name": "06-27-2024",
+      "visible": true,
+      "z": 110,
+      "path": "Dashboard (Addresses) 02 > 06-27-2024",
+      "box": {
+        "x": 1275,
+        "y": 632,
+        "w": 81,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "06-27-2024",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:298",
+      "type": "TEXT",
+      "name": "06-27-2024",
+      "visible": true,
+      "z": 111,
+      "path": "Dashboard (Addresses) 02 > 06-27-2024",
+      "box": {
+        "x": 1458,
+        "y": 632,
+        "w": 81,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "06-27-2024",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:279",
+      "type": "FRAME",
+      "name": "fi_3545579",
+      "visible": true,
+      "z": 112,
+      "path": "Dashboard (Addresses) 02 > fi_3545579",
+      "box": {
+        "x": 1366,
+        "y": 634,
+        "w": 13,
+        "h": 13
+      },
+      "bg": "#ffffff",
+      "clip": true,
+      "opacity": 0.5,
+      "kind": "frame",
+      "children": [
+        {
+          "id": "10:280",
+          "type": "VECTOR",
+          "name": "Vector",
+          "visible": true,
+          "z": 0,
+          "path": "Dashboard (Addresses) 02 > fi_3545579 > Vector",
+          "box": {
+            "x": 1368,
+            "y": 635,
+            "w": 8,
+            "h": 4
+          },
+          "bg": "#6b6b6b",
+          "kind": "shape"
+        },
+        {
+          "id": "10:281",
+          "type": "VECTOR",
+          "name": "Vector",
+          "visible": true,
+          "z": 1,
+          "path": "Dashboard (Addresses) 02 > fi_3545579 > Vector",
+          "box": {
+            "x": 1368,
+            "y": 642,
+            "w": 8,
+            "h": 4
+          },
+          "bg": "#6b6b6b",
+          "kind": "shape"
+        }
+      ]
+    },
+    {
+      "id": "10:50",
+      "type": "LINE",
+      "name": "Line 2",
+      "visible": true,
+      "z": 113,
+      "path": "Dashboard (Addresses) 02 > Line 2",
+      "box": {
+        "x": -248,
+        "y": 662,
+        "w": 268,
+        "h": 0
+      },
+      "stroke": {
+        "color": "#47bfa9",
+        "w": 1
+      },
+      "kind": "rule"
+    },
+    {
+      "id": "10:178",
+      "type": "RECTANGLE",
+      "name": "Rectangle 15",
+      "visible": true,
+      "z": 114,
+      "path": "Dashboard (Addresses) 02 > Rectangle 15",
+      "box": {
+        "x": 65,
+        "y": 674,
+        "w": 1532,
+        "h": 67
+      },
+      "bg": "#f4f5f7",
+      "radius": 10,
+      "kind": "shape"
+    },
+    {
+      "id": "10:184",
+      "type": "TEXT",
+      "name": "3290 Sheridan S, Trail",
+      "visible": true,
+      "z": 115,
+      "path": "Dashboard (Addresses) 02 > 3290 Sheridan S, Trail",
+      "box": {
+        "x": 80,
+        "y": 699,
+        "w": 136,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "3290 Sheridan S, Trail",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:238",
+      "type": "TEXT",
+      "name": "06",
+      "visible": true,
+      "z": 116,
+      "path": "Dashboard (Addresses) 02 > 06",
+      "box": {
+        "x": 321,
+        "y": 699,
+        "w": 18,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "06",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:234",
+      "type": "TEXT",
+      "name": "3290 Sheridon S, Trail",
+      "visible": true,
+      "z": 117,
+      "path": "Dashboard (Addresses) 02 > 3290 Sheridon S, Trail",
+      "box": {
+        "x": 458,
+        "y": 699,
+        "w": 134,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "3290 Sheridon S, Trail",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:243",
+      "type": "TEXT",
+      "name": "06",
+      "visible": true,
+      "z": 118,
+      "path": "Dashboard (Addresses) 02 > 06",
+      "box": {
+        "x": 709,
+        "y": 699,
+        "w": 18,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "06",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:249",
+      "type": "TEXT",
+      "name": "Edina",
+      "visible": true,
+      "z": 119,
+      "path": "Dashboard (Addresses) 02 > Edina",
+      "box": {
+        "x": 818,
+        "y": 699,
+        "w": 114,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "Edina",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:253",
+      "type": "TEXT",
+      "name": "MN",
+      "visible": true,
+      "z": 120,
+      "path": "Dashboard (Addresses) 02 > MN",
+      "box": {
+        "x": 987,
+        "y": 699,
+        "w": 63,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "MN",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:257",
+      "type": "TEXT",
+      "name": "55431",
+      "visible": true,
+      "z": 121,
+      "path": "Dashboard (Addresses) 02 > 55431",
+      "box": {
+        "x": 1126,
+        "y": 699,
+        "w": 63,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "55431",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:274",
+      "type": "TEXT",
+      "name": "06-27-2024",
+      "visible": true,
+      "z": 122,
+      "path": "Dashboard (Addresses) 02 > 06-27-2024",
+      "box": {
+        "x": 1275,
+        "y": 699,
+        "w": 81,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "06-27-2024",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:301",
+      "type": "TEXT",
+      "name": "06-27-2024",
+      "visible": true,
+      "z": 123,
+      "path": "Dashboard (Addresses) 02 > 06-27-2024",
+      "box": {
+        "x": 1458,
+        "y": 699,
+        "w": 81,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "06-27-2024",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:283",
+      "type": "FRAME",
+      "name": "fi_3545579",
+      "visible": true,
+      "z": 124,
+      "path": "Dashboard (Addresses) 02 > fi_3545579",
+      "box": {
+        "x": 1366,
+        "y": 701,
+        "w": 13,
+        "h": 13
+      },
+      "bg": "#ffffff",
+      "clip": true,
+      "opacity": 0.5,
+      "kind": "frame",
+      "children": [
+        {
+          "id": "10:284",
+          "type": "VECTOR",
+          "name": "Vector",
+          "visible": true,
+          "z": 0,
+          "path": "Dashboard (Addresses) 02 > fi_3545579 > Vector",
+          "box": {
+            "x": 1368,
+            "y": 702,
+            "w": 8,
+            "h": 4
+          },
+          "bg": "#6b6b6b",
+          "kind": "shape"
+        },
+        {
+          "id": "10:285",
+          "type": "VECTOR",
+          "name": "Vector",
+          "visible": true,
+          "z": 1,
+          "path": "Dashboard (Addresses) 02 > fi_3545579 > Vector",
+          "box": {
+            "x": 1368,
+            "y": 709,
+            "w": 8,
+            "h": 4
+          },
+          "bg": "#6b6b6b",
+          "kind": "shape"
+        }
+      ]
+    },
+    {
+      "id": "10:182",
+      "type": "TEXT",
+      "name": "3290 Sheridan S, Trail",
+      "visible": true,
+      "z": 125,
+      "path": "Dashboard (Addresses) 02 > 3290 Sheridan S, Trail",
+      "box": {
+        "x": 80,
+        "y": 766,
+        "w": 136,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "3290 Sheridan S, Trail",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:239",
+      "type": "TEXT",
+      "name": "10",
+      "visible": true,
+      "z": 126,
+      "path": "Dashboard (Addresses) 02 > 10",
+      "box": {
+        "x": 323,
+        "y": 766,
+        "w": 15,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "10",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:235",
+      "type": "TEXT",
+      "name": "3290 Sheridon S, Trail",
+      "visible": true,
+      "z": 127,
+      "path": "Dashboard (Addresses) 02 > 3290 Sheridon S, Trail",
+      "box": {
+        "x": 458,
+        "y": 766,
+        "w": 134,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "3290 Sheridon S, Trail",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:244",
+      "type": "TEXT",
+      "name": "10",
+      "visible": true,
+      "z": 128,
+      "path": "Dashboard (Addresses) 02 > 10",
+      "box": {
+        "x": 711,
+        "y": 766,
+        "w": 15,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "10",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:248",
+      "type": "TEXT",
+      "name": "Minneapolis",
+      "visible": true,
+      "z": 129,
+      "path": "Dashboard (Addresses) 02 > Minneapolis",
+      "box": {
+        "x": 835,
+        "y": 766,
+        "w": 81,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "Minneapolis",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:252",
+      "type": "TEXT",
+      "name": "ID",
+      "visible": true,
+      "z": 130,
+      "path": "Dashboard (Addresses) 02 > ID",
+      "box": {
+        "x": 996,
+        "y": 766,
+        "w": 45,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "ID",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:256",
+      "type": "TEXT",
+      "name": "55491",
+      "visible": true,
+      "z": 131,
+      "path": "Dashboard (Addresses) 02 > 55491",
+      "box": {
+        "x": 1135,
+        "y": 766,
+        "w": 45,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "55491",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:275",
+      "type": "TEXT",
+      "name": "06-27-2024",
+      "visible": true,
+      "z": 132,
+      "path": "Dashboard (Addresses) 02 > 06-27-2024",
+      "box": {
+        "x": 1275,
+        "y": 766,
+        "w": 81,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "06-27-2024",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:299",
+      "type": "TEXT",
+      "name": "06-27-2024",
+      "visible": true,
+      "z": 133,
+      "path": "Dashboard (Addresses) 02 > 06-27-2024",
+      "box": {
+        "x": 1458,
+        "y": 766,
+        "w": 81,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "06-27-2024",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:286",
+      "type": "FRAME",
+      "name": "fi_3545579",
+      "visible": true,
+      "z": 134,
+      "path": "Dashboard (Addresses) 02 > fi_3545579",
+      "box": {
+        "x": 1366,
+        "y": 768,
+        "w": 13,
+        "h": 13
+      },
+      "bg": "#ffffff",
+      "clip": true,
+      "opacity": 0.5,
+      "kind": "frame",
+      "children": [
+        {
+          "id": "10:287",
+          "type": "VECTOR",
+          "name": "Vector",
+          "visible": true,
+          "z": 0,
+          "path": "Dashboard (Addresses) 02 > fi_3545579 > Vector",
+          "box": {
+            "x": 1368,
+            "y": 769,
+            "w": 8,
+            "h": 4
+          },
+          "bg": "#6b6b6b",
+          "kind": "shape"
+        },
+        {
+          "id": "10:288",
+          "type": "VECTOR",
+          "name": "Vector",
+          "visible": true,
+          "z": 1,
+          "path": "Dashboard (Addresses) 02 > fi_3545579 > Vector",
+          "box": {
+            "x": 1368,
+            "y": 776,
+            "w": 8,
+            "h": 4
+          },
+          "bg": "#6b6b6b",
+          "kind": "shape"
+        }
+      ]
+    },
+    {
+      "id": "10:192",
+      "type": "RECTANGLE",
+      "name": "Rectangle 16",
+      "visible": true,
+      "z": 135,
+      "path": "Dashboard (Addresses) 02 > Rectangle 16",
+      "box": {
+        "x": 65,
+        "y": 808,
+        "w": 1532,
+        "h": 67
+      },
+      "bg": "#f4f5f7",
+      "radius": 10,
+      "kind": "shape"
+    },
+    {
+      "id": "10:241",
+      "type": "TEXT",
+      "name": "3290 Sheridan S, Trail",
+      "visible": true,
+      "z": 136,
+      "path": "Dashboard (Addresses) 02 > 3290 Sheridan S, Trail",
+      "box": {
+        "x": 80,
+        "y": 833,
+        "w": 136,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "3290 Sheridan S, Trail",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:240",
+      "type": "TEXT",
+      "name": "05",
+      "visible": true,
+      "z": 137,
+      "path": "Dashboard (Addresses) 02 > 05",
+      "box": {
+        "x": 321,
+        "y": 833,
+        "w": 18,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "05",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:236",
+      "type": "TEXT",
+      "name": "3290 Sheridon S, Trail",
+      "visible": true,
+      "z": 138,
+      "path": "Dashboard (Addresses) 02 > 3290 Sheridon S, Trail",
+      "box": {
+        "x": 458,
+        "y": 833,
+        "w": 134,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "3290 Sheridon S, Trail",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:245",
+      "type": "TEXT",
+      "name": "05",
+      "visible": true,
+      "z": 139,
+      "path": "Dashboard (Addresses) 02 > 05",
+      "box": {
+        "x": 709,
+        "y": 833,
+        "w": 18,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "05",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:250",
+      "type": "TEXT",
+      "name": "Saint Paul",
+      "visible": true,
+      "z": 140,
+      "path": "Dashboard (Addresses) 02 > Saint Paul",
+      "box": {
+        "x": 839,
+        "y": 833,
+        "w": 73,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "Saint Paul",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:254",
+      "type": "TEXT",
+      "name": "NV",
+      "visible": true,
+      "z": 141,
+      "path": "Dashboard (Addresses) 02 > NV",
+      "box": {
+        "x": 998,
+        "y": 833,
+        "w": 41,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "NV",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:258",
+      "type": "TEXT",
+      "name": "55425",
+      "visible": true,
+      "z": 142,
+      "path": "Dashboard (Addresses) 02 > 55425",
+      "box": {
+        "x": 1137,
+        "y": 833,
+        "w": 41,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "55425",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:276",
+      "type": "TEXT",
+      "name": "06-27-2024",
+      "visible": true,
+      "z": 143,
+      "path": "Dashboard (Addresses) 02 > 06-27-2024",
+      "box": {
+        "x": 1275,
+        "y": 833,
+        "w": 81,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "06-27-2024",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:302",
+      "type": "TEXT",
+      "name": "06-27-2024",
+      "visible": true,
+      "z": 144,
+      "path": "Dashboard (Addresses) 02 > 06-27-2024",
+      "box": {
+        "x": 1458,
+        "y": 833,
+        "w": 81,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "06-27-2024",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:289",
+      "type": "FRAME",
+      "name": "fi_3545579",
+      "visible": true,
+      "z": 145,
+      "path": "Dashboard (Addresses) 02 > fi_3545579",
+      "box": {
+        "x": 1366,
+        "y": 835,
+        "w": 13,
+        "h": 13
+      },
+      "bg": "#ffffff",
+      "clip": true,
+      "opacity": 0.5,
+      "kind": "frame",
+      "children": [
+        {
+          "id": "10:290",
+          "type": "VECTOR",
+          "name": "Vector",
+          "visible": true,
+          "z": 0,
+          "path": "Dashboard (Addresses) 02 > fi_3545579 > Vector",
+          "box": {
+            "x": 1368,
+            "y": 836,
+            "w": 8,
+            "h": 4
+          },
+          "bg": "#6b6b6b",
+          "kind": "shape"
+        },
+        {
+          "id": "10:291",
+          "type": "VECTOR",
+          "name": "Vector",
+          "visible": true,
+          "z": 1,
+          "path": "Dashboard (Addresses) 02 > fi_3545579 > Vector",
+          "box": {
+            "x": 1368,
+            "y": 843,
+            "w": 8,
+            "h": 4
+          },
+          "bg": "#6b6b6b",
+          "kind": "shape"
+        }
+      ]
+    },
+    {
+      "id": "10:25",
+      "type": "FRAME",
+      "name": "fi_2956788",
+      "visible": true,
+      "z": 146,
+      "path": "Dashboard (Addresses) 02 > fi_2956788",
+      "box": {
+        "x": -237,
+        "y": 867,
+        "w": 22,
+        "h": 22
+      },
+      "bg": "#ffffff",
+      "clip": true,
+      "kind": "frame",
+      "children": [
+        {
+          "id": "10:26",
+          "type": "VECTOR",
+          "name": "Vector",
+          "visible": true,
+          "z": 0,
+          "path": "Dashboard (Addresses) 02 > fi_2956788 > Vector",
+          "box": {
+            "x": -236,
+            "y": 868,
+            "w": 21,
+            "h": 21
+          },
+          "bg": "#0c2d50",
+          "kind": "shape"
+        },
+        {
+          "id": "10:27",
+          "type": "VECTOR",
+          "name": "Vector",
+          "visible": true,
+          "z": 1,
+          "path": "Dashboard (Addresses) 02 > fi_2956788 > Vector",
+          "box": {
+            "x": -231,
+            "y": 873,
+            "w": 10,
+            "h": 10
+          },
+          "bg": "#0c2d50",
+          "kind": "shape"
+        }
+      ]
+    },
+    {
+      "id": "2:68",
+      "type": "TEXT",
+      "name": "Settings",
+      "visible": true,
+      "z": 147,
+      "path": "Dashboard (Addresses) 02 > Settings",
+      "box": {
+        "x": -200,
+        "y": 868,
+        "w": 62,
+        "h": 20
+      },
+      "bg": "#47bfa9",
+      "kind": "text",
+      "text": "Settings",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 16,
+        "lh": 19.520000457763672,
+        "fw": 500,
+        "ls": -0.16,
+        "align": "LEFT",
+        "valign": "TOP"
+      },
+      "color": "#47bfa9"
+    },
+    {
+      "id": "10:259",
+      "type": "TEXT",
+      "name": "3290 Sheridan S, Trail",
+      "visible": true,
+      "z": 148,
+      "path": "Dashboard (Addresses) 02 > 3290 Sheridan S, Trail",
+      "box": {
+        "x": 80,
+        "y": 900,
+        "w": 136,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "3290 Sheridan S, Trail",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:263",
+      "type": "TEXT",
+      "name": "05",
+      "visible": true,
+      "z": 149,
+      "path": "Dashboard (Addresses) 02 > 05",
+      "box": {
+        "x": 321,
+        "y": 900,
+        "w": 18,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "05",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:265",
+      "type": "TEXT",
+      "name": "3290 Sheridon S, Trail",
+      "visible": true,
+      "z": 150,
+      "path": "Dashboard (Addresses) 02 > 3290 Sheridon S, Trail",
+      "box": {
+        "x": 458,
+        "y": 900,
+        "w": 134,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "3290 Sheridon S, Trail",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:264",
+      "type": "TEXT",
+      "name": "05",
+      "visible": true,
+      "z": 151,
+      "path": "Dashboard (Addresses) 02 > 05",
+      "box": {
+        "x": 709,
+        "y": 900,
+        "w": 18,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "05",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:260",
+      "type": "TEXT",
+      "name": "Saint Paul",
+      "visible": true,
+      "z": 152,
+      "path": "Dashboard (Addresses) 02 > Saint Paul",
+      "box": {
+        "x": 839,
+        "y": 900,
+        "w": 73,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "Saint Paul",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:261",
+      "type": "TEXT",
+      "name": "NV",
+      "visible": true,
+      "z": 153,
+      "path": "Dashboard (Addresses) 02 > NV",
+      "box": {
+        "x": 998,
+        "y": 900,
+        "w": 41,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "NV",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:262",
+      "type": "TEXT",
+      "name": "55425",
+      "visible": true,
+      "z": 154,
+      "path": "Dashboard (Addresses) 02 > 55425",
+      "box": {
+        "x": 1137,
+        "y": 900,
+        "w": 41,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "55425",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:277",
+      "type": "TEXT",
+      "name": "06-27-2024",
+      "visible": true,
+      "z": 155,
+      "path": "Dashboard (Addresses) 02 > 06-27-2024",
+      "box": {
+        "x": 1275,
+        "y": 900,
+        "w": 81,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "06-27-2024",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:300",
+      "type": "TEXT",
+      "name": "06-27-2024",
+      "visible": true,
+      "z": 156,
+      "path": "Dashboard (Addresses) 02 > 06-27-2024",
+      "box": {
+        "x": 1458,
+        "y": 900,
+        "w": 81,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "06-27-2024",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:292",
+      "type": "FRAME",
+      "name": "fi_3545579",
+      "visible": true,
+      "z": 157,
+      "path": "Dashboard (Addresses) 02 > fi_3545579",
+      "box": {
+        "x": 1366,
+        "y": 902,
+        "w": 13,
+        "h": 13
+      },
+      "bg": "#ffffff",
+      "clip": true,
+      "opacity": 0.5,
+      "kind": "frame",
+      "children": [
+        {
+          "id": "10:293",
+          "type": "VECTOR",
+          "name": "Vector",
+          "visible": true,
+          "z": 0,
+          "path": "Dashboard (Addresses) 02 > fi_3545579 > Vector",
+          "box": {
+            "x": 1368,
+            "y": 903,
+            "w": 8,
+            "h": 4
+          },
+          "bg": "#6b6b6b",
+          "kind": "shape"
+        },
+        {
+          "id": "10:294",
+          "type": "VECTOR",
+          "name": "Vector",
+          "visible": true,
+          "z": 1,
+          "path": "Dashboard (Addresses) 02 > fi_3545579 > Vector",
+          "box": {
+            "x": 1368,
+            "y": 910,
+            "w": 8,
+            "h": 4
+          },
+          "bg": "#6b6b6b",
+          "kind": "shape"
+        }
+      ]
+    },
+    {
+      "id": "2:84",
+      "type": "TEXT",
+      "name": "Sign Out",
+      "visible": true,
+      "z": 158,
+      "path": "Dashboard (Addresses) 02 > Sign Out",
+      "box": {
+        "x": -200,
+        "y": 934,
+        "w": 64,
+        "h": 20
+      },
+      "bg": "#47bfa9",
+      "kind": "text",
+      "text": "Sign Out",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 16,
+        "lh": 19.520000457763672,
+        "fw": 500,
+        "ls": -0.16,
+        "align": "LEFT",
+        "valign": "TOP"
+      },
+      "color": "#47bfa9"
+    },
+    {
+      "id": "10:41",
+      "type": "FRAME",
+      "name": "fi_992680",
+      "visible": true,
+      "z": 159,
+      "path": "Dashboard (Addresses) 02 > fi_992680",
+      "box": {
+        "x": -236,
+        "y": 935,
+        "w": 20,
+        "h": 20
+      },
+      "bg": "#ffffff",
+      "clip": true,
+      "kind": "frame",
+      "children": [
+        {
+          "id": "10:42",
+          "type": "GROUP",
+          "name": "Group",
+          "visible": true,
+          "z": 0,
+          "path": "Dashboard (Addresses) 02 > fi_992680 > Group",
+          "box": {
+            "x": -236,
+            "y": 935,
+            "w": 11,
+            "h": 20
+          },
+          "kind": "group",
+          "children": [
+            {
+              "id": "10:43",
+              "type": "GROUP",
+              "name": "Group",
+              "visible": true,
+              "z": 0,
+              "path": "Dashboard (Addresses) 02 > fi_992680 > Group > Group",
+              "box": {
+                "x": -236,
+                "y": 935,
+                "w": 11,
+                "h": 20
+              },
+              "kind": "group",
+              "children": [
+                {
+                  "id": "10:44",
+                  "type": "VECTOR",
+                  "name": "Vector",
+                  "visible": true,
+                  "z": 0,
+                  "path": "Dashboard (Addresses) 02 > fi_992680 > Group > Group > Vector",
+                  "box": {
+                    "x": -236,
+                    "y": 935,
+                    "w": 11,
+                    "h": 20
+                  },
+                  "bg": "#0c2d50",
+                  "kind": "shape"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "10:45",
+          "type": "GROUP",
+          "name": "Group",
+          "visible": true,
+          "z": 1,
+          "path": "Dashboard (Addresses) 02 > fi_992680 > Group",
+          "box": {
+            "x": -229,
+            "y": 939,
+            "w": 13,
+            "h": 12
+          },
+          "kind": "group",
+          "children": [
+            {
+              "id": "10:46",
+              "type": "GROUP",
+              "name": "Group",
+              "visible": true,
+              "z": 0,
+              "path": "Dashboard (Addresses) 02 > fi_992680 > Group > Group",
+              "box": {
+                "x": -229,
+                "y": 939,
+                "w": 13,
+                "h": 12
+              },
+              "kind": "group",
+              "children": [
+                {
+                  "id": "10:47",
+                  "type": "VECTOR",
+                  "name": "Vector",
+                  "visible": true,
+                  "z": 0,
+                  "path": "Dashboard (Addresses) 02 > fi_992680 > Group > Group > Vector",
+                  "box": {
+                    "x": -229,
+                    "y": 939,
+                    "w": 13,
+                    "h": 12
+                  },
+                  "bg": "#0c2d50",
+                  "kind": "shape"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "10:193",
+      "type": "RECTANGLE",
+      "name": "Rectangle 17",
+      "visible": true,
+      "z": 160,
+      "path": "Dashboard (Addresses) 02 > Rectangle 17",
+      "box": {
+        "x": 65,
+        "y": 942,
+        "w": 1532,
+        "h": 53
+      },
+      "bg": "#f4f5f7",
+      "radii": {
+        "tl": 10,
+        "tr": 10,
+        "br": 0,
+        "bl": 0
+      },
+      "kind": "shape"
+    },
+    {
+      "id": "10:266",
+      "type": "TEXT",
+      "name": "3290 Sheridan S, Trail",
+      "visible": true,
+      "z": 161,
+      "path": "Dashboard (Addresses) 02 > 3290 Sheridan S, Trail",
+      "box": {
+        "x": 80,
+        "y": 967,
+        "w": 136,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "3290 Sheridan S, Trail",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:270",
+      "type": "TEXT",
+      "name": "05",
+      "visible": true,
+      "z": 162,
+      "path": "Dashboard (Addresses) 02 > 05",
+      "box": {
+        "x": 321,
+        "y": 967,
+        "w": 18,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "05",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:272",
+      "type": "TEXT",
+      "name": "3290 Sheridon S, Trail",
+      "visible": true,
+      "z": 163,
+      "path": "Dashboard (Addresses) 02 > 3290 Sheridon S, Trail",
+      "box": {
+        "x": 458,
+        "y": 967,
+        "w": 134,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "3290 Sheridon S, Trail",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:271",
+      "type": "TEXT",
+      "name": "05",
+      "visible": true,
+      "z": 164,
+      "path": "Dashboard (Addresses) 02 > 05",
+      "box": {
+        "x": 709,
+        "y": 967,
+        "w": 18,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "05",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "LEFT",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:267",
+      "type": "TEXT",
+      "name": "Saint Paul",
+      "visible": true,
+      "z": 165,
+      "path": "Dashboard (Addresses) 02 > Saint Paul",
+      "box": {
+        "x": 839,
+        "y": 967,
+        "w": 73,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "Saint Paul",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:268",
+      "type": "TEXT",
+      "name": "NV",
+      "visible": true,
+      "z": 166,
+      "path": "Dashboard (Addresses) 02 > NV",
+      "box": {
+        "x": 998,
+        "y": 967,
+        "w": 41,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "NV",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:269",
+      "type": "TEXT",
+      "name": "55425",
+      "visible": true,
+      "z": 167,
+      "path": "Dashboard (Addresses) 02 > 55425",
+      "box": {
+        "x": 1137,
+        "y": 967,
+        "w": 41,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "55425",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:278",
+      "type": "TEXT",
+      "name": "06-27-2024",
+      "visible": true,
+      "z": 168,
+      "path": "Dashboard (Addresses) 02 > 06-27-2024",
+      "box": {
+        "x": 1275,
+        "y": 967,
+        "w": 81,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "06-27-2024",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:303",
+      "type": "TEXT",
+      "name": "06-27-2024",
+      "visible": true,
+      "z": 169,
+      "path": "Dashboard (Addresses) 02 > 06-27-2024",
+      "box": {
+        "x": 1458,
+        "y": 967,
+        "w": 81,
+        "h": 17
+      },
+      "bg": "#6b6b6b",
+      "kind": "text",
+      "text": "06-27-2024",
+      "textStyle": {
+        "ff": "Instrument Sans",
+        "sz": 14,
+        "lh": 17.079999923706055,
+        "fw": 400,
+        "ls": -0.28,
+        "align": "CENTER",
+        "valign": "TOP",
+        "case": "TITLE"
+      },
+      "color": "#6b6b6b"
+    },
+    {
+      "id": "10:295",
+      "type": "FRAME",
+      "name": "fi_3545579",
+      "visible": true,
+      "z": 170,
+      "path": "Dashboard (Addresses) 02 > fi_3545579",
+      "box": {
+        "x": 1366,
+        "y": 969,
+        "w": 13,
+        "h": 13
+      },
+      "bg": "#ffffff",
+      "clip": true,
+      "opacity": 0.5,
+      "kind": "frame",
+      "children": [
+        {
+          "id": "10:296",
+          "type": "VECTOR",
+          "name": "Vector",
+          "visible": true,
+          "z": 0,
+          "path": "Dashboard (Addresses) 02 > fi_3545579 > Vector",
+          "box": {
+            "x": 1368,
+            "y": 970,
+            "w": 8,
+            "h": 4
+          },
+          "bg": "#6b6b6b",
+          "kind": "shape"
+        },
+        {
+          "id": "10:297",
+          "type": "VECTOR",
+          "name": "Vector",
+          "visible": true,
+          "z": 1,
+          "path": "Dashboard (Addresses) 02 > fi_3545579 > Vector",
+          "box": {
+            "x": 1368,
+            "y": 977,
+            "w": 8,
+            "h": 4
+          },
+          "bg": "#6b6b6b",
+          "kind": "shape"
+        }
+      ]
+    }
+  ],
+  "_palette": [
+    {
+      "hex": "#6b6b6b",
+      "count": 206
+    },
+    {
+      "hex": "#47bfa9",
+      "count": 56
+    },
+    {
+      "hex": "#0c2d50",
+      "count": 44
+    },
+    {
+      "hex": "#ffffff",
+      "count": 23
+    },
+    {
+      "hex": "#f4f5f7",
+      "count": 14
+    },
+    {
+      "hex": "#6d8196",
+      "count": 3
+    },
+    {
+      "hex": "#000000",
+      "count": 2
+    }
+  ]
+}
