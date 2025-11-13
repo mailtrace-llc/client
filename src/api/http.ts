@@ -4,7 +4,8 @@ import type { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios'
 import { log, getReq } from '@/utils/logger'
 
 // ---- Base URL
-const baseURL = import.meta.env.VITE_API_BASE || '/api'
+export const API_BASE =
+  (import.meta.env.VITE_API_BASE || "/api").trim();
 
 // ---- Tiny global "inflight" loader signal
 let inflight = 0
@@ -24,11 +25,11 @@ export function getInflight() { return inflight }
 
 // ---- Axios instance
 export const http = axios.create({
-  baseURL,
+  baseURL: API_BASE,
   withCredentials: true,
   timeout: 60_000,
-  headers: { 'X-Requested-With': 'XMLHttpRequest' },
-})
+  headers: { "X-Requested-With": "XMLHttpRequest" },
+});
 
 /**
  * REQUEST interceptor

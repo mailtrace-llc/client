@@ -1,10 +1,5 @@
 import { http } from "./http";
 
-export async function createRun(): Promise<string> {
-  const { data } = await http.post("/runs");
-  return data.run_id as string;
-}
-
 export type KPIs = {
   total_mail?: number;
   unique_mail_addresses?: number;
