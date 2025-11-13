@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-import UploadIconUrl from "@/assets/upload_fi-10009684.svg?url";
+import UploadIconUrl from "@/assets/upload.svg?url";
 
 import { useRun } from "@/composables/useRun";
 import { uploadSource, type Source } from "@/api/uploads";
