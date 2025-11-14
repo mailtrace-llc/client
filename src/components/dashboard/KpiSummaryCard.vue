@@ -85,16 +85,22 @@ async function load(runId?: string) {
       revenue_per_mailer: Number(kpis.revenue_per_mailer ?? 0),
       avg_ticket_per_match: Number(kpis.avg_ticket_per_match ?? 0),
       median_days_to_convert: Number(kpis.median_days_to_convert ?? 0),
+      // convert_30/60/90 can be added here when backend supports them
     };
-  } catch (e) {
+  } catch (e: any) {
+    if (e?.status === 409 && e?.data?.error === "not_ready") {
+      return;
+    }
     console.warn("KPI load failed:", e);
   }
 }
 
 watch(
-  () => [props.runId, props.refreshKey],
+  () => props.refreshKey,
   () => {
-    void load(props.runId);
+    if (props.runId) {
+      void load(props.runId);
+    }
   },
   { immediate: true }
 );

@@ -56,30 +56,10 @@ const requiredCrm = ref<string[]>([]);
 
 const initialMapping = ref<MapperMapping | undefined>(undefined);
 
-// canonical fields matches backend canonical names
-const mappingFields = [
-  "source_id",
-  "address1",
-  "address2",
-  "city",
-  "state",
-  "zip",
-  "sent_date",
-  "job_date",
-  "job_value",
-];
-
-const mappingLabels: Record<string, string> = {
-  source_id: "Source ID",
-  address1: "Address line 1",
-  address2: "Address line 2",
-  city: "City",
-  state: "State",
-  zip: "ZIP / Postal Code",
-  sent_date: "Mail date",
-  job_date: "Job date",
-  job_value: "Job value",
-};
+const mailFields = ref<string[]>([]);
+const crmFields = ref<string[]>([]);
+const mailLabels = ref<Record<string, string>>({});
+const crmLabels = ref<Record<string, string>>({});
 
 const runId = ref<string>("");
 
@@ -130,6 +110,14 @@ async function openMapper() {
 
     requiredMail.value = mb.mail.required || [];
     requiredCrm.value = mb.crm.required || [];
+
+    // per-side canon lists straight from backend
+    mailFields.value = mb.mail.fields || [];
+    crmFields.value = mb.crm.fields || [];
+
+    // per-side labels straight from backend
+    mailLabels.value = mb.mail.labels ?? {};
+    crmLabels.value = mb.crm.labels ?? {};
 
     showMapping.value = false;
     showMapper.value = true;
@@ -319,9 +307,11 @@ onMounted(() => {
     :crm-headers="crmHeaders"
     :mail-samples="mailSamples"
     :crm-samples="crmSamples"
-    :fields="mappingFields"
+    :mail-fields="mailFields"
+    :crm-fields="crmFields"
+    :mail-labels="mailLabels"
+    :crm-labels="crmLabels"
     :initial-mapping="initialMapping"
-    :labels="mappingLabels"
     :required-mail="requiredMail"
     :required-crm="requiredCrm"
     @close="showMapper = false"

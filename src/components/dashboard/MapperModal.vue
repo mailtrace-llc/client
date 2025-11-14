@@ -34,19 +34,21 @@
               <span class="side-sub">Outbound mailers</span>
             </div>
             <div class="field-list">
-              <div v-for="f in fields" :key="'mail-' + f" class="field-row">
+              <div v-for="f in mailFields" :key="'mail-' + f" class="field-row">
                 <div class="field-meta">
                   <label :for="'mail-' + f" class="field-label">
-                    {{ labelFor(f) }}
+                    {{ labelForMail(f) }}
                   </label>
-                  <span v-if="f" class="pill pill-required"> Required </span>
+                  <span v-if="isRequired('mail', f)" class="pill pill-required">
+                    Required
+                  </span>
                   <span v-else class="pill pill-optional"> Optional </span>
                 </div>
                 <div class="field-control">
                   <select
                     class="field-select"
                     :class="{
-                      'is-missing': f && !draft.mail[f],
+                      'is-missing': isRequired('mail', f) && !draft.mail[f],
                     }"
                     :id="'mail-' + f"
                     v-model="draft.mail[f]"
@@ -75,18 +77,22 @@
               <span class="side-sub">Jobs / conversions</span>
             </div>
             <div class="field-list">
-              <div v-for="f in fields" :key="'crm-' + f" class="field-row">
+              <div v-for="f in crmFields" :key="'crm-' + f" class="field-row">
                 <div class="field-meta">
                   <label :for="'crm-' + f" class="field-label">
-                    {{ labelFor(f) }}
+                    {{ labelForCrm(f) }}
                   </label>
-                  <span v-if="f" class="pill pill-required"> Required </span>
+                  <span v-if="isRequired('crm', f)" class="pill pill-required">
+                    Required
+                  </span>
                   <span v-else class="pill pill-optional"> Optional </span>
                 </div>
                 <div class="field-control">
                   <select
                     class="field-select"
-                    :class="{ 'is-missing': f && !draft.crm[f] }"
+                    :class="{
+                      'is-missing': isRequired('crm', f) && !draft.crm[f],
+                    }"
                     :id="'crm-' + f"
                     v-model="draft.crm[f]"
                   >
@@ -129,9 +135,11 @@ const props = defineProps<{
   crmHeaders: string[];
   mailSamples: Record<string, any>[];
   crmSamples: Record<string, any>[];
-  fields: string[];
+  mailFields: string[];
+  crmFields: string[];
+  mailLabels?: Record<string, string>;
+  crmLabels?: Record<string, string>;
   initialMapping?: Partial<Mapping>;
-  labels?: Record<string, string>;
   requiredMail: string[];
   requiredCrm: string[];
 }>();
@@ -146,12 +154,24 @@ const dialogEl = ref<HTMLElement | null>(null);
 const titleCase = (s: string): string =>
   s.replace(/[_-]+/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
 
-const labelFor = (f: string): string => props.labels?.[f] ?? titleCase(f);
+const labelForMail = (f: string): string =>
+  props.mailLabels?.[f] ?? titleCase(f);
 
-function emptyMapping(fields: string[]): Mapping {
-  const blank: MappingSide = {};
-  for (const f of fields) blank[f] = "";
-  return { mail: { ...blank }, crm: { ...blank } };
+const labelForCrm = (f: string): string => props.crmLabels?.[f] ?? titleCase(f);
+
+function isRequired(source: "mail" | "crm", field: string): boolean {
+  if (!field) return false;
+  return source === "mail"
+    ? props.requiredMail.includes(field)
+    : props.requiredCrm.includes(field);
+}
+
+function emptyMapping(mailFields: string[], crmFields: string[]): Mapping {
+  const mailBlank: MappingSide = {};
+  mailFields.forEach((f) => (mailBlank[f] = ""));
+  const crmBlank: MappingSide = {};
+  crmFields.forEach((f) => (crmBlank[f] = ""));
+  return { mail: mailBlank, crm: crmBlank };
 }
 
 function mergeMapping(base: Mapping, over?: Partial<Mapping>): Mapping {
@@ -163,17 +183,13 @@ function mergeMapping(base: Mapping, over?: Partial<Mapping>): Mapping {
   };
 
   if (over.mail) {
-    const mail = over.mail as Record<string, string | undefined>;
-    for (const k of Object.keys(mail)) {
-      const v = mail[k];
+    for (const [k, v] of Object.entries(over.mail)) {
       if (typeof v === "string") m.mail[k] = v;
     }
   }
 
   if (over.crm) {
-    const crm = over.crm as Record<string, string | undefined>;
-    for (const k of Object.keys(crm)) {
-      const v = crm[k];
+    for (const [k, v] of Object.entries(over.crm)) {
       if (typeof v === "string") m.crm[k] = v;
     }
   }
@@ -181,10 +197,13 @@ function mergeMapping(base: Mapping, over?: Partial<Mapping>): Mapping {
   return m;
 }
 
-const draft = ref<Mapping>(emptyMapping(props.fields));
+const draft = ref<Mapping>(emptyMapping(props.mailFields, props.crmFields));
 
 function seedFromProps() {
-  draft.value = mergeMapping(emptyMapping(props.fields), props.initialMapping);
+  draft.value = mergeMapping(
+    emptyMapping(props.mailFields, props.crmFields),
+    props.initialMapping
+  );
 }
 
 function samplePreview(
@@ -229,9 +248,11 @@ onMounted(() => {
 });
 
 // re-seed when backend inputs change
-watch(() => [props.initialMapping, props.fields], seedFromProps, {
-  deep: true,
-});
+watch(
+  () => [props.initialMapping, props.mailFields, props.crmFields],
+  seedFromProps,
+  { deep: true }
+);
 
 function onBackdrop(e: MouseEvent) {
   if (e.target === e.currentTarget) {
