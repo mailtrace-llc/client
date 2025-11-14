@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
+import { ref, onMounted, computed, watch } from "vue";
 import { useRoute } from "vue-router";
 
 import Sidebar from "@/components/Sidebar.vue";
@@ -8,6 +8,7 @@ import Navbar from "@/components/Navbar.vue";
 import ModalUploadGuard from "@/components/dashboard/ModalUploadGuard.vue";
 import ModalMappingRequired from "@/components/dashboard/ModalMappingRequired.vue";
 import MapperModal from "@/components/dashboard/MapperModal.vue";
+import { getRunResult, type RunResult } from "@/api/result";
 import {
   fetchHeaders as fetchMapperHeaders,
   fetchMapping as fetchMapperMapping,
@@ -65,17 +66,125 @@ const runId = ref<string>("");
 
 const kpiRefreshKey = ref(0);
 
-function onRunIdChanged(id: string) {
-  runId.value = id;
+/* ------------------------------------------------------------------
+ * Unified run result payload (KPIs + graph + tops)
+ * ------------------------------------------------------------------ */
+
+const runResult = ref<RunResult | null>(null);
+const runResultLoading = ref(false);
+
+const MONTH_ABBR = [
+  "JAN",
+  "FEB",
+  "MAR",
+  "APR",
+  "MAY",
+  "JUN",
+  "JUL",
+  "AUG",
+  "SEP",
+  "OCT",
+  "NOV",
+  "DEC",
+];
+
+// Graph data for YoY card
+const graphLabels = computed<string[]>(() => {
+  const months = runResult.value?.graph?.months ?? [];
+  if (!months.length) return [];
+  return months.map((ym) => {
+    const [, m] = ym.split("-");
+    const idx = Number(m ?? "1") - 1;
+    return MONTH_ABBR[idx] ?? ym;
+  });
+});
+
+const graphMailNow = computed<number[]>(
+  () => runResult.value?.graph?.mailers ?? []
+);
+const graphCrmNow = computed<number[]>(
+  () => runResult.value?.graph?.jobs ?? []
+);
+const graphMatchNow = computed<number[]>(
+  () => runResult.value?.graph?.matches ?? []
+);
+
+// Top cities / zips rows for the tables
+type CityRow = { city: string; total: number; rate: string };
+type ZipRow = { zip: string; total: number; rate: string };
+
+function fmtPct(v: number | null | undefined): string {
+  if (v == null) return "—";
+  const x = v <= 1 ? v * 100 : v;
+  return `${x.toFixed(1)}%`;
 }
+
+const topCityRows = computed<CityRow[]>(() => {
+  const items = runResult.value?.top_cities ?? [];
+  return items.map((c) => ({
+    city: c.city ?? "",
+    total: Number(c.matches ?? 0),
+    rate: fmtPct(c.match_rate as number | null | undefined),
+  }));
+});
+
+const topZipRows = computed<ZipRow[]>(() => {
+  const items = runResult.value?.top_zips ?? [];
+  return items.map((z) => ({
+    zip: z.zip ?? "",
+    total: Number(z.matches ?? 0),
+    // per-ZIP match_rate isn’t persisted yet, so just show a placeholder
+    rate: "—",
+  }));
+});
+
+// --- loader for /runs/:run_id/result ---
+async function loadRunResult(id?: string) {
+  if (!id) return;
+  runResultLoading.value = true;
+  try {
+    runResult.value = await getRunResult(id);
+  } catch (err) {
+    console.error("[Dashboard] Failed to load run result", err);
+  } finally {
+    runResultLoading.value = false;
+  }
+}
+
+/* ------------------------------------------------------------------
+ * Search (Navbar)
+ * ------------------------------------------------------------------ */
 
 const search = ref("");
 function onSearch(q: string) {
   search.value = q;
 }
 
+/* ------------------------------------------------------------------
+ * Wiring runId + refreshKey -> runResult loader
+ * ------------------------------------------------------------------ */
+
+watch(
+  () => kpiRefreshKey.value,
+  () => {
+    const id = runId.value;
+    if (id) {
+      void loadRunResult(id);
+    }
+  }
+  // no immediate: true — it will run when you bump kpiRefreshKey
+);
+
+/* ------------------------------------------------------------------
+ * Mapping / mapper flows
+ * ------------------------------------------------------------------ */
+
+function onRunIdChanged(id: string) {
+  runId.value = id;
+}
+
 function onMappingRequired(payload: { mail?: string[]; crm?: string[] }) {
-  loader.unlock();
+  loader.unlock?.();
   loader.hide(true);
   missing.value = payload || {};
   showMapping.value = true;
@@ -129,7 +238,7 @@ async function openMapper() {
 }
 
 async function onMappingConfirm(mapping: MapperMapping) {
-  loader.unlock();
+  loader.unlock?.();
   loader.show({ progress: 8, message: "Saving mapping…" });
 
   try {
@@ -145,6 +254,10 @@ async function onMappingConfirm(mapping: MapperMapping) {
     loader.hide(true);
   }
 }
+
+/* ------------------------------------------------------------------
+ * Upload guard + run lifecycle
+ * ------------------------------------------------------------------ */
 
 function onNeedBothFiles(missingFlags: {
   mailMissing: boolean;
@@ -187,6 +300,10 @@ function onRunFailed(error: unknown) {
   loader.hide(true);
   console.error("[Dashboard] Run failed", error);
 }
+
+/* ------------------------------------------------------------------
+ * Initialisation (URL ?run_id=…)
+ * ------------------------------------------------------------------ */
 
 onMounted(() => {
   const qRunId = (route.query.run_id as string) || "";
@@ -231,63 +348,36 @@ onMounted(() => {
           class="h-full"
           :run-id="runId"
           :refresh-key="kpiRefreshKey"
+          :kpis="runResult?.kpis || null"
         />
       </div>
 
-      <!-- YoY Chart -->
+      <!-- YoY Chart (driven by backend graph) -->
       <div class="section card" id="cmp-graph">
         <YoyChart
-          :labels="[
-            'JAN 2024',
-            'FEB',
-            'MAR',
-            'APR',
-            'MAY',
-            'JUN',
-            'JUL',
-            'AUG',
-            'SEP',
-            'OCT',
-            'NOV',
-            'DEC',
-            'JAN 2025',
-            'FEB',
-            'MAR',
-            'APR',
-            'MAY',
-            'JUN',
-            'JUL',
-            'AUG',
-            'SEP',
-            'OCT',
-            'NOV',
-            'DEC',
-          ]"
-          :mail-now="[
-            120, 140, 160, 170, 190, 180, 175, 190, 210, 220, 240, 245, 80, 95,
-            110, 130, 160, 170, 175, 190, 205, 220, 235, 260,
-          ]"
-          :crm-now="[
-            60, 75, 90, 105, 120, 130, 128, 132, 140, 150, 165, 170, 55, 70, 85,
-            100, 112, 125, 130, 140, 150, 160, 175, 190,
-          ]"
-          :match-now="[
-            20, 28, 36, 40, 48, 46, 44, 52, 58, 62, 68, 72, 18, 24, 30, 36, 42,
-            44, 46, 52, 56, 60, 64, 70,
-          ]"
-          :mail-prev="[
-            100, 120, 130, 145, 165, 155, 150, 160, 180, 190, 200, 210,
-          ]"
-          :crm-prev="[45, 58, 70, 84, 96, 100, 103, 110, 118, 126, 135, 150]"
-          :match-prev="[15, 22, 28, 33, 36, 38, 39, 42, 48, 52, 56, 60]"
+          :labels="graphLabels"
+          :mail-now="graphMailNow"
+          :crm-now="graphCrmNow"
+          :match-now="graphMatchNow"
+          :mail-prev="[]"
+          :crm-prev="[]"
+          :match-prev="[]"
         />
       </div>
 
+      <!-- Top cities / zips -->
       <div class="row section" id="cmp-top">
-        <TopCitiesTable style="flex: 1 1 360px; min-width: 360px" />
-        <TopZipsTable style="flex: 1 1 360px; min-width: 360px" />
+        <TopCitiesTable
+          style="flex: 1 1 360px; min-width: 360px"
+          :rows="topCityRows"
+        />
+        <TopZipsTable
+          style="flex: 1 1 360px; min-width: 360px"
+          :rows="topZipRows"
+        />
       </div>
 
+      <!-- Summary card (still seeded locally for now) -->
       <div class="section card" id="cmp-summary">
         <SummaryTable class="section" />
       </div>
@@ -301,6 +391,7 @@ onMounted(() => {
     @edit-mapping="openMapper"
   />
 
+  <!-- Mapper modal -->
   <MapperModal
     :open="showMapper"
     :mail-headers="mailHeaders"

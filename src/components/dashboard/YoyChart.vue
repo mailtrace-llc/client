@@ -275,20 +275,12 @@ watch(showYoy, syncVisibility);
         <li class="flex items-center gap-2">
           <span class="legend-swatch bg-[#6b6b6b]" /> Matches
         </li>
-        <li class="flex items-center gap-2">
-          <span class="legend-dash" /> Dashed = Previous Year
-        </li>
       </ul>
     </header>
 
     <div class="mt-2 px-2 pb-3">
       <div class="relative h-80">
         <canvas ref="canvasEl" class="block w-full h-full"></canvas>
-        <div
-          class="absolute top-0 right-3 text-[18px] font-semibold text-[#0c2d50]"
-        >
-          *This is a dummy graph, Will be replaced in DEVELOPMENT*
-        </div>
       </div>
     </div>
   </section>
