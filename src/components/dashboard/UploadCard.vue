@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-import UploadIconUrl from "@/assets/upload_fi-10009684.svg?url";
+import UploadIconUrl from "@/assets/upload.svg?url";
 
 import { useRun } from "@/composables/useRun";
 import { uploadSource, type Source } from "@/api/uploads";
@@ -9,8 +9,16 @@ import { createRun } from "@/api/runs";
 import { log } from "@/utils/logger";
 
 const emit = defineEmits<{
-  (e: "mapping-required", missing: Record<string, string[]>): void;
-  (e: "need-both-files"): void;
+  (
+    e: "need-both-files",
+    payload: { mailMissing: boolean; crmMissing: boolean }
+  ): void;
+  (e: "mapping-required", missing: { mail?: string[]; crm?: string[] }): void;
+  (e: "run-started"): void;
+  (e: "run-completed"): void;
+  (e: "run-failed", error: unknown): void;
+  (e: "edit-mapping"): void;
+  (e: "run-id", runId: string): void;
 }>();
 
 /* ---- state --------------------------------------- */
@@ -21,15 +29,19 @@ const crmInput = ref<HTMLInputElement | null>(null);
 const mailDrag = ref(false);
 const crmDrag = ref(false);
 
+const isUploading = ref(false);
+const uploadProgress = ref<number | null>(null);
+const lastUploadedFile = ref<string | null>(null);
+
 /* ---- helpers ------------------------------------------------------------ */
 async function ensureRun() {
   if (!runId.value) {
-    log.debug("UI ▶ ensureRun: creating run…");
     const { run_id } = await createRun();
     runId.value = run_id;
     (window as any).MT_CONTEXT = { ...(window as any).MT_CONTEXT, run_id };
-    log.info("UI ▶ ensureRun: run created", { runId: run_id });
+    emit("run-id", run_id);
   }
+  return runId.value;
 }
 
 function csvGuard(file: File): boolean {
@@ -44,6 +56,11 @@ async function handleFile(source: Source, file: File) {
   if (!csvGuard(file)) return;
 
   await ensureRun();
+
+  isUploading.value = true;
+  uploadProgress.value = null;
+  lastUploadedFile.value = null;
+
   try {
     log.info("UI ▶ upload start", {
       runId: runId.value,
@@ -51,26 +68,25 @@ async function handleFile(source: Source, file: File) {
       name: file.name,
       size: file.size,
     });
+
     const res = await uploadSource(runId.value, source, file);
     log.info("UI ▶ upload done", { source, res });
 
-    // If backend says mapping is required, open mapper
     if ((res as any).state === "raw_only") {
-      window.dispatchEvent(
-        new CustomEvent("mt:open-mapper", {
-          detail: { run_id: runId.value, source },
-        })
-      );
+      uploadProgress.value = 100;
+      lastUploadedFile.value = (res as any).filename || file.name;
     }
   } catch (e: any) {
     log.error("UI ▶ upload failed", e);
     alert(`Upload failed: ${e?.message || "unknown error"}`);
     const el = source === "mail" ? mailInput.value : crmInput.value;
     if (el) el.value = "";
+  } finally {
+    isUploading.value = false;
   }
 }
 
-/* ---- pick (file input) -------------------------------------------------- */
+/* ---- file input -------------------------------------------------- */
 function onPick(source: Source) {
   const el = source === "mail" ? mailInput.value : crmInput.value;
   const f = el?.files?.[0];
@@ -106,18 +122,26 @@ function onDropCrm(e: DragEvent) {
   if (f) void handleFile("crm", f);
 }
 
-/* ---- mapper / run (original names & flow) ------------------------------- */
-function openMapper(source?: Source) {
-  if (!runId.value) {
-    alert("Create a run by uploading at least one CSV first.");
+/* ---- mapper / run ------------------------------- */
+function openMapper() {
+  const hasMail = !!mailInput.value?.files?.[0];
+  const hasCrm = !!crmInput.value?.files?.[0];
+
+  if (!hasMail || !hasCrm) {
+    emit("need-both-files", {
+      mailMissing: !hasMail,
+      crmMissing: !hasCrm,
+    });
     return;
   }
-  log.info("UI ▶ open mapper clicked", { runId: runId.value, source });
-  window.dispatchEvent(
-    new CustomEvent("mt:open-mapper", {
-      detail: { run_id: runId.value, ...(source ? { source } : {}) },
-    })
-  );
+
+  if (!runId.value) {
+    alert("Create a run by uploading both CSVs first.");
+    return;
+  }
+
+  log.info("UI ▶ open mapper clicked", { runId: runId.value });
+  emit("edit-mapping");
 }
 
 const { running, kickOffAndPoll } = useRun();
@@ -127,26 +151,35 @@ async function onRun(ev?: Event) {
 
   const hasMail = !!mailInput.value?.files?.[0];
   const hasCrm = !!crmInput.value?.files?.[0];
+
   if (!hasMail || !hasCrm) {
-    emit("need-both-files");
+    emit("need-both-files", {
+      mailMissing: !hasMail,
+      crmMissing: !hasCrm,
+    });
     return;
   }
 
   await ensureRun();
   log.info("UI ▶ Run clicked", { runId: runId.value });
 
-  await kickOffAndPoll(runId.value, (missing) => {
-    log.warn("UI ▶ needs mapping (409)", { runId: runId.value, missing });
-    emit("mapping-required", missing);
-    window.dispatchEvent(
-      new CustomEvent("mt:open-mapper", {
-        detail: { run_id: runId.value, missing },
-      })
-    );
-  });
+  emit("run-started");
+
+  try {
+    await kickOffAndPoll(runId.value, (missing) => {
+      log.warn("UI ▶ needs mapping (409)", { runId: runId.value, missing });
+
+      emit("mapping-required", missing);
+    });
+
+    emit("run-completed");
+  } catch (err: any) {
+    log.error("UI ▶ run failed", err);
+    emit("run-failed", err);
+  }
 }
 
-/* convenience for click-to-browse */
+/* ---- browse buttons ------------------------------------------- */
 function browseMail() {
   mailInput.value?.click();
 }
@@ -191,6 +224,7 @@ function browseCrm() {
         </div>
 
         <input
+          id="mailCsv"
           ref="mailInput"
           type="file"
           accept=".csv,text/csv"
@@ -234,6 +268,7 @@ function browseCrm() {
         </div>
 
         <input
+          id="crmCsv"
           ref="crmInput"
           type="file"
           accept=".csv,text/csv"
@@ -241,6 +276,20 @@ function browseCrm() {
           @change="onPick('crm')"
         />
       </div>
+    </div>
+    <div class="mt-2 text-sm text-slate-300" v-if="isUploading">
+      <div class="h-2 bg-slate-800 rounded">
+        <div
+          class="h-2 bg-emerald-500 rounded transition-all"
+          :style="{ width: (uploadProgress ?? 30) + '%' }"
+        ></div>
+      </div>
+      <p class="mt-1">Uploading… this may take a moment for large CSVs.</p>
+    </div>
+
+    <div class="mt-2 text-sm text-emerald-400" v-else-if="lastUploadedFile">
+      ✅ Upload successful:
+      <span class="font-mono">{{ lastUploadedFile }}</span>
     </div>
 
     <!-- Buttons -->

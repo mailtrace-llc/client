@@ -5,16 +5,16 @@ import { useRouter, useRoute } from "vue-router";
 /* Assets */
 import LogoUrl from "@/assets/source-logo-02.png";
 /* IMPORTANT: import SVGs as URLs so <img :src> works even if vite-svg-loader is present */
-import IcOverview from "@/assets/overview-icon-fi_7532624.svg?url";
-import IcRoi from "@/assets/roi-icon-fi_1388417.svg?url";
-import IcMatch from "@/assets/match-performance-icon-fi_2139618.svg?url";
-import IcCampaign from "@/assets/campaign-insights-icon-fi_18364766.svg?url";
-import IcHeatmap from "@/assets/heatmap-icon-fi_15171253.svg?url";
-import IcUploads from "@/assets/uploads-mapping-icon-fi_3083741.svg?url";
-import IcReports from "@/assets/reports-exports-icon-fi_9338858.svg?url";
-import IcHistory from "@/assets/history-icon-fi_3503786.svg?url";
-import IcSettings from "@/assets/settings-icon-fi_2956788.svg?url";
-import IcLogout from "@/assets/logout-icon-fi_992680.svg?url";
+import IcOverview from "@/assets/sidebar/overview-icon.svg?url";
+import IcRoi from "@/assets/sidebar/roi-icon.svg?url";
+import IcMatch from "@/assets/sidebar/match-performance-icon.svg?url";
+import IcCampaign from "@/assets/sidebar/campaign-insights-icon.svg?url";
+import IcHeatmap from "@/assets/sidebar/heatmap-icon.svg?url";
+import IcUploads from "@/assets/sidebar/uploads-mapping-icon.svg?url";
+import IcReports from "@/assets/sidebar/reports-exports-icon.svg?url";
+import IcHistory from "@/assets/sidebar/history-icon.svg?url";
+import IcSettings from "@/assets/sidebar/settings-icon.svg?url";
+import IcLogout from "@/assets/sidebar/logout-icon.svg?url";
 
 const router = useRouter();
 const route = useRoute();

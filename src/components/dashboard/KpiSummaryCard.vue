@@ -1,12 +1,13 @@
 <script setup lang="ts">
-import { ref, watch, onMounted, computed } from "vue";
+import { ref, watch, computed } from "vue";
+import { get } from "@/api/http";
 
 type BasicStats = {
   total_mail: number;
   unique_mail_addresses: number;
   total_jobs: number;
   matches: number;
-  match_rate: number; // 0–1 or 0–100, we normalize
+  match_rate: number;
   match_revenue: number;
 };
 
@@ -19,10 +20,13 @@ type AdvancedStats = {
   convert_90: number; // %
 };
 
-const props = defineProps<{ runId?: string }>();
+const props = defineProps<{
+  runId?: string;
+  refreshKey?: number;
+}>();
 
 // --- UI state ---
-const showAdvanced = ref(true); // “Hide Advanced KPIs” switch (shown by default)
+const showAdvanced = ref(true);
 
 // --- data state ---
 const basic = ref<BasicStats>({
@@ -34,14 +38,13 @@ const basic = ref<BasicStats>({
   match_revenue: 0,
 });
 
-// Dummy advanced until wired (you can overwrite from API later)
 const adv = ref<AdvancedStats>({
-  revenue_per_mailer: 12.44,
-  avg_ticket_per_match: 119.99,
-  median_days_to_convert: 123,
-  convert_30: 14,
-  convert_60: 37,
-  convert_90: 44,
+  revenue_per_mailer: 0,
+  avg_ticket_per_match: 0,
+  median_days_to_convert: 0,
+  convert_30: 0,
+  convert_60: 0,
+  convert_90: 0,
 });
 
 // --- helpers ---
@@ -52,61 +55,55 @@ const fmtMoney = (n: number) =>
   n.toLocaleString(undefined, { style: "currency", currency: "USD" });
 
 const fmtPct = (n: number) => {
-  // accept 0–1 or 0–100
   const v = n <= 1 ? n * 100 : n;
   return `${v.toFixed(1)}%`;
 };
 
-// --- fetch existing /result wiring (compatible with your old card) ---
+const matchRateText = computed(() => fmtPct(basic.value.match_rate));
+
+// --- load from API ---
 async function load(runId?: string) {
   if (!runId) return;
-  try {
-    const res = await fetch(`/api/result?run_id=${encodeURIComponent(runId)}`);
-    if (!res.ok) throw new Error(await res.text());
-    const data = await res.json();
 
-    // Expecting your existing shape; map defensively
+  try {
+    // Shape from result_dao.get_full_result:
+    // { kpis: {...}, graph: {...}, top_cities: [...], top_zips: [...], run_id: ... }
+    const data = await get<any>(`/runs/${runId}/result`);
+    const kpis = data?.kpis ?? data ?? {};
+
     basic.value = {
-      total_mail: Number(data?.summary?.total_mail ?? data?.total_mail ?? 0),
-      unique_mail_addresses: Number(
-        data?.summary?.unique_mail_addresses ?? data?.unique_mail_addresses ?? 0
-      ),
-      total_jobs: Number(data?.summary?.total_jobs ?? data?.total_jobs ?? 0),
-      matches: Number(data?.summary?.matches ?? data?.matches ?? 0),
-      match_rate: Number(data?.summary?.match_rate ?? data?.match_rate ?? 0),
-      match_revenue: Number(
-        data?.summary?.match_revenue ?? data?.match_revenue ?? 0
-      ),
+      total_mail: Number(kpis.total_mail ?? 0),
+      unique_mail_addresses: Number(kpis.unique_mail_addresses ?? 0),
+      total_jobs: Number(kpis.total_jobs ?? 0),
+      matches: Number(kpis.matches ?? 0),
+      match_rate: Number(kpis.match_rate ?? 0),
+      match_revenue: Number(kpis.match_revenue ?? 0),
     };
 
-    // If your API already supplies advanced, use it; otherwise keep dummies.
-    if (data?.advanced) {
-      adv.value = {
-        revenue_per_mailer: Number(
-          data.advanced.revenue_per_mailer ?? adv.value.revenue_per_mailer
-        ),
-        avg_ticket_per_match: Number(
-          data.advanced.avg_ticket_per_match ?? adv.value.avg_ticket_per_match
-        ),
-        median_days_to_convert: Number(
-          data.advanced.median_days_to_convert ??
-            adv.value.median_days_to_convert
-        ),
-        convert_30: Number(data.advanced.convert_30 ?? adv.value.convert_30),
-        convert_60: Number(data.advanced.convert_60 ?? adv.value.convert_60),
-        convert_90: Number(data.advanced.convert_90 ?? adv.value.convert_90),
-      };
+    adv.value = {
+      ...adv.value,
+      revenue_per_mailer: Number(kpis.revenue_per_mailer ?? 0),
+      avg_ticket_per_match: Number(kpis.avg_ticket_per_match ?? 0),
+      median_days_to_convert: Number(kpis.median_days_to_convert ?? 0),
+      // convert_30/60/90 can be added here when backend supports them
+    };
+  } catch (e: any) {
+    if (e?.status === 409 && e?.data?.error === "not_ready") {
+      return;
     }
-  } catch (e) {
-    // soft-fail; keep zeros + dummy adv
     console.warn("KPI load failed:", e);
   }
 }
 
-onMounted(() => load(props.runId));
-watch(() => props.runId, load);
-
-const matchRateText = computed(() => fmtPct(basic.value.match_rate));
+watch(
+  () => props.refreshKey,
+  () => {
+    if (props.runId) {
+      void load(props.runId);
+    }
+  },
+  { immediate: true }
+);
 </script>
 
 <template>
@@ -120,9 +117,9 @@ const matchRateText = computed(() => fmtPct(basic.value.match_rate));
       <span class="h-6 w-px bg-[#47bfa9]"></span>
 
       <div class="flex items-center gap-3 flex-1 justify-end">
-        <span class="text-[18px] font-semibold text-[#0c2d50]"
-          >Hide Advanced KPIs</span
-        >
+        <span class="text-[18px] font-semibold text-[#0c2d50]">
+          Hide Advanced KPIs
+        </span>
         <!-- pill switch -->
         <button
           class="relative h-4 w-12 rounded-full border border-black/20 bg-white shadow-inner"
@@ -147,37 +144,39 @@ const matchRateText = computed(() => fmtPct(basic.value.match_rate));
       <div class="px-4 divide-y divide-[#6d8196]/30">
         <div class="flex items-center justify-between py-3">
           <span class="text-[20px] text-[#0c2d50]">Total Mail</span>
-          <span class="text-[18px] font-semibold">{{
-            fmtInt(basic.total_mail)
-          }}</span>
+          <span class="text-[18px] font-semibold">
+            {{ fmtInt(basic.total_mail) }}
+          </span>
         </div>
         <div class="flex items-center justify-between py-3">
           <span class="text-[20px] text-[#0c2d50]">Unique Mail Addresses</span>
-          <span class="text-[18px] font-semibold">{{
-            fmtInt(basic.unique_mail_addresses)
-          }}</span>
+          <span class="text-[18px] font-semibold">
+            {{ fmtInt(basic.unique_mail_addresses) }}
+          </span>
         </div>
         <div class="flex items-center justify-between py-3">
           <span class="text-[20px] text-[#0c2d50]">Total Jobs</span>
-          <span class="text-[18px] font-semibold">{{
-            fmtInt(basic.total_jobs)
-          }}</span>
+          <span class="text-[18px] font-semibold">
+            {{ fmtInt(basic.total_jobs) }}
+          </span>
         </div>
         <div class="flex items-center justify-between py-3">
           <span class="text-[20px] text-[#0c2d50]">Matches</span>
-          <span class="text-[18px] font-semibold">{{
-            fmtInt(basic.matches)
-          }}</span>
+          <span class="text-[18px] font-semibold">
+            {{ fmtInt(basic.matches) }}
+          </span>
         </div>
         <div class="flex items-center justify-between py-3">
           <span class="text-[20px] text-[#0c2d50]">Match Rate</span>
-          <span class="text-[18px] font-semibold">{{ matchRateText }}</span>
+          <span class="text-[18px] font-semibold">
+            {{ matchRateText }}
+          </span>
         </div>
         <div class="flex items-center justify-between py-3">
           <span class="text-[20px] text-[#0c2d50]">Match Revenue</span>
-          <span class="text-[18px] font-semibold">{{
-            fmtMoney(basic.match_revenue)
-          }}</span>
+          <span class="text-[18px] font-semibold">
+            {{ fmtMoney(basic.match_revenue) }}
+          </span>
         </div>
       </div>
 
@@ -186,44 +185,52 @@ const matchRateText = computed(() => fmtPct(basic.value.match_rate));
         <transition name="fade">
           <div v-show="showAdvanced" class="divide-y divide-[#6d8196]/30">
             <div class="flex items-center justify-between py-3">
-              <span class="text-[20px] text-[#0c2d50]">Revenue Per Mailer</span>
-              <span class="text-[18px] font-semibold">{{
-                fmtMoney(adv.revenue_per_mailer)
-              }}</span>
+              <span class="text-[20px] text-[#0c2d50]">
+                Revenue Per Mailer
+              </span>
+              <span class="text-[18px] font-semibold">
+                {{ fmtMoney(adv.revenue_per_mailer) }}
+              </span>
             </div>
             <div class="flex items-center justify-between py-3">
-              <span class="text-[20px] text-[#0c2d50]"
-                >Avg Ticket (Per Match)</span
-              >
-              <span class="text-[18px] font-semibold">{{
-                fmtMoney(adv.avg_ticket_per_match)
-              }}</span>
+              <span class="text-[20px] text-[#0c2d50]">
+                Avg Ticket (Per Match)
+              </span>
+              <span class="text-[18px] font-semibold">
+                {{ fmtMoney(adv.avg_ticket_per_match) }}
+              </span>
             </div>
             <div class="flex items-center justify-between py-3">
-              <span class="text-[20px] text-[#0c2d50]"
-                >Median Days To Convert</span
-              >
-              <span class="text-[18px] font-semibold">{{
-                adv.median_days_to_convert
-              }}</span>
+              <span class="text-[20px] text-[#0c2d50]">
+                Median Days To Convert
+              </span>
+              <span class="text-[18px] font-semibold">
+                {{ adv.median_days_to_convert }}
+              </span>
             </div>
             <div class="flex items-center justify-between py-3">
-              <span class="text-[20px] text-[#0c2d50]">Convert ≤ 30 Days</span>
-              <span class="text-[18px] font-semibold"
-                >{{ adv.convert_30 }}%</span
-              >
+              <span class="text-[20px] text-[#0c2d50]">
+                Convert ≤ 30 Days
+              </span>
+              <span class="text-[18px] font-semibold">
+                {{ adv.convert_30 }}%
+              </span>
             </div>
             <div class="flex items-center justify-between py-3">
-              <span class="text-[20px] text-[#0c2d50]">Convert ≤ 60 Days</span>
-              <span class="text-[18px] font-semibold"
-                >{{ adv.convert_60 }}%</span
-              >
+              <span class="text-[20px] text-[#0c2d50]">
+                Convert ≤ 60 Days
+              </span>
+              <span class="text-[18px] font-semibold">
+                {{ adv.convert_60 }}%
+              </span>
             </div>
             <div class="flex items-center justify-between py-3">
-              <span class="text-[20px] text-[#0c2d50]">Convert ≤ 90 Days</span>
-              <span class="text-[18px] font-semibold"
-                >{{ adv.convert_90 }}%</span
-              >
+              <span class="text-[20px] text-[#0c2d50]">
+                Convert ≤ 90 Days
+              </span>
+              <span class="text-[18px] font-semibold">
+                {{ adv.convert_90 }}%
+              </span>
             </div>
           </div>
         </transition>
