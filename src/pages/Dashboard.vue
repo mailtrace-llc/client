@@ -1,14 +1,24 @@
 <script setup lang="ts">
-import { ref, onMounted, onBeforeUnmount } from "vue";
-import { useRoute, useRouter } from "vue-router";
+import { ref, onMounted } from "vue";
+import { useRoute } from "vue-router";
+
 import Sidebar from "@/components/Sidebar.vue";
 import Navbar from "@/components/Navbar.vue";
-// import ModalUploadGuard from '@/components/ModalUploadGuard.vue';
+
+import ModalUploadGuard from "@/components/dashboard/ModalUploadGuard.vue";
 import ModalMappingRequired from "@/components/dashboard/ModalMappingRequired.vue";
+import MapperModal from "@/components/dashboard/MapperModal.vue";
+import {
+  fetchHeaders as fetchMapperHeaders,
+  fetchMapping as fetchMapperMapping,
+  saveMapping as saveMapperMapping,
+  type Mapping as MapperMapping,
+  type MappingBundle,
+} from "@/api/mapper";
+
 import UploadCard from "@/components/dashboard/UploadCard.vue";
-import KpiSummaryCard from "@/components/dashboard/KpiSummaryCard.vue";
-import { useUploadGuard } from "@/composables/useUploadGuard";
 import { useLoader } from "@/stores/loader";
+import KpiSummaryCard from "@/components/dashboard/KpiSummaryCard.vue";
 import YoyChart from "@/components/dashboard/YoyChart.vue";
 import TopCitiesTable from "@/components/dashboard/TopCitiesTable.vue";
 import TopZipsTable from "@/components/dashboard/TopZipsTable.vue";
@@ -22,15 +32,62 @@ declare global {
 }
 
 const route = useRoute();
-const router = useRouter();
 const loader = useLoader();
 
 const showUploadGuard = ref(false);
-useUploadGuard(() => (showUploadGuard.value = true));
+
+const uploadGuardTarget = ref<string>("#mailCsv");
+const uploadGuardMessage = ref<string>(
+  "Please pick <strong>both CSV files</strong> first."
+);
 
 const showMapping = ref(false);
 const missing = ref<Record<string, string[]>>({});
+
+const showMapper = ref(false);
+const mailHeaders = ref<string[]>([]);
+const crmHeaders = ref<string[]>([]);
+
+const mailSamples = ref<Record<string, any>[]>([]);
+const crmSamples = ref<Record<string, any>[]>([]);
+
+const requiredMail = ref<string[]>([]);
+const requiredCrm = ref<string[]>([]);
+
+const initialMapping = ref<MapperMapping | undefined>(undefined);
+
+// canonical fields matches backend canonical names
+const mappingFields = [
+  "source_id",
+  "address1",
+  "address2",
+  "city",
+  "state",
+  "zip",
+  "sent_date",
+  "job_date",
+  "job_value",
+];
+
+const mappingLabels: Record<string, string> = {
+  source_id: "Source ID",
+  address1: "Address line 1",
+  address2: "Address line 2",
+  city: "City",
+  state: "State",
+  zip: "ZIP / Postal Code",
+  sent_date: "Mail date",
+  job_date: "Job date",
+  job_value: "Job value",
+};
+
 const runId = ref<string>("");
+
+const kpiRefreshKey = ref(0);
+
+function onRunIdChanged(id: string) {
+  runId.value = id;
+}
 
 const search = ref("");
 function onSearch(q: string) {
@@ -44,65 +101,112 @@ function onMappingRequired(payload: { mail?: string[]; crm?: string[] }) {
   showMapping.value = true;
 }
 
-function openMapper() {
+async function openMapper() {
+  try {
+    const run_id = (window as any).MT_CONTEXT?.run_id || runId.value;
+    if (!run_id) {
+      console.warn("[Dashboard] No run_id available for openMapper");
+      return;
+    }
+
+    loader.show({ progress: 5, message: "Loading your mapping…" });
+
+    const [headersRes, mappingBundle] = await Promise.all([
+      fetchMapperHeaders(run_id),
+      fetchMapperMapping(run_id),
+    ]);
+
+    mailHeaders.value = headersRes.mailHeaders || [];
+    crmHeaders.value = headersRes.crmHeaders || [];
+    mailSamples.value = headersRes.mailSamples || [];
+    crmSamples.value = headersRes.crmSamples || [];
+
+    const mb: MappingBundle = mappingBundle;
+
+    initialMapping.value = {
+      mail: mb.mail.mapping,
+      crm: mb.crm.mapping,
+    };
+
+    requiredMail.value = mb.mail.required || [];
+    requiredCrm.value = mb.crm.required || [];
+
+    showMapping.value = false;
+    showMapper.value = true;
+  } catch (err) {
+    console.error("[Dashboard] Failed to open mapper", err);
+  } finally {
+    loader.hide(true);
+  }
+}
+
+async function onMappingConfirm(mapping: MapperMapping) {
   loader.unlock();
-  loader.hide(true);
-  const run_id = window.MT_CONTEXT?.run_id || "";
-  window.dispatchEvent(
-    new CustomEvent("mt:open-mapper", { detail: { run_id } })
+  loader.show({ progress: 8, message: "Saving mapping…" });
+
+  try {
+    const run_id = (window as any).MT_CONTEXT?.run_id || runId.value;
+    if (!run_id) {
+      console.warn("[Dashboard] No run_id available for onMappingConfirm");
+      return;
+    }
+
+    await saveMapperMapping(run_id, mapping);
+    showMapper.value = false;
+  } finally {
+    loader.hide(true);
+  }
+}
+
+function onNeedBothFiles(missingFlags: {
+  mailMissing: boolean;
+  crmMissing: boolean;
+}) {
+  console.warn(
+    "[Dashboard] Need both files before running / editing mapping",
+    missingFlags
   );
+
+  if (missingFlags.mailMissing && missingFlags.crmMissing) {
+    uploadGuardTarget.value = "#mailCsv";
+    uploadGuardMessage.value =
+      "Please pick <strong>both CSV files</strong> first.";
+  } else if (missingFlags.mailMissing) {
+    uploadGuardTarget.value = "#mailCsv";
+    uploadGuardMessage.value =
+      "We have your <strong>CRM CSV</strong>. Please pick your <strong>Mail CSV</strong> to continue.";
+  } else if (missingFlags.crmMissing) {
+    uploadGuardTarget.value = "#crmCsv";
+    uploadGuardMessage.value =
+      "We have your <strong>Mail CSV</strong>. Please pick your <strong>CRM CSV</strong> to continue.";
+  }
+
+  showUploadGuard.value = true;
+}
+
+function onRunStarted() {
+  loader.show({ progress: 5, message: "Starting matching run…" });
+}
+
+function onRunCompleted() {
+  loader.hide(true);
+  if (runId.value) {
+    kpiRefreshKey.value++;
+  }
+}
+
+function onRunFailed(error: unknown) {
+  loader.hide(true);
+  console.error("[Dashboard] Run failed", error);
 }
 
 onMounted(() => {
-  const onRunStarted = () => {
-    loader.lock();
-    loader.show({ progress: 3, message: "Starting…" });
-  };
-  const onRunCompleted = (e: any) => {
-    loader.setProgress(100);
-    loader.setMessage("Run complete");
-    const id = e?.detail?.run_id as string | undefined;
-    if (id) {
-      runId.value = id;
-      window.MT_CONTEXT = { ...(window.MT_CONTEXT || {}), run_id: id };
-      router.replace({
-        path: route.path,
-        query: { ...route.query, run_id: id },
-      });
-    }
-  };
-  const onOpenMapper = (e: any) => {
-    const miss = (e?.detail?.missing ?? {}) as {
-      mail?: string[];
-      crm?: string[];
-    };
-    if (Object.keys(miss).length) missing.value = miss;
-    loader.unlock();
-    loader.hide(true);
-    showMapping.value = true;
-  };
-
-  window.addEventListener("mt:run-started", onRunStarted);
-  window.addEventListener("mt:run-completed", onRunCompleted);
-  window.addEventListener("mt:open-mapper", onOpenMapper);
-  (window as any).__onRunStarted = onRunStarted;
-  (window as any).__onRunCompleted = onRunCompleted;
-  (window as any).__onOpenMapper = onOpenMapper;
-
   const qRunId = (route.query.run_id as string) || "";
   if (qRunId) {
     window.MT_CONTEXT = { ...(window.MT_CONTEXT || {}), run_id: qRunId };
     runId.value = qRunId;
+    kpiRefreshKey.value++;
   }
-});
-
-onBeforeUnmount(() => {
-  const rs = (window as any).__onRunStarted;
-  const rc = (window as any).__onRunCompleted;
-  const om = (window as any).__onOpenMapper;
-  if (rs) window.removeEventListener("mt:run-started", rs);
-  if (rc) window.removeEventListener("mt:run-completed", rc);
-  if (om) window.removeEventListener("mt:open-mapper", om);
 });
 </script>
 
@@ -123,8 +227,23 @@ onBeforeUnmount(() => {
 
       <!-- Upload + KPIs -->
       <div id="cmp-hero">
-        <UploadCard class="h-full" @mapping-required="onMappingRequired" />
-        <KpiSummaryCard id="cmp-kpis" class="h-full" :run-id="runId" />
+        <UploadCard
+          class="card"
+          @run-id="onRunIdChanged"
+          @need-both-files="onNeedBothFiles"
+          @mapping-required="onMappingRequired"
+          @run-started="onRunStarted"
+          @run-completed="onRunCompleted"
+          @run-failed="onRunFailed"
+          @edit-mapping="openMapper"
+        />
+
+        <KpiSummaryCard
+          id="cmp-kpis"
+          class="h-full"
+          :run-id="runId"
+          :refresh-key="kpiRefreshKey"
+        />
       </div>
 
       <!-- YoY Chart -->
@@ -194,14 +313,29 @@ onBeforeUnmount(() => {
     @edit-mapping="openMapper"
   />
 
-  <!-- Simple alert modal (IDs kept for legacy)
+  <MapperModal
+    :open="showMapper"
+    :mail-headers="mailHeaders"
+    :crm-headers="crmHeaders"
+    :mail-samples="mailSamples"
+    :crm-samples="crmSamples"
+    :fields="mappingFields"
+    :initial-mapping="initialMapping"
+    :labels="mappingLabels"
+    :required-mail="requiredMail"
+    :required-crm="requiredCrm"
+    @close="showMapper = false"
+    @confirm="onMappingConfirm"
+  />
+
+  <!-- Simple alert modal -->
   <ModalUploadGuard
     v-model="showUploadGuard"
     title="Action needed"
-    message="Please pick <strong>both CSV files</strong> first."
-    focusSelector="#mailCsv"
-    :triggerFileDialog="true"
-  /> -->
+    :message="uploadGuardMessage"
+    :focus-selector="uploadGuardTarget"
+    :trigger-file-dialog="true"
+  />
 </template>
 
 <style scoped>
