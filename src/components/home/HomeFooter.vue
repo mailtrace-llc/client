@@ -94,9 +94,9 @@ import linkedinIcon from "@/assets/home/linkedin-icon.svg?url";
         </a>
 
         <a
-          href="https://www.linkedin.com"
+          href="https://www.linkedin.com/company/mailtrace/"
           target="_blank"
-          rel="noreferrer"
+          rel="noreferrer noopener"
           aria-label="MailTrace on LinkedIn"
         >
           <img :src="linkedinIcon" alt="" class="h-[26px] w-[26px]" />
