@@ -1,12 +1,18 @@
+<!-- src/pages/Home.vue -->
 <script setup lang="ts">
+import HomeHero from "@/components/home/HomeHero.vue";
+import HomePricing from "@/components/home/HomePricing.vue";
+import HomePainPoints from "@/components/home/HomePainPoints.vue";
+import HomeVisualize from "@/components/home/HomeVisualize.vue";
+import HomeFooter from "@/components/home/HomeFooter.vue";
 </script>
 
 <template>
-  <section class="p-6 space-y-4">
-    <h2 class="text-xl font-semibold">Welcome</h2>
-    <p class="text-sm text-muted-foreground">
-      This is the new SPA homepage. Use the nav to explore the app.
-    </p>
-    <!-- If base.html had hero/summary blocks, port them here as components -->
-  </section>
+  <div class="min-h-screen">
+    <HomeHero />
+    <HomePricing />
+    <HomePainPoints />
+    <HomeVisualize />
+    <HomeFooter />
+  </div>
 </template>

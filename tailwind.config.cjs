@@ -6,4 +6,12 @@ module.exports = {
   ],
   theme: { extend: {} },
   plugins: [],
+
+  theme: {
+    extend: {
+      fontFamily: {
+        sans: ['"Instrument Sans"', "system-ui", "sans-serif"],
+      },
+    },
+  },
 }
