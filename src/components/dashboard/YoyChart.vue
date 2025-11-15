@@ -13,6 +13,7 @@ const props = withDefaults(
     mailPrev?: number[];
     crmPrev?: number[];
     matchPrev?: number[];
+    rawMonths?: string[]; // e.g. ["2024-01","2024-02",...]
   }>(),
   {
     labels: () => [
@@ -41,6 +42,7 @@ const props = withDefaults(
       "NOV",
       "DEC",
     ],
+    rawMonths: () => [],
   }
 );
 
@@ -53,10 +55,89 @@ const cMail = "#163b69";
 const cCrm = "#47bfa9";
 const cMatch = "#6b6b6b";
 
-const janIdxs = computed(() => {
-  const i24 = props.labels.findIndex((l) => /jan\s*2024/i.test(l));
-  const i25 = props.labels.findIndex((l) => /jan\s*2025/i.test(l));
-  return { a: i24 >= 0 ? i24 : 0, b: i25 >= 0 ? i25 : 12 };
+const MONTH_ABBR = [
+  "JAN",
+  "FEB",
+  "MAR",
+  "APR",
+  "MAY",
+  "JUN",
+  "JUL",
+  "AUG",
+  "SEP",
+  "OCT",
+  "NOV",
+  "DEC",
+];
+
+function formatTick(i: number): string {
+  const raw = props.rawMonths?.[i];
+  if (raw) {
+    // raw like "2024-01"
+    const [year, month] = raw.split("-");
+    const mi = Number(month || "1") - 1;
+    const mon = MONTH_ABBR[mi] ?? raw;
+
+    // show year only for January ticks
+    if (month === "01" && year) {
+      const shortYear = year.slice(-2);
+      return `${mon} '${shortYear}`;
+    }
+    return mon;
+  }
+
+  // Fallback: current behavior
+  return (props.labels[i] || "")
+    .toString()
+    .toUpperCase()
+    .replace(" 2024", "")
+    .replace(" 2025", "");
+}
+
+const janIdxs = computed((): { a: number; b: number } => {
+  const raws = props.rawMonths ?? [];
+  const labelsLen = props.labels.length;
+
+  // Safe defaults: first month and 12 months later (or last point)
+  let a = 0;
+  let b = Math.min(12, Math.max(labelsLen - 1, 0));
+
+  // Prefer explicit January markers from rawMonths ("YYYY-01")
+  const starts: number[] = [];
+  raws.forEach((ym, idx) => {
+    const parts = ym.split("-");
+    if (parts.length === 2 && parts[1] === "01") {
+      starts.push(idx);
+    }
+  });
+
+  if (starts.length >= 2) {
+    a = starts[0] ?? 0;
+    b = starts[1] ?? 12;
+    return { a, b };
+  }
+
+  if (starts.length === 1) {
+    a = starts[0] ?? 0;
+    b = Math.min(a + 12, Math.max(labelsLen - 1, a));
+    return { a, b };
+  }
+
+  // Fallback to label-based detection if rawMonths missing or unusable
+  const firstJan = props.labels.findIndex((l) => /jan\s*20\d{2}/i.test(l));
+  if (firstJan >= 0) {
+    a = firstJan;
+    const secondJan = props.labels.findIndex(
+      (l, i) => i > firstJan && /jan\s*20\d{2}/i.test(l)
+    );
+    if (secondJan >= 0) {
+      b = secondJan;
+    } else {
+      b = Math.min(a + 12, Math.max(labelsLen - 1, a));
+    }
+  }
+
+  return { a, b };
 });
 
 // dashed vertical rules + caret at the top
@@ -86,8 +167,17 @@ const verticalRulesPlugin = {
       ctx.fill();
       ctx.restore();
     };
-    draw(janIdxs.value.a);
-    draw(janIdxs.value.b);
+    const { a, b } = janIdxs.value;
+    const tickCount: number = Array.isArray(sx.ticks) ? sx.ticks.length : 0;
+    const maxIndex = tickCount > 0 ? tickCount - 1 : props.labels.length - 1;
+
+    const indices: number[] = [];
+    if (a >= 0 && a <= maxIndex) indices.push(a);
+    if (b >= 0 && b <= maxIndex && b !== a) indices.push(b);
+
+    indices.forEach((idx) => {
+      draw(idx);
+    });
   },
 };
 
@@ -176,12 +266,7 @@ function build() {
       x: {
         grid: { display: false },
         ticks: {
-          callback: (_v, i) =>
-            (props.labels[i] || "")
-              .toString()
-              .toUpperCase()
-              .replace(" 2024", "")
-              .replace(" 2025", ""),
+          callback: (_v, i) => formatTick(i as number),
           maxRotation: 0,
         },
       },
@@ -227,6 +312,7 @@ watch(
     props.mailPrev,
     props.crmPrev,
     props.matchPrev,
+    props.rawMonths,
   ],
   () => {
     chart?.destroy();
@@ -234,6 +320,7 @@ watch(
     build();
   }
 );
+
 watch(showYoy, syncVisibility);
 </script>
 
@@ -275,20 +362,12 @@ watch(showYoy, syncVisibility);
         <li class="flex items-center gap-2">
           <span class="legend-swatch bg-[#6b6b6b]" /> Matches
         </li>
-        <li class="flex items-center gap-2">
-          <span class="legend-dash" /> Dashed = Previous Year
-        </li>
       </ul>
     </header>
 
     <div class="mt-2 px-2 pb-3">
       <div class="relative h-80">
         <canvas ref="canvasEl" class="block w-full h-full"></canvas>
-        <div
-          class="absolute top-0 right-3 text-[18px] font-semibold text-[#0c2d50]"
-        >
-          *This is a dummy graph, Will be replaced in DEVELOPMENT*
-        </div>
       </div>
     </div>
   </section>

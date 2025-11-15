@@ -28,26 +28,14 @@
 <script setup lang="ts">
 import { computed } from "vue";
 
-type Row = { zip: string; total: number; rate: string };
+export type Row = { zip: string; total: number; rate: string };
+
 const props = defineProps<{ rows?: Row[] }>();
 
-// Fallback sample data from your JSON/screenshot
-const fallback: Row[] = [
-  { zip: "55424", total: 892, rate: "12%" },
-  { zip: "55431", total: 849, rate: "12%" },
-  { zip: "55491", total: 819, rate: "13%" },
-  { zip: "55425", total: 530, rate: "9%" },
-  { zip: "55424", total: 855, rate: "14%" },
-  { zip: "55431", total: 786, rate: "11%" },
-  { zip: "55425", total: 707, rate: "7%" },
-];
-const rowsToShow = computed<Row[]>(() =>
-  props.rows?.length ? props.rows : fallback
-);
+const rowsToShow = computed<Row[]>(() => props.rows ?? []);
 </script>
 
 <style scoped>
-/* Card container — Rectangle 9: 771×414, #fff, r10, shadow */
 .top-zips-card {
   background: #ffffff;
   border-radius: 10px;
@@ -68,23 +56,22 @@ const rowsToShow = computed<Row[]>(() =>
   );
 }
 
-/* Header */
 .card-head .title {
   font-weight: 600;
   font-size: 18px;
-  line-height: 22px; /* ≈21.96 */
+  line-height: 22px;
   letter-spacing: -0.36px;
   margin: 0 0 12px 0;
   color: #0c2d50;
 }
 
-/* Column labels */
 .cols {
   display: grid;
-  grid-template-columns: 120px 1fr 140px; /* first column a bit narrower for ZIPs */
+  grid-template-columns: 120px 1fr 140px;
   align-items: center;
   gap: 12px;
 }
+
 .col {
   font-weight: 600;
   font-size: 14px;
@@ -94,13 +81,12 @@ const rowsToShow = computed<Row[]>(() =>
   text-transform: uppercase;
 }
 
-/* Divider (Line 4 @ 30% opacity) */
 .rule {
   margin-top: 10px;
   border-top: 1px solid rgba(109, 129, 150, 0.3);
 }
 
-/* Rows */
+/* body */
 .rows {
   list-style: none;
   margin: 12px 0 0 0;
@@ -108,12 +94,16 @@ const rowsToShow = computed<Row[]>(() =>
   display: flex;
   flex-direction: column;
   gap: 8px;
+
+  max-height: 260px; /* ≈ 5 rows visible, rest scroll */
+  overflow-y: auto;
 }
+
 .row {
   display: grid;
   grid-template-columns: 120px 1fr 140px;
   align-items: center;
-  min-height: 47px; /* row rects: h 47 (33 on last in some designs—OK to keep 47) */
+  min-height: 47px;
   padding: 0 12px;
   border-radius: 10px;
   color: #6b6b6b;
@@ -122,18 +112,13 @@ const rowsToShow = computed<Row[]>(() =>
   letter-spacing: -0.28px;
   font-weight: 400;
 }
+
 .row.shaded {
   background: #f4f5f7;
 }
 
-/* header labels */
 .col-total,
-.col-rate {
-  justify-self: center;
-  text-align: center;
-}
-
-/* row values */
+.col-rate,
 .total,
 .rate {
   justify-self: center;

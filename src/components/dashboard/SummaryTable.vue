@@ -29,7 +29,12 @@
         <span class="t">{{ r.city }}</span>
         <span class="t">{{ r.state }}</span>
         <span class="t mono">{{ r.zip }}</span>
-        <span class="t mono">{{ r.mail_dates }}</span>
+
+        <!-- scrollable MAIL DATES cell -->
+        <span class="t mono mail-dates">
+          {{ r.mail_dates }}
+        </span>
+
         <span class="t mono">{{ r.crm_date }}</span>
       </li>
     </ul>
@@ -38,7 +43,8 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
-type Row = {
+
+export type Row = {
   mail_address1: string;
   mail_unit: string;
   crm_address1: string;
@@ -49,61 +55,16 @@ type Row = {
   mail_dates: string;
   crm_date: string;
 };
+
 const props = defineProps<{ rows?: Row[] }>();
-const seed: Row[] = [
-  {
-    mail_address1: "3290 Sheridan S, Trail",
-    mail_unit: "02",
-    crm_address1: "3290 Sheridan S, Trail",
-    crm_unit: "02",
-    city: "Bloomington",
-    state: "MN",
-    zip: "55424",
-    mail_dates: "06-27-2024",
-    crm_date: "06-27-2024",
-  },
-  {
-    mail_address1: "3290 Sheridan S, Trail",
-    mail_unit: "06",
-    crm_address1: "3290 Sheridan S, Trail",
-    crm_unit: "06",
-    city: "Edina",
-    state: "MN",
-    zip: "55431",
-    mail_dates: "06-27-2024",
-    crm_date: "06-27-2024",
-  },
-  {
-    mail_address1: "3290 Sheridan S, Trail",
-    mail_unit: "10",
-    crm_address1: "3290 Sheridan S, Trail",
-    crm_unit: "10",
-    city: "Minneapolis",
-    state: "ID",
-    zip: "55491",
-    mail_dates: "06-27-2024",
-    crm_date: "06-27-2024",
-  },
-  {
-    mail_address1: "3290 Sheridan S, Trail",
-    mail_unit: "05",
-    crm_address1: "3290 Sheridan S, Trail",
-    crm_unit: "05",
-    city: "Saint Paul",
-    state: "NV",
-    zip: "55425",
-    mail_dates: "06-27-2024",
-    crm_date: "06-27-2024",
-  },
-];
-const rowsToShow = computed(() => (props.rows?.length ? props.rows : seed));
+
+const rowsToShow = computed<Row[]>(() => props.rows ?? []);
 </script>
 
 <style scoped>
 .summary-card {
-  /* one source of truth for the column layout */
   --summary-cols: minmax(220px, 2.2fr) 0.6fr minmax(220px, 2.2fr) 0.6fr 1fr
-    0.6fr 0.8fr 1fr 1fr;
+    0.6fr 0.8fr 1.4fr 1fr;
 
   background: #fff;
   border-radius: 10px;
@@ -137,6 +98,7 @@ const rowsToShow = computed(() => (props.rows?.length ? props.rows : seed));
   gap: 12px;
   align-items: center;
 }
+
 .head span {
   color: #47bfa9;
   font-weight: 600;
@@ -151,6 +113,7 @@ const rowsToShow = computed(() => (props.rows?.length ? props.rows : seed));
   border-top: 1px solid rgba(109, 129, 150, 0.3);
 }
 
+/* Body: show ~20 rows, then scroll */
 .srows {
   list-style: none;
   margin: 0;
@@ -158,6 +121,9 @@ const rowsToShow = computed(() => (props.rows?.length ? props.rows : seed));
   display: flex;
   flex-direction: column;
   gap: 8px;
+
+  max-height: 520px; /* tweak to taste */
+  overflow-y: auto;
 }
 
 .srow {
@@ -174,11 +140,20 @@ const rowsToShow = computed(() => (props.rows?.length ? props.rows : seed));
   letter-spacing: -0.28px;
   font-weight: 400;
 }
+
 .srow.shaded {
   background: #f4f5f7;
 }
 
 .t.mono {
   font-variant-numeric: tabular-nums;
+}
+
+/* MAIL DATES column scrolls independently if super long */
+.mail-dates {
+  display: block;
+  max-height: 60px; /* ~3–4 lines visible */
+  overflow-y: auto;
+  white-space: pre-line;
 }
 </style>

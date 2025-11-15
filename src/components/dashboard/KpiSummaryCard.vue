@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ref, watch, computed } from "vue";
-import { get } from "@/api/http";
+import { ref, computed, watch } from "vue";
+import type { KPIs } from "@/api/result";
 
 type BasicStats = {
   total_mail: number;
@@ -21,8 +21,7 @@ type AdvancedStats = {
 };
 
 const props = defineProps<{
-  runId?: string;
-  refreshKey?: number;
+  kpis: KPIs | null;
 }>();
 
 // --- UI state ---
@@ -61,46 +60,29 @@ const fmtPct = (n: number) => {
 
 const matchRateText = computed(() => fmtPct(basic.value.match_rate));
 
-// --- load from API ---
-async function load(runId?: string) {
-  if (!runId) return;
-
-  try {
-    // Shape from result_dao.get_full_result:
-    // { kpis: {...}, graph: {...}, top_cities: [...], top_zips: [...], run_id: ... }
-    const data = await get<any>(`/runs/${runId}/result`);
-    const kpis = data?.kpis ?? data ?? {};
+// --- react to incoming KPIs ---
+watch(
+  () => props.kpis,
+  (kpis) => {
+    const k = kpis ?? {};
 
     basic.value = {
-      total_mail: Number(kpis.total_mail ?? 0),
-      unique_mail_addresses: Number(kpis.unique_mail_addresses ?? 0),
-      total_jobs: Number(kpis.total_jobs ?? 0),
-      matches: Number(kpis.matches ?? 0),
-      match_rate: Number(kpis.match_rate ?? 0),
-      match_revenue: Number(kpis.match_revenue ?? 0),
+      total_mail: Number(k.total_mail ?? 0),
+      unique_mail_addresses: Number(k.unique_mail_addresses ?? 0),
+      total_jobs: Number(k.total_jobs ?? 0),
+      matches: Number(k.matches ?? 0),
+      match_rate: Number(k.match_rate ?? 0),
+      match_revenue: Number(k.match_revenue ?? 0),
     };
 
     adv.value = {
-      ...adv.value,
-      revenue_per_mailer: Number(kpis.revenue_per_mailer ?? 0),
-      avg_ticket_per_match: Number(kpis.avg_ticket_per_match ?? 0),
-      median_days_to_convert: Number(kpis.median_days_to_convert ?? 0),
-      // convert_30/60/90 can be added here when backend supports them
+      revenue_per_mailer: Number(k.revenue_per_mailer ?? 0),
+      avg_ticket_per_match: Number(k.avg_ticket_per_match ?? 0),
+      median_days_to_convert: Number(k.median_days_to_convert ?? 0),
+      convert_30: Number(k.conv_30d_rate ?? 0),
+      convert_60: Number(k.conv_60d_rate ?? 0),
+      convert_90: Number(k.conv_90d_rate ?? 0),
     };
-  } catch (e: any) {
-    if (e?.status === 409 && e?.data?.error === "not_ready") {
-      return;
-    }
-    console.warn("KPI load failed:", e);
-  }
-}
-
-watch(
-  () => props.refreshKey,
-  () => {
-    if (props.runId) {
-      void load(props.runId);
-    }
   },
   { immediate: true }
 );
