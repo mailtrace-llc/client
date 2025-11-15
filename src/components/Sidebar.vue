@@ -5,29 +5,29 @@ import { useRouter, useRoute } from "vue-router";
 /* Assets */
 import LogoUrl from "@/assets/source-logo-02.png";
 /* IMPORTANT: import SVGs as URLs so <img :src> works even if vite-svg-loader is present */
-import IcOverview from "@/assets/sidebar/overview-icon.svg?url";
-import IcRoi from "@/assets/sidebar/roi-icon.svg?url";
-import IcMatch from "@/assets/sidebar/match-performance-icon.svg?url";
-import IcCampaign from "@/assets/sidebar/campaign-insights-icon.svg?url";
-import IcHeatmap from "@/assets/sidebar/heatmap-icon.svg?url";
-import IcUploads from "@/assets/sidebar/uploads-mapping-icon.svg?url";
-import IcReports from "@/assets/sidebar/reports-exports-icon.svg?url";
-import IcHistory from "@/assets/sidebar/history-icon.svg?url";
-import IcSettings from "@/assets/sidebar/settings-icon.svg?url";
-import IcLogout from "@/assets/sidebar/logout-icon.svg?url";
+import OverviewIcon from "@/assets/sidebar/overview-icon.svg?url";
+import RoiIcon from "@/assets/sidebar/roi-icon.svg?url";
+import MatchIcon from "@/assets/sidebar/match-performance-icon.svg?url";
+import CampaignIcon from "@/assets/sidebar/campaign-insights-icon.svg?url";
+import HeatmapIcon from "@/assets/sidebar/heatmap-icon.svg?url";
+import UploadsIcon from "@/assets/sidebar/uploads-mapping-icon.svg?url";
+import ReportsIcon from "@/assets/sidebar/reports-exports-icon.svg?url";
+import HistoryIcon from "@/assets/sidebar/history-icon.svg?url";
+import SettingsIcon from "@/assets/sidebar/settings-icon.svg?url";
+import LogoutIcon from "@/assets/sidebar/logout-icon.svg?url";
 
 const router = useRouter();
 const route = useRoute();
 
 const items = [
-  { to: "/", label: "Overview", icon: IcOverview },
-  { to: "/roi", label: "ROI Analytics", icon: IcRoi },
-  { to: "/match", label: "Match Performance", icon: IcMatch },
-  { to: "/campaigns", label: "Campaign Insights", icon: IcCampaign },
-  { to: "/heatmap", label: "Address Heatmap", icon: IcHeatmap },
-  { to: "/upload", label: "Uploads & Mapping", icon: IcUploads },
-  { to: "/reports", label: "Reports & Exports", icon: IcReports },
-  { to: "/history", label: "History & Comparisons", icon: IcHistory },
+  { to: "/dashboard", label: "Overview", icon: OverviewIcon },
+  { to: "/roi", label: "ROI Analytics", icon: RoiIcon },
+  { to: "/match", label: "Match Performance", icon: MatchIcon },
+  { to: "/campaigns", label: "Campaign Insights", icon: CampaignIcon },
+  { to: "/heatmap", label: "Address Heatmap", icon: HeatmapIcon },
+  { to: "/upload", label: "Uploads & Mapping", icon: UploadsIcon },
+  { to: "/reports", label: "Reports & Exports", icon: ReportsIcon },
+  { to: "/history", label: "History & Comparisons", icon: HistoryIcon },
 ];
 
 function isActive(path: string) {
@@ -65,11 +65,11 @@ function go(path: string) {
 
       <div class="bottom">
         <button class="nav-btn ghost" @click="go('/settings')">
-          <img class="icon" :src="IcSettings" alt="" draggable="false" />
+          <img class="icon" :src="SettingsIcon" alt="" draggable="false" />
           <span class="label">Settings</span>
         </button>
         <button class="nav-btn ghost" @click="go('/signout')">
-          <img class="icon" :src="IcLogout" alt="" draggable="false" />
+          <img class="icon" :src="LogoutIcon" alt="" draggable="false" />
           <span class="label">Sign Out</span>
         </button>
       </div>

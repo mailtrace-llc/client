@@ -1,16 +1,18 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
 
-import visualizeImage from "@/assets/home/dashboard_sample_image.png";
+import image1 from "@/assets/home/dashboard_sample_image.png";
+import image2 from "@/assets/home/dashboard_sample_image_2.png";
+import image3 from "@/assets/home/map_leaf_sample.png";
 
 import ellipseActive from "@/assets/home/ellipse-2-active.svg?url";
 import ellipseInactive from "@/assets/home/ellipse-2-inactive.svg?url";
 
 const slides = [
-  { image: visualizeImage, alt: "MailTrace dashboard – KPIs view" },
-  { image: visualizeImage, alt: "MailTrace dashboard – slide 2" },
-  { image: visualizeImage, alt: "MailTrace dashboard – slide 3" },
-  { image: visualizeImage, alt: "MailTrace dashboard – slide 4" },
+  { image: image1, alt: "MailTrace dashboard – KPIs view" },
+  { image: image2, alt: "MailTrace dashboard – slide 2" },
+  { image: image3, alt: "MailTrace dashboard – slide 3" },
+  { image: image1, alt: "MailTrace dashboard – slide 4" },
 ] as const;
 
 const inactiveDots = [
