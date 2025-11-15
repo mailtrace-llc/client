@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import heroMockup from "@/assets/home/dashboard_sample_image.png";
-import landingLogo from "@/assets/logo-landing-page-01.svg?url";
+import landingLogo from "@/assets/source-logo-02.png";
 
 import curve from "@/assets/home/curve.svg?url";
 import rightDown from "@/assets/home/right-down.svg?url";
