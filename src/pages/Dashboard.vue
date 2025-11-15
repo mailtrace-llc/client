@@ -9,6 +9,7 @@ import ModalUploadGuard from "@/components/dashboard/ModalUploadGuard.vue";
 import ModalMappingRequired from "@/components/dashboard/ModalMappingRequired.vue";
 import MapperModal from "@/components/dashboard/MapperModal.vue";
 import { getRunResult, type RunResult } from "@/api/result";
+import { getRunMatches, type MatchRow } from "@/api/matches";
 import {
   fetchHeaders as fetchMapperHeaders,
   fetchMapping as fetchMapperMapping,
@@ -73,6 +74,9 @@ const kpiRefreshKey = ref(0);
 const runResult = ref<RunResult | null>(null);
 const runResultLoading = ref(false);
 
+const matches = ref<MatchRow[]>([]);
+const matchesLoading = ref(false);
+
 const MONTH_ABBR = [
   "JAN",
   "FEB",
@@ -109,6 +113,22 @@ const graphMatchNow = computed<number[]>(
   () => runResult.value?.graph?.matches ?? []
 );
 
+// Prev-year series for YoY overlay (uses graph.yoy when backend populates it)
+const mailPrev = computed<number[]>(
+  () => runResult.value?.graph?.yoy?.mailers?.prev ?? []
+);
+const crmPrev = computed<number[]>(
+  () => runResult.value?.graph?.yoy?.jobs?.prev ?? []
+);
+const matchPrev = computed<number[]>(
+  () => runResult.value?.graph?.yoy?.matches?.prev ?? []
+);
+
+// Raw backend months (e.g. "2024-01") for tick formatting + year markers
+const graphRawMonths = computed<string[]>(
+  () => runResult.value?.graph?.months ?? []
+);
+
 // Top cities / zips rows for the tables
 type CityRow = { city: string; total: number; rate: string };
 type ZipRow = { zip: string; total: number; rate: string };
@@ -133,12 +153,58 @@ const topZipRows = computed<ZipRow[]>(() => {
   return items.map((z) => ({
     zip: z.zip ?? "",
     total: Number(z.matches ?? 0),
-    // per-ZIP match_rate isn’t persisted yet, so just show a placeholder
-    rate: "—",
+    rate: fmtPct(z.match_rate as number | null | undefined),
   }));
 });
 
-// --- loader for /runs/:run_id/result ---
+// ---- Summary rows (matches → SummaryTable) ----
+type SummaryRow = {
+  mail_address1: string;
+  mail_unit: string;
+  crm_address1: string;
+  crm_unit: string;
+  city: string;
+  state: string;
+  zip: string;
+  mail_dates: string;
+  crm_date: string;
+};
+
+function fmtDate(d: string | null | undefined): string {
+  if (!d) return "";
+  const s = d.slice(0, 10); // YYYY-MM-DD
+  const [y, m, day] = s.split("-");
+  if (y && m && day) return `${m}-${day}-${y}`;
+  return s;
+}
+
+function fmtMailDates(raw: any): string {
+  if (!raw) return "";
+  if (Array.isArray(raw)) {
+    if (!raw.length) return "";
+    return raw.map((x) => fmtDate(String(x))).join(", ");
+  }
+  // handle "{2024-01-01,2024-01-02}" style just in case
+  const stripped = String(raw).replace(/[{}]/g, "");
+  const parts = stripped.split(",").filter(Boolean);
+  return parts.map((x) => fmtDate(x.trim())).join(", ");
+}
+
+const summaryRows = computed<SummaryRow[]>(() => {
+  if (!matches.value.length) return [];
+  return matches.value.map((m) => ({
+    mail_address1: m.mail_full_address || "",
+    mail_unit: "",
+    crm_address1: m.crm_full_address || "",
+    crm_unit: "",
+    city: m.crm_city || "",
+    state: m.state || m.crm_state || "",
+    zip: m.zip5 || m.crm_zip || "",
+    mail_dates: fmtMailDates((m as any).matched_mail_dates),
+    crm_date: fmtDate((m as any).crm_job_date as any),
+  }));
+});
+
 async function loadRunResult(id?: string) {
   if (!id) return;
   runResultLoading.value = true;
@@ -148,6 +214,19 @@ async function loadRunResult(id?: string) {
     console.error("[Dashboard] Failed to load run result", err);
   } finally {
     runResultLoading.value = false;
+  }
+}
+
+async function loadMatches(id?: string) {
+  if (!id) return;
+  matchesLoading.value = true;
+  try {
+    const data = await getRunMatches(id);
+    matches.value = data.matches ?? [];
+  } catch (err) {
+    console.error("[Dashboard] Failed to load run matches", err);
+  } finally {
+    matchesLoading.value = false;
   }
 }
 
@@ -168,9 +247,10 @@ watch(
   () => kpiRefreshKey.value,
   () => {
     const id = runId.value;
-    if (id) {
-      void loadRunResult(id);
-    }
+    if (!id) return;
+
+    void loadRunResult(id);
+    void loadMatches(id);
   }
   // no immediate: true — it will run when you bump kpiRefreshKey
 );
@@ -346,8 +426,6 @@ onMounted(() => {
         <KpiSummaryCard
           id="cmp-kpis"
           class="h-full"
-          :run-id="runId"
-          :refresh-key="kpiRefreshKey"
           :kpis="runResult?.kpis || null"
         />
       </div>
@@ -359,9 +437,10 @@ onMounted(() => {
           :mail-now="graphMailNow"
           :crm-now="graphCrmNow"
           :match-now="graphMatchNow"
-          :mail-prev="[]"
-          :crm-prev="[]"
-          :match-prev="[]"
+          :mail-prev="mailPrev"
+          :crm-prev="crmPrev"
+          :match-prev="matchPrev"
+          :raw-months="graphRawMonths"
         />
       </div>
 
@@ -377,9 +456,12 @@ onMounted(() => {
         />
       </div>
 
-      <!-- Summary card (still seeded locally for now) -->
+      <!-- Summary card -->
       <div class="section card" id="cmp-summary">
-        <SummaryTable class="section" />
+        <SummaryTable
+          class="section"
+          :rows="summaryRows.length ? summaryRows : undefined"
+        />
       </div>
     </section>
   </div>

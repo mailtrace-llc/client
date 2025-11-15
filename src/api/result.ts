@@ -6,11 +6,14 @@ export type KPIs = {
   unique_mail_addresses?: number;
   total_jobs?: number;
   matches?: number;
-  match_rate?: number; 
+  match_rate?: number;
   match_revenue?: number;
   revenue_per_mailer?: number;
   avg_ticket_per_match?: number;
   median_days_to_convert?: number;
+  conv_30d_rate?: number;
+  conv_60d_rate?: number;
+  conv_90d_rate?: number;
 };
 
 export type RunGraph = {
@@ -34,8 +37,7 @@ export type TopCity = {
 export type TopZip = {
   zip: string;
   matches: number;
-  // backend currently doesn’t persist per-ZIP rate; add later if you want:
-  // match_rate?: number;
+  match_rate?: number;
 };
 
 export type RunResult = {
