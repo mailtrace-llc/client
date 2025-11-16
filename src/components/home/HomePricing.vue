@@ -96,7 +96,7 @@ const enterpriseFeatures: Feature[] = [
                   <img
                     :src="feature.icon"
                     alt=""
-                    class="mt-1.5 sm:mt-3 h-[15px] w-[15px] shrink-0"
+                    class="mt-3 sm:mt-3 h-[15px] w-[15px] shrink-0"
                   />
                   <span>{{ feature.label }}</span>
                 </li>

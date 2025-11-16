@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import landingLogo from "@/assets/logo-landing-page-01.svg?url";
+import landingLogo from "@/assets/source-logo-02.png";
 import linkedinIcon from "@/assets/home/linkedin-icon.svg?url";
 </script>
 
