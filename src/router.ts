@@ -47,25 +47,23 @@ const router = createRouter({
 })
 
 router.beforeEach(async (to, _from, next) => {
-  const auth = useAuthStore()
+  const auth = useAuthStore();
 
-  if (to.meta?.marketing) {
-    return next()
-  }
+  if (to.meta?.marketing) return next();
 
   if (!auth.initialized && !auth.loading) {
-    await auth.fetchMe()
+    await auth.fetchMe();
   }
 
   if (!auth.isAuthenticated) {
-    const params = new URLSearchParams({ next: to.fullPath || '/' })
-    const base = AUTH_BASE || ""
-    window.location.href = `${base}/auth/login?${params.toString()}`
-    return
+    const params = new URLSearchParams({ next: to.fullPath || "/" });
+    const base = AUTH_BASE || "";
+    window.location.href = `${base}/auth/login?${params.toString()}`;
+    return;
   }
 
-  next()
-})
+  next();
+});
 
 router.afterEach((to) => {
   document.title = (to.meta?.title as string) || 'MailTrace'

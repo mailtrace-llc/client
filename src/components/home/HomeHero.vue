@@ -9,11 +9,7 @@ import { AUTH_BASE } from "@/config/auth";
 
 const goToAuth = (next: string = "/dashboard") => {
   const params = new URLSearchParams({ next });
-
-  // In dev: AUTH_BASE === "" -> /auth/login?... (Vite proxy)
-  // In prod: AUTH_BASE === "https://api.mailtrace.ai"
-  const base = AUTH_BASE || "";
-
+  const base = AUTH_BASE || ""; // dev: "", prod: "https://api.mailtrace.ai"
   window.location.href = `${base}/auth/login?${params.toString()}`;
 };
 

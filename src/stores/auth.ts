@@ -1,5 +1,6 @@
 // client/src/stores/auth.ts
 import { defineStore } from "pinia";
+import { AUTH_BASE } from "@/config/auth";
 
 interface MeResponse {
   authenticated: boolean;
@@ -10,32 +11,45 @@ interface MeResponse {
   avatar_url?: string | null;
 }
 
+const BASE = AUTH_BASE || ""; // dev: "", prod: "https://api.mailtrace.ai"
+
 export const useAuthStore = defineStore("auth", {
   state: () => ({
     me: null as MeResponse | null,
     loading: false,
     initialized: false,
   }),
+
   getters: {
     isAuthenticated: (state) => !!state.me?.authenticated,
     userEmail: (state) => state.me?.email ?? null,
     userName: (state) =>
-      state.me?.full_name ||
-      state.me?.email?.split("@")[0] ||
-      "User",
-    userRole: (state) =>
-      state.me?.role ?? "",
-    avatarUrl: (state) =>
-      state.me?.avatar_url || "",
+      state.me?.full_name || state.me?.email?.split("@")[0] || "User",
+    userRole: (state) => state.me?.role ?? "",
+    avatarUrl: (state) => state.me?.avatar_url || "",
   },
+
   actions: {
     async fetchMe() {
       this.loading = true;
       try {
-        const res = await fetch("/auth/me", {
+        const res = await fetch(`${BASE}/auth/me`, {
           credentials: "include",
         });
-        const data = (await res.json()) as MeResponse;
+
+        const ct = res.headers.get("content-type") || "";
+        let data: MeResponse;
+
+        if (ct.includes("application/json")) {
+          data = (await res.json()) as MeResponse;
+        } else {
+          // If backend ever sends HTML (error page), don't explode
+          console.error(
+            "[auth] /auth/me returned non-JSON response; treating as unauthenticated"
+          );
+          data = { authenticated: false };
+        }
+
         this.me = data;
       } catch (err) {
         console.error("[auth] /auth/me failed", err);
@@ -49,7 +63,7 @@ export const useAuthStore = defineStore("auth", {
     // Optional: set avatar by URL only (no file upload)
     async updateAvatarUrl(avatarUrl: string) {
       try {
-        const res = await fetch("/auth/me/avatar", {
+        const res = await fetch(`${BASE}/auth/me/avatar`, {
           method: "POST",
           credentials: "include",
           headers: {
@@ -66,7 +80,6 @@ export const useAuthStore = defineStore("auth", {
           return;
         }
 
-        // Refresh user so Navbar sees the new avatar
         await this.fetchMe();
       } catch (err) {
         console.error("[auth] error updating avatar_url", err);
@@ -79,7 +92,7 @@ export const useAuthStore = defineStore("auth", {
       formData.append("avatar", file);
 
       try {
-        const res = await fetch("/auth/me/avatar-upload", {
+        const res = await fetch(`${BASE}/auth/me/avatar-upload`, {
           method: "POST",
           credentials: "include",
           body: formData,
@@ -93,10 +106,6 @@ export const useAuthStore = defineStore("auth", {
           return;
         }
 
-        // You can read the response if you want:
-        // const data = await res.json();
-        // this.me = { ...(this.me || {}), avatar_url: data.avatar_url };
-        // but safest is to re-fetch:
         await this.fetchMe();
       } catch (err) {
         console.error("[auth] error uploading avatar", err);
