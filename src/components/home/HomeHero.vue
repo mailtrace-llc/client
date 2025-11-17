@@ -7,9 +7,10 @@ import rightDown from "@/assets/home/right-down.svg?url";
 
 const goToAuth = (next: string = "/dashboard") => {
   const params = new URLSearchParams({ next });
-  // This hits /auth/login on the SPA origin, which Vite proxies to Flask
   window.location.href = `/auth/login?${params.toString()}`;
 };
+
+const APOLLO_DEMO_URL = "https://app.apollo.io/#/meet/Mailtrace.Demo";
 </script>
 
 <template>
@@ -37,8 +38,11 @@ const goToAuth = (next: string = "/dashboard") => {
           Sign Up / Login
         </button>
 
+        <!-- Book a Demo -> Apollo link -->
         <a
-          href="mailto:support@mailtrace.ai"
+          :href="APOLLO_DEMO_URL"
+          target="_blank"
+          rel="noopener noreferrer"
           class="hidden rounded-lg bg-[#0b2d50] px-4 sm:px-6 py-1.5 sm:py-2 text-[16px] sm:text-[20px] font-semibold text-white shadow-sm hover:bg-[#123b6a] md:inline-flex"
         >
           Book a Demo

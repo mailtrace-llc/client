@@ -1,13 +1,16 @@
 // client/src/stores/auth.ts
-import { defineStore } from 'pinia'
+import { defineStore } from "pinia";
 
 interface MeResponse {
-  authenticated: boolean
-  user_id?: string
-  email?: string
+  authenticated: boolean;
+  user_id?: string;
+  email?: string;
+  full_name?: string | null;
+  role?: string | null;
+  avatar_url?: string | null;
 }
 
-export const useAuthStore = defineStore('auth', {
+export const useAuthStore = defineStore("auth", {
   state: () => ({
     me: null as MeResponse | null,
     loading: false,
@@ -16,23 +19,88 @@ export const useAuthStore = defineStore('auth', {
   getters: {
     isAuthenticated: (state) => !!state.me?.authenticated,
     userEmail: (state) => state.me?.email ?? null,
+    userName: (state) =>
+      state.me?.full_name ||
+      state.me?.email?.split("@")[0] ||
+      "User",
+    userRole: (state) =>
+      state.me?.role ?? "",
+    avatarUrl: (state) =>
+      state.me?.avatar_url || "",
   },
   actions: {
     async fetchMe() {
-      this.loading = true
+      this.loading = true;
       try {
-        const res = await fetch('/auth/me', {
-          credentials: 'include',
-        })
-        const data = (await res.json()) as MeResponse
-        this.me = data
+        const res = await fetch("/auth/me", {
+          credentials: "include",
+        });
+        const data = (await res.json()) as MeResponse;
+        this.me = data;
       } catch (err) {
-        // on error, treat as logged out
-        this.me = { authenticated: false }
+        console.error("[auth] /auth/me failed", err);
+        this.me = { authenticated: false };
       } finally {
-        this.loading = false
-        this.initialized = true
+        this.loading = false;
+        this.initialized = true;
+      }
+    },
+
+    // Optional: set avatar by URL only (no file upload)
+    async updateAvatarUrl(avatarUrl: string) {
+      try {
+        const res = await fetch("/auth/me/avatar", {
+          method: "POST",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ avatar_url: avatarUrl }),
+        });
+
+        if (!res.ok) {
+          console.error(
+            "[auth] failed to update avatar_url",
+            await res.text()
+          );
+          return;
+        }
+
+        // Refresh user so Navbar sees the new avatar
+        await this.fetchMe();
+      } catch (err) {
+        console.error("[auth] error updating avatar_url", err);
+      }
+    },
+
+    // File upload → backend saves file → returns URL → we refresh /auth/me
+    async uploadAvatar(file: File) {
+      const formData = new FormData();
+      formData.append("avatar", file);
+
+      try {
+        const res = await fetch("/auth/me/avatar-upload", {
+          method: "POST",
+          credentials: "include",
+          body: formData,
+        });
+
+        if (!res.ok) {
+          console.error(
+            "[auth] avatar upload failed",
+            await res.text()
+          );
+          return;
+        }
+
+        // You can read the response if you want:
+        // const data = await res.json();
+        // this.me = { ...(this.me || {}), avatar_url: data.avatar_url };
+        // but safest is to re-fetch:
+        await this.fetchMe();
+      } catch (err) {
+        console.error("[auth] error uploading avatar", err);
       }
     },
   },
-})
+});
