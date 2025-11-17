@@ -1,3 +1,4 @@
+<!-- src/pages/Dashboard.vue -->
 <script setup lang="ts">
 import { ref, onMounted, computed, watch } from "vue";
 import { useRoute } from "vue-router";
@@ -20,6 +21,7 @@ import {
 
 import UploadCard from "@/components/dashboard/UploadCard.vue";
 import { useLoader } from "@/stores/loader";
+import { useAuthStore } from "@/stores/auth"; // 👈 NEW
 import KpiSummaryCard from "@/components/dashboard/KpiSummaryCard.vue";
 import YoyChart from "@/components/dashboard/YoyChart.vue";
 import TopCitiesTable from "@/components/dashboard/TopCitiesTable.vue";
@@ -35,6 +37,7 @@ declare global {
 
 const route = useRoute();
 const loader = useLoader();
+const auth = useAuthStore(); // 👈 NEW
 
 const showUploadGuard = ref(false);
 
@@ -66,6 +69,33 @@ const crmLabels = ref<Record<string, string>>({});
 const runId = ref<string>("");
 
 const kpiRefreshKey = ref(0);
+
+/* ------------------------------------------------------------------
+ * Navbar user data from auth store
+ * ------------------------------------------------------------------ */
+
+const navbarUserName = computed(() => auth.userName);
+const navbarUserRole = computed(() => auth.userRole);
+const navbarAvatarUrl = computed(() => auth.avatarUrl);
+
+/* ------------------------------------------------------------------
+ * Avatar upload (Navbar profile click)
+ * ------------------------------------------------------------------ */
+
+const fileInput = ref<HTMLInputElement | null>(null);
+
+function onAvatarClick() {
+  fileInput.value?.click();
+}
+
+async function onAvatarFileChanged(e: Event) {
+  const input = e.target as HTMLInputElement;
+  const file = input.files?.[0];
+  if (!file) return;
+
+  await auth.uploadAvatar(file); // uses the action from your auth store
+  input.value = ""; // allow re-selecting same file
+}
 
 /* ------------------------------------------------------------------
  * Unified run result payload (KPIs + graph + tops)
@@ -252,7 +282,6 @@ watch(
     void loadRunResult(id);
     void loadMatches(id);
   }
-  // no immediate: true — it will run when you bump kpiRefreshKey
 );
 
 /* ------------------------------------------------------------------
@@ -386,6 +415,11 @@ function onRunFailed(error: unknown) {
  * ------------------------------------------------------------------ */
 
 onMounted(() => {
+  // Load current user for Navbar
+  if (!auth.initialized && !auth.loading) {
+    void auth.fetchMe();
+  }
+
   const qRunId = (route.query.run_id as string) || "";
   if (qRunId) {
     window.MT_CONTEXT = { ...(window.MT_CONTEXT || {}), run_id: qRunId };
@@ -408,6 +442,10 @@ onMounted(() => {
         title="Dashboard"
         v-model="search"
         @search="onSearch"
+        :user-name="navbarUserName"
+        :user-role="navbarUserRole"
+        :avatar-url="navbarAvatarUrl"
+        @profile-click="onAvatarClick"
       />
 
       <!-- Upload + KPIs -->
@@ -466,6 +504,15 @@ onMounted(() => {
     </section>
   </div>
 
+  <!-- Hidden avatar upload input -->
+  <input
+    ref="fileInput"
+    type="file"
+    accept="image/*"
+    class="hidden"
+    @change="onAvatarFileChanged"
+  />
+
   <!-- Missing-field popup -->
   <ModalMappingRequired
     v-model="showMapping"
@@ -502,40 +549,31 @@ onMounted(() => {
 </template>
 
 <style scoped>
-/* Shell grid to mirror Figma spacing */
+/* (unchanged styles) */
 .dash-shell {
   display: grid;
-  grid-template-columns: 318px 1fr; /* Figma sidebar width */
+  grid-template-columns: 318px 1fr;
   gap: 16px;
-  padding: 12px 16px; /* page gutters like screens */
+  padding: 12px 16px;
   min-height: 100vh;
   background: #f4f5f7;
 }
-
-/* Sidebar column */
 .dash-sidebar {
-  position: sticky; /* keeps card in view while scrolling content */
+  position: sticky;
   top: 12px;
   align-self: start;
 }
-
-/* Sidebar card fills viewport height visually */
 .dash-sidebar :deep(.sidebar-card) {
-  min-height: calc(100vh - 24px); /* 2 * page top/bottom gutters */
+  min-height: calc(100vh - 24px);
 }
-
-/* Content column */
 .dash-main {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
-
-/* Local spacing tune-ups */
 .nav {
   margin-bottom: 4px;
 }
-
 #cmp-hero {
   display: grid;
   grid-template-columns: minmax(380px, 520px) 1fr;
@@ -545,13 +583,11 @@ onMounted(() => {
 #cmp-hero .card {
   width: 100%;
 }
-
 #cmp-top {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 16px;
 }
-
 @media (max-width: 1180px) {
   .dash-shell {
     grid-template-columns: 300px 1fr;

@@ -1,5 +1,7 @@
 // src/router.ts
 import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
+import { useAuthStore } from '@/stores/auth'
+
 
 const routes: RouteRecordRaw[] = [
   {
@@ -42,6 +44,26 @@ const router = createRouter({
     if (saved) return saved
     return { top: 0 }
   },
+})
+
+router.beforeEach(async (to, _from, next) => {
+  const auth = useAuthStore()
+
+  if (to.meta?.marketing) {
+    return next()
+  }
+
+  if (!auth.initialized && !auth.loading) {
+    await auth.fetchMe()
+  }
+
+  if (!auth.isAuthenticated) {
+    const params = new URLSearchParams({ next: to.fullPath || '/' })
+    window.location.href = `/auth/login?${params.toString()}`
+    return
+  }
+
+  next()
 })
 
 router.afterEach((to) => {

@@ -1,6 +1,8 @@
 <!-- src/components/layout/Navbar.vue -->
 <script setup lang="ts">
 import { ref, watch, onMounted, computed } from "vue";
+import profileIcon from "@/assets/profile-icon.svg?url";
+import { hashUsernameToGradient } from "@/utils/avatar-gradient";
 
 const props = withDefaults(
   defineProps<{
@@ -15,8 +17,9 @@ const props = withDefaults(
   }>(),
   {
     title: "Dashboard",
-    userName: "Matthew McNey",
-    userRole: "Admin 1",
+    // 👇 no more dummy identity here; these are just placeholders
+    userName: "",
+    userRole: "",
     avatarUrl: "",
     showSearch: true,
     modelValue: "",
@@ -41,7 +44,7 @@ function doSearch() {
   emit("search", q.value);
 }
 
-// Simple fallback avatar (initials)
+// Simple initials (still useful as a fallback / aria-label)
 const initials = computed(() => {
   const name = (props.userName ?? "").trim();
   if (!name) return "U";
@@ -50,6 +53,14 @@ const initials = computed(() => {
   const b = parts[1]?.charAt(0) ?? "";
   const letters = (a + b || a || "U").toUpperCase();
   return letters;
+});
+
+// Gradient background based on username
+const avatarGradientStyle = computed(() => {
+  const [from, to] = hashUsernameToGradient(props.userName ?? "");
+  return {
+    background: `linear-gradient(135deg, ${from}, ${to})`,
+  };
 });
 
 onMounted(() => {
@@ -77,7 +88,6 @@ onMounted(() => {
       v-if="props.showSearch"
       class="hidden md:flex items-center gap-3 rounded-xl bg-[#f4f5f7] h-12 px-4 min-w-[360px] max-w-[520px] shadow-[inset_0_1px_0_rgba(0,0,0,.04)]"
     >
-      <!-- Search icon -->
       <input
         v-model="q"
         type="text"
@@ -108,27 +118,39 @@ onMounted(() => {
     <div class="hidden sm:flex items-center gap-3 pl-2">
       <!-- Avatar circle -->
       <button
-        class="w-[42px] h-[42px] rounded-full overflow-hidden bg-[#f4f5f7] ring-1 ring-black/5 flex items-center justify-center"
+        class="w-[42px] h-[42px] rounded-full overflow-hidden ring-1 ring-black/5 flex items-center justify-center cursor-pointer"
+        :style="avatarGradientStyle"
         @click="$emit('profile-click')"
-        aria-label="Profile"
+        :aria-label="`Profile: ${props.userName || initials}`"
       >
+        <!-- Real avatar if provided -->
         <img
           v-if="props.avatarUrl"
           :src="props.avatarUrl"
           alt=""
           class="w-full h-full object-cover"
         />
-        <span v-else class="text-sm font-semibold text-[#0c2d50]">{{
-          initials
-        }}</span>
+
+        <!-- Default profile icon on gradient -->
+        <img
+          v-else
+          :src="profileIcon"
+          alt=""
+          class="w-2/3 h-2/3 object-contain"
+        />
       </button>
 
       <!-- Name + role -->
       <div class="leading-tight">
-        <div class="text-[16px] font-semibold tracking-[0.01em] text-black">
+        <div
+          v-if="props.userName"
+          class="text-[16px] font-semibold tracking-[0.01em] text-black"
+        >
           {{ props.userName }}
         </div>
-        <div class="text-[14px] text-[#47bfa9]">{{ props.userRole }}</div>
+        <div v-if="props.userRole" class="text-[14px] text-[#47bfa9]">
+          {{ props.userRole }}
+        </div>
       </div>
 
       <!-- Spacer between user and round buttons -->

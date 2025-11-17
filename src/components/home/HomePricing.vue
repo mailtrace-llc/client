@@ -5,17 +5,20 @@ import rightDown from "@/assets/home/right-down.svg?url";
 type Feature = { icon: string; label: string };
 
 const starterFeatures: Feature[] = [
-  { icon: check, label: "Access KPI" },
-  { icon: check, label: "ROI" },
+  { icon: check, label: "Full Access to KPIs" },
+  { icon: check, label: "ROI calculation" },
   { icon: check, label: "Job conversion rate" },
-  { icon: check, label: "Success zip code performance" },
+  { icon: check, label: "Top performing cities and zip codes" },
 ];
 
 const enterpriseFeatures: Feature[] = [
-  { icon: check, label: "Access KPI" },
-  { icon: check, label: "ROI" },
+  { icon: check, label: "Full Access to KPIs" },
+  { icon: check, label: "ROI calculation" },
   { icon: check, label: "Job conversion rate" },
-  { icon: check, label: "Success zip code performance" },
+  { icon: check, label: "Top performing cities and zip codes" },
+  { icon: check, label: "Dedicated account manager" },
+  { icon: check, label: "Priority support" },
+  { icon: check, label: "And much more..." },
 ];
 </script>
 
@@ -56,7 +59,7 @@ const enterpriseFeatures: Feature[] = [
           <div
             class="flex flex-col sm:flex-row gap-6 sm:gap-8 w-full justify-center"
           >
-            <!-- Retail / Starter -->
+            <!-- Starter -->
             <article
               class="flex w-full max-w-[392px] flex-col rounded-[14px] border border-[#24b39b] bg-white px-6 sm:px-10 pt-8 sm:pt-10 pb-8 shadow-[0_20px_60px_rgba(11,45,80,0.10)]"
             >
@@ -64,7 +67,7 @@ const enterpriseFeatures: Feature[] = [
                 <h3
                   class="text-[18px] sm:text-[20px] font-bold tracking-[0.02em] text-[#0b2d4f] uppercase"
                 >
-                  Retail / Starter
+                  Starter
                 </h3>
 
                 <div class="mt-4 h-px w-full bg-black/10" />
@@ -96,7 +99,7 @@ const enterpriseFeatures: Feature[] = [
                   <img
                     :src="feature.icon"
                     alt=""
-                    class="mt-1.5 sm:mt-3 h-[15px] w-[15px] shrink-0"
+                    class="mt-3 sm:mt-3 h-[15px] w-[15px] shrink-0"
                   />
                   <span>{{ feature.label }}</span>
                 </li>
@@ -123,7 +126,7 @@ const enterpriseFeatures: Feature[] = [
               </div>
             </article>
 
-            <!-- Enterprise / Advance -->
+            <!-- Enterprise -->
             <article
               class="flex w-full max-w-[392px] flex-col rounded-[14px] border border-[#24b39b] bg-white px-6 sm:px-10 pt-8 sm:pt-10 pb-8 shadow-[0_20px_60px_rgba(11,45,80,0.10)]"
             >
@@ -131,7 +134,7 @@ const enterpriseFeatures: Feature[] = [
                 <h3
                   class="text-[20px] sm:text-[20px] font-bold tracking-[0.02em] text-[#0b2d4f] uppercase"
                 >
-                  Enterprise / Advance
+                  Enterprise
                 </h3>
 
                 <div class="mt-4 h-px w-full bg-black/10" />
@@ -142,11 +145,11 @@ const enterpriseFeatures: Feature[] = [
                   >
                     Tailored
                   </span>
-                  <span
+                  <!-- <span
                     class="text-[18px] sm:text-[18px] font-bold text-[#24b39b]"
                   >
                     / Custom
-                  </span>
+                  </span> -->
                 </div>
                 <div class="mt-4 h-px w-full bg-black/10" />
               </div>

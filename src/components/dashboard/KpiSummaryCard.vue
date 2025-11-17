@@ -190,7 +190,7 @@ watch(
                 {{ adv.median_days_to_convert }}
               </span>
             </div>
-            <div class="flex items-center justify-between py-3">
+            <!-- <div class="flex items-center justify-between py-3">
               <span class="text-[20px] text-[#0c2d50]">
                 Convert ≤ 30 Days
               </span>
@@ -213,7 +213,7 @@ watch(
               <span class="text-[18px] font-semibold">
                 {{ adv.convert_90 }}%
               </span>
-            </div>
+            </div> -->
           </div>
         </transition>
       </div>

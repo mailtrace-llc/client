@@ -4,6 +4,13 @@ import landingLogo from "@/assets/source-logo-02.png";
 
 import curve from "@/assets/home/curve.svg?url";
 import rightDown from "@/assets/home/right-down.svg?url";
+
+const goToAuth = (next: string = "/dashboard") => {
+  const params = new URLSearchParams({ next });
+  window.location.href = `/auth/login?${params.toString()}`;
+};
+
+const APOLLO_DEMO_URL = "https://app.apollo.io/#/meet/Mailtrace.Demo";
 </script>
 
 <template>
@@ -23,26 +30,20 @@ import rightDown from "@/assets/home/right-down.svg?url";
 
       <!-- top-right CTAs -->
       <div class="flex items-center gap-2 sm:gap-3">
-        <!-- Disabled Sign Up/Login with tooltip -->
-        <div class="relative group">
-          <button
-            type="button"
-            class="rounded-lg bg-[#47bfa9] px-4 sm:px-6 py-2 text-[16px] sm:text-[20px] font-semibold text-white shadow-sm opacity-70 cursor-not-allowed"
-            aria-disabled="true"
-          >
-            Sign Up / Login
-          </button>
-          <div
-            class="pointer-events-none absolute right-0 top-full mt-2 w-max rounded bg-[#0b2d4f] px-3 py-1 text-xs text-white shadow-lg opacity-0 transition-opacity duration-150 group-hover:opacity-100"
-          >
-            Coming soon. Contact support@mailtrace.ai for help.
-          </div>
-        </div>
+        <button
+          type="button"
+          class="rounded-lg bg-[#47bfa9] px-4 sm:px-6 py-1.5 sm:py-2 text-[16px] sm:text-[20px] font-semibold text-white shadow-sm hover:opacity-90 cursor-pointer"
+          @click="goToAuth('/dashboard')"
+        >
+          Sign Up / Login
+        </button>
 
-        <!-- Book a Demo -> mailto -->
+        <!-- Book a Demo -> Apollo link -->
         <a
-          href="mailto:support@mailtrace.ai"
-          class="hidden md:inline-flex rounded-lg bg-[#0b2d50] px-6 py-2 text-[20px] font-semibold text-white shadow-sm hover:bg-[#123b6a]"
+          :href="APOLLO_DEMO_URL"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="hidden rounded-lg bg-[#0b2d50] px-4 sm:px-6 py-1.5 sm:py-2 text-[16px] sm:text-[20px] font-semibold text-white shadow-sm hover:bg-[#123b6a] md:inline-flex"
         >
           Book a Demo
         </a>
@@ -113,14 +114,9 @@ import rightDown from "@/assets/home/right-down.svg?url";
           <div
             class="grid w-full max-w-[640px] grid-cols-3 gap-2 text-[16px] sm:text-[18px] font-semibold text-[#0b2d4f]"
           >
-            <!-- Step 1 label with tooltip -->
+            <!-- Step 1 -->
             <div class="relative group text-center md:text-left">
               <span>Sign Up / Login</span>
-              <div
-                class="pointer-events-none absolute left-1/2 top-full mt-1 -translate-x-1/2 whitespace-nowrap rounded bg-[#0b2d4f] px-3 py-1 text-xs text-white shadow-lg opacity-0 transition-opacity duration-150 group-hover:opacity-100"
-              >
-                Coming soon. Contact support@mailtrace.ai for help.
-              </div>
             </div>
 
             <p class="text-center md:text-left">Upload Your CSV</p>
@@ -145,11 +141,6 @@ import rightDown from "@/assets/home/right-down.svg?url";
               <span class="text-[16px] font-semibold text-[#0b2d4f]">
                 Sign Up / Login
               </span>
-              <div
-                class="pointer-events-none absolute left-0 top-full mt-1 whitespace-nowrap rounded bg-[#0b2d4f] px-3 py-1 text-xs text-white shadow-lg opacity-0 transition-opacity duration-150 group-hover:opacity-100"
-              >
-                Coming soon. Contact support@mailtrace.ai for help.
-              </div>
             </div>
           </div>
 

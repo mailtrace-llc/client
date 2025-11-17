@@ -27,7 +27,7 @@ npm i                # or: pnpm i
 npm run dev          # starts Vite dev server
 ```
 
-- Dev server: [http://localhost:5173](http://localhost:5173) (by default)
+- Dev server: [http://127.0.0.1:5173/] (by default)
 - API base: proxied to Flask via Vite (see proxy below)
 
 **Build & Preview**
