@@ -1,7 +1,7 @@
 // src/router.ts
 import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
-
+import { AUTH_BASE } from '@/config/auth'
 
 const routes: RouteRecordRaw[] = [
   {
@@ -59,7 +59,8 @@ router.beforeEach(async (to, _from, next) => {
 
   if (!auth.isAuthenticated) {
     const params = new URLSearchParams({ next: to.fullPath || '/' })
-    window.location.href = `/auth/login?${params.toString()}`
+    const base = AUTH_BASE || ""
+    window.location.href = `${base}/auth/login?${params.toString()}`
     return
   }
 
