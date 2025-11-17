@@ -1,13 +1,20 @@
+<!-- src/components/home/HomeHero.vue -->
 <script setup lang="ts">
 import heroMockup from "@/assets/home/dashboard_sample_image.png";
 import landingLogo from "@/assets/source-logo-02.png";
 
 import curve from "@/assets/home/curve.svg?url";
 import rightDown from "@/assets/home/right-down.svg?url";
+import { AUTH_BASE } from "@/config/auth";
 
 const goToAuth = (next: string = "/dashboard") => {
   const params = new URLSearchParams({ next });
-  window.location.href = `/auth/login?${params.toString()}`;
+
+  // In dev: AUTH_BASE === "" -> /auth/login?... (Vite proxy)
+  // In prod: AUTH_BASE === "https://api.mailtrace.ai"
+  const base = AUTH_BASE || "";
+
+  window.location.href = `${base}/auth/login?${params.toString()}`;
 };
 
 const APOLLO_DEMO_URL = "https://app.apollo.io/#/meet/Mailtrace.Demo";
