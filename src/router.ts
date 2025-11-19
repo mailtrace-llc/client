@@ -26,13 +26,6 @@ const routes: RouteRecordRaw[] = [
     component: () => import('@/pages/MapPage.vue'),
     meta: { title: 'Map • MailTrace' },
   },
-  {
-    path: '/paywall',
-    name: 'Paywall',
-    component: () => import('@/pages/Paywall.vue'),
-    meta: { title: 'Paywall • MailTrace' },
-  },
-
   { path: '/:pathMatch(.*)*', redirect: '/' },
 ]
 

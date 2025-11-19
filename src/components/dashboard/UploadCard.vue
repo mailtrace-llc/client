@@ -19,6 +19,7 @@ const emit = defineEmits<{
   (e: "run-failed", error: unknown): void;
   (e: "edit-mapping"): void;
   (e: "run-id", runId: string): void;
+  (e: "require-subscription"): void;
 }>();
 
 /* ---- state --------------------------------------- */
@@ -168,12 +169,28 @@ async function onRun(ev?: Event) {
   try {
     await kickOffAndPoll(runId.value, (missing) => {
       log.warn("UI ▶ needs mapping (409)", { runId: runId.value, missing });
-
       emit("mapping-required", missing);
     });
 
     emit("run-completed");
   } catch (err: any) {
+    if (
+      (err?.status === 402 || err?.status === 403) &&
+      err?.data?.error === "subscription_required"
+    ) {
+      log.warn("UI ▶ subscription required for run", {
+        runId: runId.value,
+        status: err?.status,
+      });
+
+      // Tell Dashboard to open PaywallModal
+      emit("require-subscription");
+
+      // Also treat as a run failure so loader gets hidden
+      emit("run-failed", err);
+      return;
+    }
+
     log.error("UI ▶ run failed", err);
     emit("run-failed", err);
   }
