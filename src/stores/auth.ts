@@ -2,6 +2,28 @@
 import { defineStore } from "pinia";
 import { AUTH_BASE } from "@/config/auth";
 
+interface PaywallConfig {
+  // Backend sends snake_case keys; frontend modal uses camelCase.
+  title?: string;
+  body?: string;
+  price_summary?: string;
+  priceSummary?: string;
+  primary_label?: string;
+  primaryLabel?: string;
+  secondary_label?: string;
+  secondaryLabel?: string;
+  bullets?: string[];
+}
+
+interface BillingState {
+  subscription_status?: string | null;
+  is_subscribed?: boolean;
+  can_run_matching?: boolean;
+  needs_paywall?: boolean;
+  last_payment_failed?: boolean;
+  paywall_config?: PaywallConfig | null;
+}
+
 interface MeResponse {
   authenticated: boolean;
   user_id?: string;
@@ -9,6 +31,7 @@ interface MeResponse {
   full_name?: string | null;
   role?: string | null;
   avatar_url?: string | null;
+  billing?: BillingState | null;
 }
 
 const BASE = AUTH_BASE || ""; // dev: "", prod: "https://api.mailtrace.ai"
@@ -27,6 +50,12 @@ export const useAuthStore = defineStore("auth", {
       state.me?.full_name || state.me?.email?.split("@")[0] || "User",
     userRole: (state) => state.me?.role ?? "",
     avatarUrl: (state) => state.me?.avatar_url || "",
+
+    billing: (state): BillingState | null => state.me?.billing ?? null,
+    isSubscribed: (state): boolean =>
+      !!state.me?.billing?.is_subscribed,
+    needsPaywall: (state): boolean =>
+      !!state.me?.billing?.needs_paywall,
   },
 
   actions: {

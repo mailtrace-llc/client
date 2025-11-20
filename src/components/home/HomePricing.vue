@@ -1,6 +1,13 @@
 <script setup lang="ts">
+import { ref } from "vue";
 import check from "@/assets/home/check-icon.svg?url";
 import rightDown from "@/assets/home/right-down.svg?url";
+import { createCheckoutSession } from "@/api/billing";
+import { useAuthStore } from "@/stores/auth";
+import { AUTH_BASE } from "@/config/auth";
+
+const auth = useAuthStore();
+
 
 type Feature = { icon: string; label: string };
 
@@ -20,6 +27,41 @@ const enterpriseFeatures: Feature[] = [
   { icon: check, label: "Priority support" },
   { icon: check, label: "And much more..." },
 ];
+
+const starterBusy = ref(false);
+
+async function onStarterClick() {
+  if (starterBusy.value) return;
+
+  // If not authenticated: go to Auth0 first, and ask backend to
+  // send us back to /dashboard with a flag to start checkout.
+  if (!auth.isAuthenticated) {
+    const params = new URLSearchParams({
+      next: "/dashboard?startCheckout=home_pricing",
+    });
+    const base = AUTH_BASE || ""; // dev: "", prod: "https://api.mailtrace.ai"
+    window.location.href = `${base}/auth/login?${params.toString()}`;
+    return;
+  }
+
+  // Already logged in → go straight to Stripe Checkout
+  starterBusy.value = true;
+
+  try {
+    const { url } = await createCheckoutSession("home_pricing");
+    if (url) {
+      window.location.href = url; // Stripe Checkout
+    } else {
+      console.error(
+        "[HomePricing] No checkout URL received from createCheckoutSession"
+      );
+    }
+  } catch (err) {
+    console.error("[HomePricing] Failed to start checkout", err);
+  } finally {
+    starterBusy.value = false;
+  }
+}
 </script>
 
 <template>
@@ -111,18 +153,21 @@ const enterpriseFeatures: Feature[] = [
                   $0.08 per mailer
                 </p>
 
-                <!-- Get Started -> mailto -->
-                <a
-                  href="mailto:support@mailtrace.ai"
-                  class="mt-5 sm:mt-6 inline-flex w-full items-center justify-center gap-3 rounded-md bg-[#24b39b] px-6 py-3 text-[16px] sm:text-[18px] font-semibold text-white hover:bg-[#1f9e86]"
+                <!-- Starter CTA -->
+                <button
+                  type="button"
+                  @click="onStarterClick"
+                  :disabled="starterBusy"
+                  class="mt-5 sm:mt-6 inline-flex w-full items-center justify-center gap-3 rounded-md bg-[#24b39b] px-6 py-3 text-[16px] sm:text-[18px] font-semibold text-white hover:bg-[#1f9e86] disabled:opacity-60 disabled:cursor-not-allowed"
                 >
-                  Get Started
+                  <span v-if="!starterBusy">Get Started</span>
+                  <span v-else>Redirecting…</span>
                   <img
                     :src="rightDown"
                     alt=""
                     class="h-6 sm:h-[30px] w-6 sm:w-[30px]"
                   />
-                </a>
+                </button>
               </div>
             </article>
 

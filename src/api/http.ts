@@ -4,8 +4,10 @@ import type { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios'
 import { log, getReq } from '@/utils/logger'
 
 // ---- Base URL
+const rawBase = import.meta.env.VITE_API_BASE;
+// default to "/api" only if env var is *undefined*, not if it's ""
 export const API_BASE =
-  (import.meta.env.VITE_API_BASE || "/api").trim();
+  (rawBase === undefined ? "/api" : rawBase).trim();
 
 // ---- Tiny global "inflight" loader signal
 let inflight = 0
@@ -44,7 +46,7 @@ http.interceptors.request.use((cfg) => {
   if (reqId) {
     if (cfg.headers && typeof (cfg.headers as any).set === 'function') {
       // AxiosHeaders instance
-      ;(cfg.headers as any).set('X-Request-ID', reqId)
+      ; (cfg.headers as any).set('X-Request-ID', reqId)
     } else {
       // Plain object case
       cfg.headers = { ...(cfg.headers as any), 'X-Request-ID': reqId } as any
@@ -103,15 +105,15 @@ export async function api<T = any>(
   return res.data as T
 }
 
-export const get     = <T = any>(path: string, cfg?: AxiosRequestConfig) => api<T>(path, { ...cfg, method: 'GET' })
-export const postJson= <T = any>(path: string, body?: any, cfg?: AxiosRequestConfig) =>
+export const get = <T = any>(path: string, cfg?: AxiosRequestConfig) => api<T>(path, { ...cfg, method: 'GET' })
+export const postJson = <T = any>(path: string, body?: any, cfg?: AxiosRequestConfig) =>
   api<T>(path, {
     method: 'POST',
     data: body ?? {},
     headers: { 'Content-Type': 'application/json', ...(cfg?.headers || {}) },
     ...cfg
   })
-export const postForm= <T = any>(path: string, form: FormData, cfg?: AxiosRequestConfig) =>
+export const postForm = <T = any>(path: string, form: FormData, cfg?: AxiosRequestConfig) =>
   api<T>(path, { method: 'POST', data: form, ...cfg })
 export const putJson = <T = any>(path: string, body?: any, cfg?: AxiosRequestConfig) =>
   api<T>(path, {
@@ -120,11 +122,11 @@ export const putJson = <T = any>(path: string, body?: any, cfg?: AxiosRequestCon
     headers: { 'Content-Type': 'application/json', ...(cfg?.headers || {}) },
     ...cfg
   })
-export const del_    = <T = any>(path: string, cfg?: AxiosRequestConfig) =>
+export const del_ = <T = any>(path: string, cfg?: AxiosRequestConfig) =>
   api<T>(path, { ...cfg, method: 'DELETE' })
 
 // ---- raw-response helpers (return AxiosResponse so you can check .status)
-export const getRaw    = <T = any>(path: string, cfg?: AxiosRequestConfig) => http.get<T>(path, cfg)
-export const post      = <T = any>(path: string, body?: any, cfg?: AxiosRequestConfig) => http.post<T>(path, body ?? {}, cfg)
-export const putRaw    = <T = any>(path: string, body?: any, cfg?: AxiosRequestConfig) => http.put<T>(path, body ?? {}, cfg)
+export const getRaw = <T = any>(path: string, cfg?: AxiosRequestConfig) => http.get<T>(path, cfg)
+export const post = <T = any>(path: string, body?: any, cfg?: AxiosRequestConfig) => http.post<T>(path, body ?? {}, cfg)
+export const putRaw = <T = any>(path: string, body?: any, cfg?: AxiosRequestConfig) => http.put<T>(path, body ?? {}, cfg)
 export const deleteRaw = <T = any>(path: string, cfg?: AxiosRequestConfig) => http.delete<T>(path, cfg)

@@ -21,13 +21,13 @@ const route = useRoute();
 
 const items = [
   { to: "/dashboard", label: "Overview", icon: OverviewIcon },
-  { to: "/roi", label: "ROI Analytics", icon: RoiIcon },
-  { to: "/match", label: "Match Performance", icon: MatchIcon },
-  { to: "/campaigns", label: "Campaign Insights", icon: CampaignIcon },
-  { to: "/heatmap", label: "Address Heatmap", icon: HeatmapIcon },
-  { to: "/upload", label: "Uploads & Mapping", icon: UploadsIcon },
-  { to: "/reports", label: "Reports & Exports", icon: ReportsIcon },
-  { to: "/history", label: "History & Comparisons", icon: HistoryIcon },
+  { to: "/", label: "ROI Analytics", icon: RoiIcon },
+  { to: "/", label: "Match Performance", icon: MatchIcon },
+  { to: "/", label: "Campaign Insights", icon: CampaignIcon },
+  { to: "/", label: "Address Heatmap", icon: HeatmapIcon },
+  { to: "/", label: "Uploads & Mapping", icon: UploadsIcon },
+  { to: "/", label: "Reports & Exports", icon: ReportsIcon },
+  { to: "/", label: "History & Comparisons", icon: HistoryIcon },
 ];
 
 function isActive(path: string) {
@@ -36,6 +36,11 @@ function isActive(path: string) {
 function go(path: string) {
   router.push(path);
 }
+
+// Tooltip helper: everything except Overview gets "Coming Soon"
+function getTooltip(label: string) {
+  return label === "Overview" ? "" : "Coming Soon";
+}
 </script>
 
 <template>
@@ -43,7 +48,14 @@ function go(path: string) {
   <aside class="sidebar-wrap">
     <nav class="sidebar-card">
       <div class="logo-row">
-        <img :src="LogoUrl" alt="MailTrace" class="logo" draggable="false" />
+        <button class="logo-btn" @click="go('/')" type="button">
+          <img
+            :src="LogoUrl"
+            alt="MailTrace"
+            class="logo"
+            draggable="false"
+          />
+        </button>
       </div>
 
       <hr class="sep" />
@@ -54,6 +66,8 @@ function go(path: string) {
             class="nav-btn"
             :class="{ active: isActive(i.to) }"
             @click="go(i.to)"
+            :title="getTooltip(i.label)"
+            type="button"
           >
             <img class="icon" :src="i.icon" :alt="i.label" draggable="false" />
             <span class="label">{{ i.label }}</span>
@@ -64,11 +78,11 @@ function go(path: string) {
       <hr class="sep sep-bottom" />
 
       <div class="bottom">
-        <button class="nav-btn ghost" @click="go('/settings')">
+        <button class="nav-btn ghost" @click="go('/settings')" type="button">
           <img class="icon" :src="SettingsIcon" alt="" draggable="false" />
           <span class="label">Settings</span>
         </button>
-        <button class="nav-btn ghost" @click="go('/signout')">
+        <button class="nav-btn ghost" @click="go('/signout')" type="button">
           <img class="icon" :src="LogoutIcon" alt="" draggable="false" />
           <span class="label">Sign Out</span>
         </button>
@@ -101,6 +115,16 @@ function go(path: string) {
 
 .logo-row {
   padding: 6px 8px 10px;
+}
+
+/* Clickable logo */
+.logo-btn {
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
 }
 .logo {
   height: 43px;

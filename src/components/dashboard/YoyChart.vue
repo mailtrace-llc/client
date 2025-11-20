@@ -13,35 +13,10 @@ const props = withDefaults(
     mailPrev?: number[];
     crmPrev?: number[];
     matchPrev?: number[];
-    rawMonths?: string[]; // e.g. ["2024-01","2024-02",...]
+    rawMonths?: string[];
   }>(),
   {
-    labels: () => [
-      "JAN 2024",
-      "FEB",
-      "MAR",
-      "APR",
-      "MAY",
-      "JUN",
-      "JUL",
-      "AUG",
-      "SEP",
-      "OCT",
-      "NOV",
-      "DEC",
-      "JAN 2025",
-      "FEB",
-      "MAR",
-      "APR",
-      "MAY",
-      "JUN",
-      "JUL",
-      "AUG",
-      "SEP",
-      "OCT",
-      "NOV",
-      "DEC",
-    ],
+    labels: () => [],
     rawMonths: () => [],
   }
 );
@@ -50,10 +25,12 @@ const showYoy = ref(true);
 const canvasEl = ref<HTMLCanvasElement | null>(null);
 let chart: Chart<"line", number[], string> | null = null;
 
-// figma colors
+// colors (same as Figma)
 const cMail = "#163b69";
 const cCrm = "#47bfa9";
 const cMatch = "#6b6b6b";
+
+// ---------- helpers ----------
 
 const MONTH_ABBR = [
   "JAN",
@@ -73,117 +50,34 @@ const MONTH_ABBR = [
 function formatTick(i: number): string {
   const raw = props.rawMonths?.[i];
   if (raw) {
-    // raw like "2024-01"
     const [year, month] = raw.split("-");
     const mi = Number(month || "1") - 1;
     const mon = MONTH_ABBR[mi] ?? raw;
-
-    // show year only for January ticks
     if (month === "01" && year) {
       const shortYear = year.slice(-2);
       return `${mon} '${shortYear}`;
     }
     return mon;
   }
-
-  // Fallback: current behavior
-  return (props.labels[i] || "")
-    .toString()
-    .toUpperCase()
-    .replace(" 2024", "")
-    .replace(" 2025", "");
+  return (props.labels[i] || "").toString().toUpperCase();
 }
 
-const janIdxs = computed((): { a: number; b: number } => {
-  const raws = props.rawMonths ?? [];
-  const labelsLen = props.labels.length;
-
-  // Safe defaults: first month and 12 months later (or last point)
-  let a = 0;
-  let b = Math.min(12, Math.max(labelsLen - 1, 0));
-
-  // Prefer explicit January markers from rawMonths ("YYYY-01")
-  const starts: number[] = [];
-  raws.forEach((ym, idx) => {
-    const parts = ym.split("-");
-    if (parts.length === 2 && parts[1] === "01") {
-      starts.push(idx);
-    }
-  });
-
-  if (starts.length >= 2) {
-    a = starts[0] ?? 0;
-    b = starts[1] ?? 12;
-    return { a, b };
-  }
-
-  if (starts.length === 1) {
-    a = starts[0] ?? 0;
-    b = Math.min(a + 12, Math.max(labelsLen - 1, a));
-    return { a, b };
-  }
-
-  // Fallback to label-based detection if rawMonths missing or unusable
-  const firstJan = props.labels.findIndex((l) => /jan\s*20\d{2}/i.test(l));
-  if (firstJan >= 0) {
-    a = firstJan;
-    const secondJan = props.labels.findIndex(
-      (l, i) => i > firstJan && /jan\s*20\d{2}/i.test(l)
-    );
-    if (secondJan >= 0) {
-      b = secondJan;
-    } else {
-      b = Math.min(a + 12, Math.max(labelsLen - 1, a));
-    }
-  }
-
-  return { a, b };
+const hasPrevData = computed(() => {
+  const allPrev = [
+    ...(props.mailPrev ?? []),
+    ...(props.crmPrev ?? []),
+    ...(props.matchPrev ?? []),
+  ];
+  if (!allPrev.length) return false;
+  return allPrev.some((v) => Number(v || 0) !== 0);
 });
 
-// dashed vertical rules + caret at the top
-const verticalRulesPlugin = {
-  id: "verticalRules",
-  afterDatasetsDraw(c: Chart) {
-    const { ctx, chartArea, scales } = c;
-    const sx: any = (scales as any).x;
-    if (!sx || chartArea.width <= 0) return;
-    const draw = (idx: number) => {
-      const x = sx.getPixelForValue(idx);
-      ctx.save();
-      ctx.setLineDash([6, 6]);
-      ctx.strokeStyle = cCrm;
-      ctx.lineWidth = 2;
-      ctx.beginPath();
-      ctx.moveTo(x, chartArea.top);
-      ctx.lineTo(x, chartArea.bottom);
-      ctx.stroke();
-      ctx.setLineDash([]);
-      ctx.beginPath();
-      ctx.moveTo(x, chartArea.top - 10);
-      ctx.lineTo(x - 5, chartArea.top - 2);
-      ctx.lineTo(x + 5, chartArea.top - 2);
-      ctx.closePath();
-      ctx.fillStyle = cCrm;
-      ctx.fill();
-      ctx.restore();
-    };
-    const { a, b } = janIdxs.value;
-    const tickCount: number = Array.isArray(sx.ticks) ? sx.ticks.length : 0;
-    const maxIndex = tickCount > 0 ? tickCount - 1 : props.labels.length - 1;
+// ---------- chart build ----------
 
-    const indices: number[] = [];
-    if (a >= 0 && a <= maxIndex) indices.push(a);
-    if (b >= 0 && b <= maxIndex && b !== a) indices.push(b);
-
-    indices.forEach((idx) => {
-      draw(idx);
-    });
-  },
-};
-
-function build() {
+function buildChart() {
   if (!canvasEl.value) return;
 
+  // BASE datasets (current year)
   const datasets: LineDS[] = [
     {
       label: "Mail Volume",
@@ -215,45 +109,50 @@ function build() {
       tension: 0.35,
       pointRadius: 3,
     },
-
-    // previous year (dashed)
-    {
-      label: "Mail Volume (prev)",
-      data: props.mailPrev ?? [],
-      borderColor: cMail,
-      backgroundColor: cMail,
-      borderDash: [6, 6],
-      borderWidth: 2,
-      tension: 0.35,
-      pointRadius: 0,
-      hidden: !showYoy.value || !props.mailPrev?.length,
-      parsing: false as const,
-    },
-    {
-      label: "CRM Jobs (prev)",
-      data: props.crmPrev ?? [],
-      borderColor: cCrm,
-      backgroundColor: cCrm,
-      borderDash: [6, 6],
-      borderWidth: 2,
-      tension: 0.35,
-      pointRadius: 0,
-      hidden: !showYoy.value || !props.crmPrev?.length,
-      parsing: false as const,
-    },
-    {
-      label: "Matches (prev)",
-      data: props.matchPrev ?? [],
-      borderColor: cMatch,
-      backgroundColor: cMatch,
-      borderDash: [6, 6],
-      borderWidth: 2,
-      tension: 0.35,
-      pointRadius: 0,
-      hidden: !showYoy.value || !props.matchPrev?.length,
-      parsing: false as const,
-    },
   ];
+
+  // YOY overlay (only if we actually have previous-year data and toggle is on)
+  if (hasPrevData.value && showYoy.value) {
+    datasets.push(
+      {
+        label: "Mail Volume (prev)",
+        data: props.mailPrev ?? [],
+        borderColor: cMail,
+        backgroundColor: cMail,
+        borderDash: [6, 6],
+        borderWidth: 2,
+        tension: 0.35,
+        pointRadius: 0,
+      },
+      {
+        label: "CRM Jobs (prev)",
+        data: props.crmPrev ?? [],
+        borderColor: cCrm,
+        backgroundColor: cCrm,
+        borderDash: [6, 6],
+        borderWidth: 2,
+        tension: 0.35,
+        pointRadius: 0,
+      },
+      {
+        label: "Matches (prev)",
+        data: props.matchPrev ?? [],
+        borderColor: cMatch,
+        backgroundColor: cMatch,
+        borderDash: [6, 6],
+        borderWidth: 2,
+        tension: 0.35,
+        pointRadius: 0,
+      }
+    );
+  }
+
+  const maxNow = Math.max(
+    ...(props.mailNow ?? []),
+    ...(props.crmNow ?? []),
+    ...(props.matchNow ?? []),
+    0
+  );
 
   const options: ChartOptions<"line"> = {
     responsive: true,
@@ -270,39 +169,40 @@ function build() {
           maxRotation: 0,
         },
       },
-      y: { grid: { color: "rgba(0,0,0,0.06)" }, ticks: { precision: 0 } },
+      y: {
+        grid: { color: "rgba(0,0,0,0.06)" },
+        ticks: { precision: 0 },
+        suggestedMin: 0,
+        suggestedMax: maxNow || undefined,
+      },
     },
   };
 
   chart = new Chart<"line", number[], string>(canvasEl.value, {
     type: "line",
-    data: { labels: props.labels, datasets },
+    data: {
+      labels: props.labels,
+      datasets,
+    },
     options,
-    plugins: [verticalRulesPlugin],
   });
 }
 
-function syncVisibility() {
-  if (!chart) return;
-  const ds = chart.data.datasets as LineDS[];
-  const idx = (name: string) =>
-    ds.findIndex((d) => d.label?.includes(name) && d.label?.includes("(prev)"));
-  const toggle = (i: number) => {
-    if (i >= 0 && ds[i])
-      ds[i].hidden = !showYoy.value || !(ds[i].data as any[])?.length;
-  };
-  toggle(idx("Mail Volume"));
-  toggle(idx("CRM Jobs"));
-  toggle(idx("Matches"));
-  chart.update();
+function rebuild() {
+  chart?.destroy();
+  chart = null;
+  buildChart();
 }
 
-onMounted(build);
+// ---------- lifecycle ----------
+
+onMounted(buildChart);
 onBeforeUnmount(() => {
   chart?.destroy();
   chart = null;
 });
 
+// Rebuild when data changes
 watch(
   () => [
     props.labels,
@@ -315,13 +215,17 @@ watch(
     props.rawMonths,
   ],
   () => {
-    chart?.destroy();
-    chart = null;
-    build();
+    rebuild();
   }
 );
 
-watch(showYoy, syncVisibility);
+// Rebuild when YoY toggle changes
+watch(
+  () => showYoy.value,
+  () => {
+    rebuild();
+  }
+);
 </script>
 
 <template>
@@ -331,23 +235,27 @@ watch(showYoy, syncVisibility);
       role="toolbar"
     >
       <div class="flex items-center gap-3 shrink-0">
-        <span class="text-[#0c2d50] font-semibold text-[15px]"
-          >Show YoY Overlay</span
-        >
-        <!-- pill switch (uses existing showYoy state) -->
+        <span class="text-[#0c2d50] font-semibold text-[15px]">
+          Show YoY Overlay
+        </span>
+
         <button
           type="button"
           class="switch"
-          :class="{ 'is-on': showYoy }"
+          :class="{
+            'is-on': showYoy && hasPrevData,
+            'is-disabled': !hasPrevData,
+          }"
           role="switch"
-          :aria-pressed="showYoy"
-          @click="showYoy = !showYoy"
+          :aria-pressed="showYoy && hasPrevData"
+          :aria-disabled="!hasPrevData"
+          :disabled="!hasPrevData"
+          @click="hasPrevData && (showYoy = !showYoy)"
           aria-label="Toggle YoY overlay"
         >
           <span class="switch__track"></span>
           <span class="switch__thumb"></span>
         </button>
-        <div class="hidden md:block h-8 w-px bg-[#47bfa9]/50" />
       </div>
 
       <ul
@@ -361,6 +269,12 @@ watch(showYoy, syncVisibility);
         </li>
         <li class="flex items-center gap-2">
           <span class="legend-swatch bg-[#6b6b6b]" /> Matches
+        </li>
+        <li v-if="hasPrevData" class="flex items-center gap-2 text-xs">
+          <span class="legend-dash" /> Dashed lines show previous year
+        </li>
+        <li v-else class="text-xs text-black/45">
+          YoY overlay will appear once there is prior-year data for this run.
         </li>
       </ul>
     </header>
@@ -384,11 +298,11 @@ watch(showYoy, syncVisibility);
   border: 1px solid rgba(12, 45, 80, 0.06);
 }
 
-/* -------- YoY switch (Figma-accurate sizing) -------- */
+/* YoY switch */
 .switch {
   position: relative;
-  width: 42px; /* track width */
-  height: 24px; /* track height */
+  width: 42px;
+  height: 24px;
   border: 0;
   background: transparent;
   padding: 0;
@@ -406,7 +320,7 @@ watch(showYoy, syncVisibility);
 .switch__thumb {
   position: absolute;
   top: 50%;
-  left: 2px; /* keeps thumb fully inside on the left */
+  left: 2px;
   width: 20px;
   height: 20px;
   transform: translateY(-50%);
@@ -421,7 +335,18 @@ watch(showYoy, syncVisibility);
 }
 .switch.is-on .switch__thumb {
   left: calc(100% - 22px);
-} /* inside right edge */
+}
+.switch.is-disabled {
+  cursor: not-allowed;
+}
+.switch.is-disabled .switch__track {
+  background: #e2e8f0;
+  box-shadow: inset 0 0 0 1px rgba(15, 23, 42, 0.12);
+}
+.switch.is-disabled .switch__thumb {
+  background: #cbd5f5;
+  box-shadow: none;
+}
 
 /* legend chips */
 .legend-swatch {

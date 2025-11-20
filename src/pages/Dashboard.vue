@@ -1,7 +1,7 @@
 <!-- src/pages/Dashboard.vue -->
 <script setup lang="ts">
 import { ref, onMounted, computed, watch } from "vue";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 
 import Sidebar from "@/components/Sidebar.vue";
 import Navbar from "@/components/Navbar.vue";
@@ -9,6 +9,19 @@ import Navbar from "@/components/Navbar.vue";
 import ModalUploadGuard from "@/components/dashboard/ModalUploadGuard.vue";
 import ModalMappingRequired from "@/components/dashboard/ModalMappingRequired.vue";
 import MapperModal from "@/components/dashboard/MapperModal.vue";
+import PaywallModal from "@/components/dashboard/PaywallModal.vue";
+import PaymentFailedModal from "@/components/dashboard/PaymentFailedModal.vue";
+
+import UploadCard from "@/components/dashboard/UploadCard.vue";
+import KpiSummaryCard from "@/components/dashboard/KpiSummaryCard.vue";
+import YoyChart from "@/components/dashboard/YoyChart.vue";
+import TopCitiesTable from "@/components/dashboard/TopCitiesTable.vue";
+import TopZipsTable from "@/components/dashboard/TopZipsTable.vue";
+import SummaryTable from "@/components/dashboard/SummaryTable.vue";
+
+import { fetchLatestRun } from "@/api/runs";
+import { useRun } from "@/composables/useRun";
+
 import { getRunResult, type RunResult } from "@/api/result";
 import { getRunMatches, type MatchRow } from "@/api/matches";
 import {
@@ -19,14 +32,9 @@ import {
   type MappingBundle,
 } from "@/api/mapper";
 
-import UploadCard from "@/components/dashboard/UploadCard.vue";
 import { useLoader } from "@/stores/loader";
-import { useAuthStore } from "@/stores/auth"; // 👈 NEW
-import KpiSummaryCard from "@/components/dashboard/KpiSummaryCard.vue";
-import YoyChart from "@/components/dashboard/YoyChart.vue";
-import TopCitiesTable from "@/components/dashboard/TopCitiesTable.vue";
-import TopZipsTable from "@/components/dashboard/TopZipsTable.vue";
-import SummaryTable from "@/components/dashboard/SummaryTable.vue";
+import { useAuthStore } from "@/stores/auth";
+import { useDashboardBilling } from "@/composables/useDashboardBilling";
 
 declare global {
   interface Window {
@@ -36,8 +44,45 @@ declare global {
 }
 
 const route = useRoute();
+const router = useRouter();
 const loader = useLoader();
-const auth = useAuthStore(); // 👈 NEW
+const auth = useAuthStore();
+const { kickOffAndPoll } = useRun();
+
+/* ------------------------------------------------------------------
+ * Navbar user data from auth store
+ * ------------------------------------------------------------------ */
+
+const navbarUserName = computed(() => auth.userName);
+const navbarUserRole = computed(() => auth.userRole);
+const navbarAvatarUrl = computed(() => auth.avatarUrl);
+
+/* ------------------------------------------------------------------
+ * Billing (subscription + run-charge) via composable
+ * ------------------------------------------------------------------ */
+
+const {
+  showPaywall,
+  paywallBusy,
+  showPaymentFailed,
+  paymentFailedBusy,
+  paywallConfig,
+  isBillingOverlayActive,
+  showBillingSuccess,
+  dismissBillingSuccess,
+  onRequireSubscription,
+  onRunChargeRequired,
+  onPaywallPrimary,
+  onPaywallSecondary,
+  onPaymentFixPrimary,
+  onPaymentFailedSecondary,
+  maybeStartCheckoutFromQuery,
+  maybeResumeRunAfterRunCheckout,
+} = useDashboardBilling(route, router);
+
+/* ------------------------------------------------------------------
+ * Upload guard + mapping / runs
+ * ------------------------------------------------------------------ */
 
 const showUploadGuard = ref(false);
 
@@ -71,14 +116,6 @@ const runId = ref<string>("");
 const kpiRefreshKey = ref(0);
 
 /* ------------------------------------------------------------------
- * Navbar user data from auth store
- * ------------------------------------------------------------------ */
-
-const navbarUserName = computed(() => auth.userName);
-const navbarUserRole = computed(() => auth.userRole);
-const navbarAvatarUrl = computed(() => auth.avatarUrl);
-
-/* ------------------------------------------------------------------
  * Avatar upload (Navbar profile click)
  * ------------------------------------------------------------------ */
 
@@ -93,8 +130,8 @@ async function onAvatarFileChanged(e: Event) {
   const file = input.files?.[0];
   if (!file) return;
 
-  await auth.uploadAvatar(file); // uses the action from your auth store
-  input.value = ""; // allow re-selecting same file
+  await auth.uploadAvatar(file);
+  input.value = "";
 }
 
 /* ------------------------------------------------------------------
@@ -106,6 +143,13 @@ const runResultLoading = ref(false);
 
 const matches = ref<MatchRow[]>([]);
 const matchesLoading = ref(false);
+
+// Debug strings for when 409 "not_ready" finally resolves
+const resultReadyInfo = ref<string | null>(null);
+const matchesReadyInfo = ref<string | null>(null);
+
+const RESULT_POLL_DELAY_MS = 1500;
+const RESULT_POLL_MAX_ATTEMPTS = 40;
 
 const MONTH_ABBR = [
   "JAN",
@@ -154,7 +198,6 @@ const matchPrev = computed<number[]>(
   () => runResult.value?.graph?.yoy?.matches?.prev ?? []
 );
 
-// Raw backend months (e.g. "2024-01") for tick formatting + year markers
 const graphRawMonths = computed<string[]>(
   () => runResult.value?.graph?.months ?? []
 );
@@ -202,7 +245,7 @@ type SummaryRow = {
 
 function fmtDate(d: string | null | undefined): string {
   if (!d) return "";
-  const s = d.slice(0, 10); // YYYY-MM-DD
+  const s = d.slice(0, 10);
   const [y, m, day] = s.split("-");
   if (y && m && day) return `${m}-${day}-${y}`;
   return s;
@@ -214,7 +257,6 @@ function fmtMailDates(raw: any): string {
     if (!raw.length) return "";
     return raw.map((x) => fmtDate(String(x))).join(", ");
   }
-  // handle "{2024-01-01,2024-01-02}" style just in case
   const stripped = String(raw).replace(/[{}]/g, "");
   const parts = stripped.split(",").filter(Boolean);
   return parts.map((x) => fmtDate(x.trim())).join(", ");
@@ -235,29 +277,130 @@ const summaryRows = computed<SummaryRow[]>(() => {
   }));
 });
 
-async function loadRunResult(id?: string) {
+/* ------------------------------------------------------------------
+ * Result + matches loaders with 409 polling
+ * ------------------------------------------------------------------ */
+
+async function loadRunResult(id?: string, attempt = 0) {
   if (!id) return;
   runResultLoading.value = true;
   try {
-    runResult.value = await getRunResult(id);
-  } catch (err) {
+    const result = await getRunResult(id);
+    runResult.value = result;
+
+    // TEMP DEBUG
+    console.log("[Dashboard] graph.yoy payload", JSON.stringify(result.graph?.yoy, null, 2));
+    console.log("[Dashboard] graph.months", result.graph?.months);
+    console.log("[Dashboard] graph.mailers", result.graph?.mailers);
+
+    // When result finally becomes ready after 409s, log it + store debug string
+    if (attempt > 0) {
+      const seconds = ((attempt * RESULT_POLL_DELAY_MS) / 1000).toFixed(1);
+      const now = new Date().toLocaleTimeString();
+      const msg = `Run result for ${id} became ready after ${attempt} retries (~${seconds}s) at ${now}`;
+      console.info("[Dashboard]", msg);
+      resultReadyInfo.value = msg;
+    } else {
+      resultReadyInfo.value = null;
+    }
+  } catch (err: any) {
+    const status = err?.status ?? err?.response?.status;
+    const code =
+      err?.data?.error ??
+      err?.response?.data?.error ??
+      err?.response?.data?.error_code;
+
+    // Backend says result not ready yet → poll again
+    if (status === 409 && code === "not_ready") {
+      if (attempt < RESULT_POLL_MAX_ATTEMPTS) {
+        setTimeout(() => {
+          void loadRunResult(id, attempt + 1);
+        }, RESULT_POLL_DELAY_MS);
+      } else {
+        console.warn(
+          "[Dashboard] Result still not ready after max attempts for run %s",
+          id
+        );
+      }
+      return;
+    }
+
     console.error("[Dashboard] Failed to load run result", err);
   } finally {
     runResultLoading.value = false;
   }
 }
 
-async function loadMatches(id?: string) {
+async function loadMatches(id?: string, attempt = 0) {
   if (!id) return;
   matchesLoading.value = true;
   try {
     const data = await getRunMatches(id);
     matches.value = data.matches ?? [];
-  } catch (err) {
+
+    if (attempt > 0) {
+      const seconds = ((attempt * RESULT_POLL_DELAY_MS) / 1000).toFixed(1);
+      const now = new Date().toLocaleTimeString();
+      const msg = `Matches for ${id} became ready after ${attempt} retries (~${seconds}s) at ${now}`;
+      console.info("[Dashboard]", msg);
+      matchesReadyInfo.value = msg;
+    } else {
+      matchesReadyInfo.value = null;
+    }
+  } catch (err: any) {
+    const status = err?.status ?? err?.response?.status;
+    const code =
+      err?.data?.error ??
+      err?.response?.data?.error ??
+      err?.response?.data?.error_code;
+
+    if (status === 409 && code === "not_ready") {
+      if (attempt < RESULT_POLL_MAX_ATTEMPTS) {
+        setTimeout(() => {
+          void loadMatches(id, attempt + 1);
+        }, RESULT_POLL_DELAY_MS);
+      } else {
+        console.warn(
+          "[Dashboard] Matches still not ready after max attempts for run %s",
+          id
+        );
+      }
+      return;
+    }
+
     console.error("[Dashboard] Failed to load run matches", err);
   } finally {
     matchesLoading.value = false;
   }
+}
+
+/* ------------------------------------------------------------------
+ * Billing resume → reuse useRun().kickOffAndPoll
+ * ------------------------------------------------------------------ */
+
+async function startRunForId(id: string) {
+  // Make sure the dashboard knows which run to show
+  runId.value = id;
+
+  let mappingHandled = false;
+
+  try {
+    await kickOffAndPoll(id, (missingFields) => {
+      mappingHandled = true;
+      onMappingRequired(missingFields || {});
+    });
+  } catch (err) {
+    console.error("[Dashboard] Failed to start or poll run", err);
+    return;
+  }
+
+  // If we handed off to the mapper, don't try to load results yet
+  if (mappingHandled) {
+    return;
+  }
+
+  // Run finished successfully → trigger KPI + matches refresh
+  kpiRefreshKey.value++;
 }
 
 /* ------------------------------------------------------------------
@@ -329,11 +472,9 @@ async function openMapper() {
     requiredMail.value = mb.mail.required || [];
     requiredCrm.value = mb.crm.required || [];
 
-    // per-side canon lists straight from backend
     mailFields.value = mb.mail.fields || [];
     crmFields.value = mb.crm.fields || [];
 
-    // per-side labels straight from backend
     mailLabels.value = mb.mail.labels ?? {};
     crmLabels.value = mb.crm.labels ?? {};
 
@@ -410,22 +551,54 @@ function onRunFailed(error: unknown) {
   console.error("[Dashboard] Run failed", error);
 }
 
+function handleRunChargeRequired(payload: { runId: string; estimate: any }) {
+  onRunChargeRequired(payload);
+}
+
 /* ------------------------------------------------------------------
- * Initialisation (URL ?run_id=…)
+ * Initialisation
  * ------------------------------------------------------------------ */
 
 onMounted(() => {
-  // Load current user for Navbar
-  if (!auth.initialized && !auth.loading) {
-    void auth.fetchMe();
-  }
+  const init = async () => {
+    // Ensure auth.me is loaded
+    if (!auth.initialized && !auth.loading) {
+      await auth.fetchMe();
+    }
 
-  const qRunId = (route.query.run_id as string) || "";
-  if (qRunId) {
-    window.MT_CONTEXT = { ...(window.MT_CONTEXT || {}), run_id: qRunId };
-    runId.value = qRunId;
-    kpiRefreshKey.value++;
-  }
+    // 1) Existing run_id behavior (?run_id=...)
+    const qRunId = (route.query.run_id as string) || "";
+    if (qRunId) {
+      window.MT_CONTEXT = { ...(window.MT_CONTEXT || {}), run_id: qRunId };
+      runId.value = qRunId;
+      kpiRefreshKey.value++;
+    }
+
+    // 2) Subscription one-click checkout from query (?startCheckout=...)
+    await maybeStartCheckoutFromQuery();
+
+    // 3) Resume a run after per-run checkout
+    await maybeResumeRunAfterRunCheckout(startRunForId);
+
+    // 4) Fallback: if we still don't have a run, load the latest *finished* run
+    if (!runId.value) {
+      try {
+        const latest = await fetchLatestRun(true); // onlyDone = true
+
+        const latestId =
+          (latest as any)?.id ?? (latest as any)?.run_id;
+
+        if (latestId) {
+          runId.value = latestId;
+          kpiRefreshKey.value++;
+        }
+      } catch (err) {
+        console.error("[Dashboard] Failed to load latest run", err);
+      }
+    }
+  };
+
+  void init();
 });
 </script>
 
@@ -448,58 +621,94 @@ onMounted(() => {
         @profile-click="onAvatarClick"
       />
 
-      <!-- Upload + KPIs -->
-      <div id="cmp-hero">
-        <UploadCard
-          class="card"
-          @run-id="onRunIdChanged"
-          @need-both-files="onNeedBothFiles"
-          @mapping-required="onMappingRequired"
-          @run-started="onRunStarted"
-          @run-completed="onRunCompleted"
-          @run-failed="onRunFailed"
-          @edit-mapping="openMapper"
-        />
+      <!-- Main content area that gets blurred when billing overlay is active -->
+      <div
+        class="dash-main-inner"
+        :class="{ 'dash-main-inner--blurred': isBillingOverlayActive }"
+      >
+        <!-- Success banner after returning from Stripe -->
+        <div
+          v-if="showBillingSuccess"
+          class="mb-4 flex items-start justify-between gap-3 rounded-lg border border-emerald-300 bg-emerald-50 px-4 py-3 text-sm text-emerald-900"
+        >
+          <p class="mr-2">
+            Your MailTrace subscription is now active. Go ahead and add your CSVs
+            to be able to run matching.
+          </p>
 
-        <KpiSummaryCard
-          id="cmp-kpis"
-          class="h-full"
-          :kpis="runResult?.kpis || null"
-        />
-      </div>
+          <button
+            type="button"
+            class="ml-auto text-xs font-medium text-emerald-900/70 hover:text-emerald-900 hover:underline"
+            @click="dismissBillingSuccess"
+          >
+            Dismiss
+          </button>
+        </div>
 
-      <!-- YoY Chart (driven by backend graph) -->
-      <div class="section card" id="cmp-graph">
-        <YoyChart
-          :labels="graphLabels"
-          :mail-now="graphMailNow"
-          :crm-now="graphCrmNow"
-          :match-now="graphMatchNow"
-          :mail-prev="mailPrev"
-          :crm-prev="crmPrev"
-          :match-prev="matchPrev"
-          :raw-months="graphRawMonths"
-        />
-      </div>
+        <!-- Debug banner for when 409 "not_ready" finally resolves -->
+        <div
+          v-if="resultReadyInfo || matchesReadyInfo"
+          class="mb-4 rounded-md border border-dashed border-slate-300 bg-slate-50 px-3 py-2 text-xs text-slate-600"
+        >
+          <p v-if="resultReadyInfo">{{ resultReadyInfo }}</p>
+          <p v-if="matchesReadyInfo">{{ matchesReadyInfo }}</p>
+        </div>
 
-      <!-- Top cities / zips -->
-      <div class="row section" id="cmp-top">
-        <TopCitiesTable
-          style="flex: 1 1 360px; min-width: 360px"
-          :rows="topCityRows"
-        />
-        <TopZipsTable
-          style="flex: 1 1 360px; min-width: 360px"
-          :rows="topZipRows"
-        />
-      </div>
+        <!-- Upload + KPIs -->
+        <div id="cmp-hero">
+          <UploadCard
+            class="card"
+            @run-id="onRunIdChanged"
+            @need-both-files="onNeedBothFiles"
+            @mapping-required="onMappingRequired"
+            @run-started="onRunStarted"
+            @run-completed="onRunCompleted"
+            @run-failed="onRunFailed"
+            @edit-mapping="openMapper"
+            @require-subscription="onRequireSubscription"
+            @run-charge-required="handleRunChargeRequired"
+          />
 
-      <!-- Summary card -->
-      <div class="section card" id="cmp-summary">
-        <SummaryTable
-          class="section"
-          :rows="summaryRows.length ? summaryRows : undefined"
-        />
+          <KpiSummaryCard
+            id="cmp-kpis"
+            class="h-full"
+            :kpis="runResult?.kpis || null"
+          />
+        </div>
+
+        <!-- YoY Chart (driven by backend graph) -->
+        <div class="section card" id="cmp-graph">
+          <YoyChart
+            :labels="graphLabels"
+            :mail-now="graphMailNow"
+            :crm-now="graphCrmNow"
+            :match-now="graphMatchNow"
+            :mail-prev="mailPrev"
+            :crm-prev="crmPrev"
+            :match-prev="matchPrev"
+            :raw-months="graphRawMonths"
+          />
+        </div>
+
+        <!-- Top cities / zips -->
+        <div class="row section" id="cmp-top">
+          <TopCitiesTable
+            style="flex: 1 1 360px; min-width: 360px"
+            :rows="topCityRows"
+          />
+          <TopZipsTable
+            style="flex: 1 1 360px; min-width: 360px"
+            :rows="topZipRows"
+          />
+        </div>
+
+        <!-- Summary card -->
+        <div class="section card" id="cmp-summary">
+          <SummaryTable
+            class="section"
+            :rows="summaryRows.length ? summaryRows : undefined"
+          />
+        </div>
       </div>
     </section>
   </div>
@@ -546,10 +755,29 @@ onMounted(() => {
     :focus-selector="uploadGuardTarget"
     :trigger-file-dialog="true"
   />
+
+  <!-- Billing paywall modal (driven by backend billing config) -->
+  <PaywallModal
+    v-model="showPaywall"
+    :config="paywallConfig"
+    :loading="paywallBusy"
+    @primary="onPaywallPrimary"
+    @secondary="onPaywallSecondary"
+  />
+
+  <PaymentFailedModal
+    v-model="showPaymentFailed"
+    :loading="paymentFailedBusy"
+    title="Payment issue"
+    message="We couldn’t charge your card. Update your payment method to resume matching runs."
+    primary-label="Fix payment"
+    secondary-label="Not now"
+    @primary="onPaymentFixPrimary"
+    @secondary="onPaymentFailedSecondary"
+  />
 </template>
 
 <style scoped>
-/* (unchanged styles) */
 .dash-shell {
   display: grid;
   grid-template-columns: 318px 1fr;
@@ -558,53 +786,88 @@ onMounted(() => {
   min-height: 100vh;
   background: #f4f5f7;
 }
+
 .dash-sidebar {
   position: sticky;
   top: 12px;
   align-self: start;
 }
+
 .dash-sidebar :deep(.sidebar-card) {
   min-height: calc(100vh - 24px);
 }
+
 .dash-main {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
+
 .nav {
   margin-bottom: 4px;
 }
+
+/* New wrapper for blur */
+.dash-main-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: filter 0.18s ease, opacity 0.18s ease;
+}
+
+.dash-main-inner--blurred {
+  filter: blur(3px);
+  opacity: 0.6;
+  pointer-events: none;
+  user-select: none;
+}
+
 #cmp-hero {
   display: grid;
   grid-template-columns: minmax(380px, 520px) 1fr;
   gap: 16px;
   align-items: stretch;
 }
+
 #cmp-hero .card {
   width: 100%;
 }
+
 #cmp-top {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 16px;
 }
-@media (max-width: 1180px) {
-  .dash-shell {
-    grid-template-columns: 300px 1fr;
-  }
+
+.section.card {
+  /* keep whatever existing card styling you have */
 }
-@media (max-width: 1024px) {
+
+@media (max-width: 1180px) {
+  /* Treat 10.5" landscape as tablet: sidebar on top, content full-width */
   .dash-shell {
     grid-template-columns: 1fr;
   }
+
   .dash-sidebar {
     position: static;
   }
+
+  /* Stack hero section vertically instead of 2 columns */
   #cmp-hero {
     grid-template-columns: 1fr;
   }
+
+  /* Stack top cities/zips as well */
   #cmp-top {
     grid-template-columns: 1fr;
+  }
+}
+
+/* (Optional) keep a smaller tweak for slightly narrower widths if you like) */
+@media (max-width: 1024px) {
+  .dash-shell {
+    padding: 8px 12px;
   }
 }
 </style>
