@@ -78,8 +78,15 @@ export async function fetchRuns(
 
 export async function fetchLatestRun(onlyDone = false): Promise<RunItem | null> {
   const q = onlyDone ? "?require=done" : "";
-  // we need to detect 204 explicitly
-  const res = await getRaw<RunItem>(`/runs/latest${q}`);
+  const res = await getRaw<any>(`/runs/latest${q}`);
   if (res.status === 204) return null;
-  return res.data as RunItem;
+
+  const raw = res.data || {};
+  const item: RunItem = {
+    id: raw.id ?? raw.run_id,
+    started_at: raw.started_at,
+    status: raw.status,
+    summary: raw.summary ?? raw.message ?? null,
+  };
+  return item;
 }

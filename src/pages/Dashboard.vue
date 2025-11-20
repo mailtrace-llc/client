@@ -19,7 +19,8 @@ import TopCitiesTable from "@/components/dashboard/TopCitiesTable.vue";
 import TopZipsTable from "@/components/dashboard/TopZipsTable.vue";
 import SummaryTable from "@/components/dashboard/SummaryTable.vue";
 
-import { startRun, fetchLatestRun } from "@/api/runs";
+import { fetchLatestRun } from "@/api/runs";
+import { useRun } from "@/composables/useRun";
 
 import { getRunResult, type RunResult } from "@/api/result";
 import { getRunMatches, type MatchRow } from "@/api/matches";
@@ -46,6 +47,7 @@ const route = useRoute();
 const router = useRouter();
 const loader = useLoader();
 const auth = useAuthStore();
+const { kickOffAndPoll } = useRun();
 
 /* ------------------------------------------------------------------
  * Navbar user data from auth store
@@ -141,6 +143,13 @@ const runResultLoading = ref(false);
 
 const matches = ref<MatchRow[]>([]);
 const matchesLoading = ref(false);
+
+// Debug strings for when 409 "not_ready" finally resolves
+const resultReadyInfo = ref<string | null>(null);
+const matchesReadyInfo = ref<string | null>(null);
+
+const RESULT_POLL_DELAY_MS = 1500;
+const RESULT_POLL_MAX_ATTEMPTS = 40;
 
 const MONTH_ABBR = [
   "JAN",
@@ -268,11 +277,32 @@ const summaryRows = computed<SummaryRow[]>(() => {
   }));
 });
 
-async function loadRunResult(id?: string) {
+/* ------------------------------------------------------------------
+ * Result + matches loaders with 409 polling
+ * ------------------------------------------------------------------ */
+
+async function loadRunResult(id?: string, attempt = 0) {
   if (!id) return;
   runResultLoading.value = true;
   try {
-    runResult.value = await getRunResult(id);
+    const result = await getRunResult(id);
+    runResult.value = result;
+
+    // TEMP DEBUG
+    console.log("[Dashboard] graph.yoy payload", JSON.stringify(result.graph?.yoy, null, 2));
+    console.log("[Dashboard] graph.months", result.graph?.months);
+    console.log("[Dashboard] graph.mailers", result.graph?.mailers);
+
+    // When result finally becomes ready after 409s, log it + store debug string
+    if (attempt > 0) {
+      const seconds = ((attempt * RESULT_POLL_DELAY_MS) / 1000).toFixed(1);
+      const now = new Date().toLocaleTimeString();
+      const msg = `Run result for ${id} became ready after ${attempt} retries (~${seconds}s) at ${now}`;
+      console.info("[Dashboard]", msg);
+      resultReadyInfo.value = msg;
+    } else {
+      resultReadyInfo.value = null;
+    }
   } catch (err: any) {
     const status = err?.status ?? err?.response?.status;
     const code =
@@ -280,8 +310,18 @@ async function loadRunResult(id?: string) {
       err?.response?.data?.error ??
       err?.response?.data?.error_code;
 
-    // Normal: backend says result not ready yet
+    // Backend says result not ready yet → poll again
     if (status === 409 && code === "not_ready") {
+      if (attempt < RESULT_POLL_MAX_ATTEMPTS) {
+        setTimeout(() => {
+          void loadRunResult(id, attempt + 1);
+        }, RESULT_POLL_DELAY_MS);
+      } else {
+        console.warn(
+          "[Dashboard] Result still not ready after max attempts for run %s",
+          id
+        );
+      }
       return;
     }
 
@@ -291,12 +331,22 @@ async function loadRunResult(id?: string) {
   }
 }
 
-async function loadMatches(id?: string) {
+async function loadMatches(id?: string, attempt = 0) {
   if (!id) return;
   matchesLoading.value = true;
   try {
     const data = await getRunMatches(id);
     matches.value = data.matches ?? [];
+
+    if (attempt > 0) {
+      const seconds = ((attempt * RESULT_POLL_DELAY_MS) / 1000).toFixed(1);
+      const now = new Date().toLocaleTimeString();
+      const msg = `Matches for ${id} became ready after ${attempt} retries (~${seconds}s) at ${now}`;
+      console.info("[Dashboard]", msg);
+      matchesReadyInfo.value = msg;
+    } else {
+      matchesReadyInfo.value = null;
+    }
   } catch (err: any) {
     const status = err?.status ?? err?.response?.status;
     const code =
@@ -305,6 +355,16 @@ async function loadMatches(id?: string) {
       err?.response?.data?.error_code;
 
     if (status === 409 && code === "not_ready") {
+      if (attempt < RESULT_POLL_MAX_ATTEMPTS) {
+        setTimeout(() => {
+          void loadMatches(id, attempt + 1);
+        }, RESULT_POLL_DELAY_MS);
+      } else {
+        console.warn(
+          "[Dashboard] Matches still not ready after max attempts for run %s",
+          id
+        );
+      }
       return;
     }
 
@@ -314,21 +374,32 @@ async function loadMatches(id?: string) {
   }
 }
 
+/* ------------------------------------------------------------------
+ * Billing resume → reuse useRun().kickOffAndPoll
+ * ------------------------------------------------------------------ */
+
 async function startRunForId(id: string) {
   // Make sure the dashboard knows which run to show
   runId.value = id;
 
-  // Call backend /runs/<id>/start (gating already handled by billing)
-  const res = await startRun(id);
+  let mappingHandled = false;
 
-  if (res.kind === "needs-mapping") {
-    // Force the mapping modal open just like the upload path
-    onMappingRequired(res.missing || {});
+  try {
+    await kickOffAndPoll(id, (missingFields) => {
+      mappingHandled = true;
+      onMappingRequired(missingFields || {});
+    });
+  } catch (err) {
+    console.error("[Dashboard] Failed to start or poll run", err);
     return;
   }
 
-  // Kick off a refresh; the pipeline thread will do the heavy lifting
-  loader.show({ progress: 5, message: "Resuming matching run…" });
+  // If we handed off to the mapper, don't try to load results yet
+  if (mappingHandled) {
+    return;
+  }
+
+  // Run finished successfully → trigger KPI + matches refresh
   kpiRefreshKey.value++;
 }
 
@@ -513,8 +584,12 @@ onMounted(() => {
     if (!runId.value) {
       try {
         const latest = await fetchLatestRun(true); // onlyDone = true
-        if (latest && latest.id) {
-          runId.value = latest.id;
+
+        const latestId =
+          (latest as any)?.id ?? (latest as any)?.run_id;
+
+        if (latestId) {
+          runId.value = latestId;
           kpiRefreshKey.value++;
         }
       } catch (err) {
@@ -568,6 +643,15 @@ onMounted(() => {
           >
             Dismiss
           </button>
+        </div>
+
+        <!-- Debug banner for when 409 "not_ready" finally resolves -->
+        <div
+          v-if="resultReadyInfo || matchesReadyInfo"
+          class="mb-4 rounded-md border border-dashed border-slate-300 bg-slate-50 px-3 py-2 text-xs text-slate-600"
+        >
+          <p v-if="resultReadyInfo">{{ resultReadyInfo }}</p>
+          <p v-if="matchesReadyInfo">{{ matchesReadyInfo }}</p>
         </div>
 
         <!-- Upload + KPIs -->
