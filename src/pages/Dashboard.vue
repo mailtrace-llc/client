@@ -844,12 +844,7 @@ onMounted(() => {
 }
 
 @media (max-width: 1180px) {
-  .dash-shell {
-    grid-template-columns: 300px 1fr;
-  }
-}
-
-@media (max-width: 1024px) {
+  /* Treat 10.5" landscape as tablet: sidebar on top, content full-width */
   .dash-shell {
     grid-template-columns: 1fr;
   }
@@ -858,12 +853,21 @@ onMounted(() => {
     position: static;
   }
 
+  /* Stack hero section vertically instead of 2 columns */
   #cmp-hero {
     grid-template-columns: 1fr;
   }
 
+  /* Stack top cities/zips as well */
   #cmp-top {
     grid-template-columns: 1fr;
+  }
+}
+
+/* (Optional) keep a smaller tweak for slightly narrower widths if you like) */
+@media (max-width: 1024px) {
+  .dash-shell {
+    padding: 8px 12px;
   }
 }
 </style>

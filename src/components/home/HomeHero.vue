@@ -81,7 +81,7 @@ const APOLLO_DEMO_URL = "https://app.apollo.io/#/meet/Mailtrace.Demo";
 
     <!-- HERO ROW -->
     <div
-      class="mx-auto flex w-full max-w-[1660px] 2xl:max-w-[1760px] flex-col-reverse md:flex-row md:items-center md:justify-between gap-10 md:gap-16 px-4 sm:px-6 md:px-10 xl:px-16 2xl:px-20 pb-16 sm:pb-24 pt-2 flex-1"
+      class="mx-auto flex w-full max-w-[1660px] 2xl:max-w-[1760px] flex-col md:flex-row md:items-center md:justify-between gap-10 md:gap-16 px-4 sm:px-6 md:px-10 xl:px-16 2xl:px-20 pb-16 sm:pb-24 pt-2 flex-1"
     >
       <!-- LEFT COLUMN -->
       <div class="w-full md:w-[52%] max-w-[780px] text-center">
@@ -97,6 +97,19 @@ const APOLLO_DEMO_URL = "https://app.apollo.io/#/meet/Mailtrace.Demo";
           Our AI matches every job to the exact mailed address for 100% accurate
           ROI and rich analytical insight
         </p>
+
+        <!-- Mobile-only hero image -->
+        <div class="mt-6 flex justify-center md:hidden">
+          <div
+            class="relative w-full max-w-[802px] overflow-hidden rounded-[18px] bg-white shadow-[0_24px_70px_rgba(11,45,80,0.18)]"
+          >
+            <img
+              :src="heroMockup"
+              alt="MailTrace dashboard preview"
+              class="block h-auto w-full"
+            />
+          </div>
+        </div>
 
         <!-- 01 / 02 / 03 strip -->
         <!-- Desktop / tablet: horizontal circles + curves + labels -->
@@ -229,9 +242,9 @@ const APOLLO_DEMO_URL = "https://app.apollo.io/#/meet/Mailtrace.Demo";
         </div>
       </div>
 
-      <!-- RIGHT COLUMN: hero image card -->
+      <!-- RIGHT COLUMN: hero image card (desktop/tablet only) -->
       <div
-        class="w-full md:w-[48%] flex justify-center md:justify-end mb-4 md:mb-0"
+        class="hidden md:flex w-full md:w-[48%] justify-center md:justify-end mb-4 md:mb-0"
       >
         <div
           class="relative w-full max-w-[802px] overflow-hidden rounded-[18px] bg-white shadow-[0_24px_70px_rgba(11,45,80,0.18)]"
