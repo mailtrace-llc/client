@@ -6,11 +6,37 @@ import landingLogo from "@/assets/source-logo-02.png";
 import curve from "@/assets/home/curve.svg?url";
 import rightDown from "@/assets/home/right-down.svg?url";
 import { AUTH_BASE } from "@/config/auth";
+import { useAuthStore } from "@/stores/auth";
+import { createCheckoutSession } from "@/api/billing";
+
+const auth = useAuthStore();
 
 const goToAuth = (next: string = "/dashboard") => {
   const params = new URLSearchParams({ next });
   const base = AUTH_BASE || ""; // dev: "", prod: "https://api.mailtrace.ai"
   window.location.href = `${base}/auth/login?${params.toString()}`;
+};
+
+// hero Get Started handler
+const onHeroGetStarted = async () => {
+  if (!auth.isAuthenticated) {
+    goToAuth("/dashboard?startCheckout=home_hero");
+    return;
+  }
+
+  // Already logged in → go straight to Stripe Checkout
+  try {
+    const { url } = await createCheckoutSession("home_hero");
+    if (url) {
+      window.location.href = url;
+    } else {
+      console.error(
+        "[HomeHero] No checkout URL returned from createCheckoutSession"
+      );
+    }
+  } catch (err) {
+    console.error("[HomeHero] Failed to start checkout", err);
+  }
 };
 
 const APOLLO_DEMO_URL = "https://app.apollo.io/#/meet/Mailtrace.Demo";
@@ -188,17 +214,18 @@ const APOLLO_DEMO_URL = "https://app.apollo.io/#/meet/Mailtrace.Demo";
 
         <!-- Get Started CTA -> mailto -->
         <div class="mt-8 sm:mt-10 flex justify-center">
-          <a
-            href="mailto:support@mailtrace.ai"
-            class="inline-flex items-center gap-3 rounded-lg bg-[#47bfa9] px-7 sm:px-8 py-3 text-[16px] sm:text-[18px] font-semibold text-white shadow-md hover:bg-[#3fa592]"
+          <button
+            type="button"
+            @click="onHeroGetStarted"
+            class="inline-flex items-center gap-3 rounded-lg bg-[#27b093] px-6 sm:px-8 py-3 sm:py-3.5 text-[18px] font-semibold text-white shadow-md hover:bg-[#3fa592]"
           >
             Get Started
             <img
               :src="rightDown"
               alt=""
-              class="h-[26px] sm:h-[30px] w-[26px] sm:w-[30px]"
+              class="h-[26px] sm:h-[28px]"
             />
-          </a>
+          </button>
         </div>
       </div>
 

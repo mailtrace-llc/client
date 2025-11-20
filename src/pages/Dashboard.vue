@@ -1,7 +1,7 @@
 <!-- src/pages/Dashboard.vue -->
 <script setup lang="ts">
 import { ref, onMounted, computed, watch } from "vue";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 
 import Sidebar from "@/components/Sidebar.vue";
 import Navbar from "@/components/Navbar.vue";
@@ -11,10 +11,15 @@ import ModalMappingRequired from "@/components/dashboard/ModalMappingRequired.vu
 import MapperModal from "@/components/dashboard/MapperModal.vue";
 import PaywallModal from "@/components/dashboard/PaywallModal.vue";
 import PaymentFailedModal from "@/components/dashboard/PaymentFailedModal.vue";
-import {
-  createCheckoutSession,
-  createBillingPortalSession,
-} from "@/api/billing";
+
+import UploadCard from "@/components/dashboard/UploadCard.vue";
+import KpiSummaryCard from "@/components/dashboard/KpiSummaryCard.vue";
+import YoyChart from "@/components/dashboard/YoyChart.vue";
+import TopCitiesTable from "@/components/dashboard/TopCitiesTable.vue";
+import TopZipsTable from "@/components/dashboard/TopZipsTable.vue";
+import SummaryTable from "@/components/dashboard/SummaryTable.vue";
+
+import { startRun, fetchLatestRun } from "@/api/runs";
 
 import { getRunResult, type RunResult } from "@/api/result";
 import { getRunMatches, type MatchRow } from "@/api/matches";
@@ -26,14 +31,9 @@ import {
   type MappingBundle,
 } from "@/api/mapper";
 
-import UploadCard from "@/components/dashboard/UploadCard.vue";
 import { useLoader } from "@/stores/loader";
 import { useAuthStore } from "@/stores/auth";
-import KpiSummaryCard from "@/components/dashboard/KpiSummaryCard.vue";
-import YoyChart from "@/components/dashboard/YoyChart.vue";
-import TopCitiesTable from "@/components/dashboard/TopCitiesTable.vue";
-import TopZipsTable from "@/components/dashboard/TopZipsTable.vue";
-import SummaryTable from "@/components/dashboard/SummaryTable.vue";
+import { useDashboardBilling } from "@/composables/useDashboardBilling";
 
 declare global {
   interface Window {
@@ -43,6 +43,7 @@ declare global {
 }
 
 const route = useRoute();
+const router = useRouter();
 const loader = useLoader();
 const auth = useAuthStore();
 
@@ -55,93 +56,27 @@ const navbarUserRole = computed(() => auth.userRole);
 const navbarAvatarUrl = computed(() => auth.avatarUrl);
 
 /* ------------------------------------------------------------------
- * Billing / paywall state
+ * Billing (subscription + run-charge) via composable
  * ------------------------------------------------------------------ */
 
-const showPaywall = ref(false);
-const paywallBusy = ref(false);
-
-const showPaymentFailed = ref(false);
-const paymentFailedBusy = ref(false);
-
-const billing = computed(() => auth.billing ?? null);
-
-const isBillingOverlayActive = computed(
-  () => showPaywall.value || showPaymentFailed.value
-);
-
-watch(
-  () => billing.value,
-  (b) => {
-    if (!b) return;
-
-    const status = b.subscription_status || b.status;
-    // adjust values to match backend (e.g. "past_due", "unpaid", "incomplete")
-    if (["past_due", "unpaid", "incomplete"].includes(status)) {
-      showPaymentFailed.value = true;
-    }
-  },
-  { immediate: true }
-);
-
-
-/**
- * Called when backend says the user must subscribe before running.
- * Wire this from UploadCard via `@require-subscription="onRequireSubscription"`.
- */
-function onRequireSubscription() {
-  showPaywall.value = true;
-}
-
-async function onPaywallPrimary() {
-  if (paywallBusy.value) return;
-  paywallBusy.value = true;
-
-  try {
-    const { url } = await createCheckoutSession("dashboard_paywall");
-    if (url) {
-      window.location.href = url; // Stripe Checkout
-    } else {
-      console.error(
-        "[Dashboard] No checkout URL received from createCheckoutSession"
-      );
-      // TODO: show a toast / error banner if you want
-    }
-  } catch (err) {
-    console.error("[Dashboard] Failed to start checkout:", err);
-    // TODO: toast / modal
-  } finally {
-    paywallBusy.value = false;
-  }
-}
-
-function onPaywallSecondary() {
-  showPaywall.value = false;
-}
-
-async function onPaymentFixPrimary() {
-  if (paymentFailedBusy.value) return;
-  paymentFailedBusy.value = true;
-
-  try {
-    const { url } = await createBillingPortalSession("/dashboard");
-    if (url) {
-      window.location.href = url; // Stripe Billing Portal
-    } else {
-      console.error(
-        "[Dashboard] No portal URL received from createBillingPortalSession"
-      );
-    }
-  } catch (err) {
-    console.error("[Dashboard] Failed to open billing portal:", err);
-  } finally {
-    paymentFailedBusy.value = false;
-  }
-}
-
-function onPaymentFailedSecondary() {
-  showPaymentFailed.value = false;
-}
+const {
+  showPaywall,
+  paywallBusy,
+  showPaymentFailed,
+  paymentFailedBusy,
+  paywallConfig,
+  isBillingOverlayActive,
+  showBillingSuccess,
+  dismissBillingSuccess,
+  onRequireSubscription,
+  onRunChargeRequired,
+  onPaywallPrimary,
+  onPaywallSecondary,
+  onPaymentFixPrimary,
+  onPaymentFailedSecondary,
+  maybeStartCheckoutFromQuery,
+  maybeResumeRunAfterRunCheckout,
+} = useDashboardBilling(route, router);
 
 /* ------------------------------------------------------------------
  * Upload guard + mapping / runs
@@ -338,7 +273,18 @@ async function loadRunResult(id?: string) {
   runResultLoading.value = true;
   try {
     runResult.value = await getRunResult(id);
-  } catch (err) {
+  } catch (err: any) {
+    const status = err?.status ?? err?.response?.status;
+    const code =
+      err?.data?.error ??
+      err?.response?.data?.error ??
+      err?.response?.data?.error_code;
+
+    // Normal: backend says result not ready yet
+    if (status === 409 && code === "not_ready") {
+      return;
+    }
+
     console.error("[Dashboard] Failed to load run result", err);
   } finally {
     runResultLoading.value = false;
@@ -351,11 +297,39 @@ async function loadMatches(id?: string) {
   try {
     const data = await getRunMatches(id);
     matches.value = data.matches ?? [];
-  } catch (err) {
+  } catch (err: any) {
+    const status = err?.status ?? err?.response?.status;
+    const code =
+      err?.data?.error ??
+      err?.response?.data?.error ??
+      err?.response?.data?.error_code;
+
+    if (status === 409 && code === "not_ready") {
+      return;
+    }
+
     console.error("[Dashboard] Failed to load run matches", err);
   } finally {
     matchesLoading.value = false;
   }
+}
+
+async function startRunForId(id: string) {
+  // Make sure the dashboard knows which run to show
+  runId.value = id;
+
+  // Call backend /runs/<id>/start (gating already handled by billing)
+  const res = await startRun(id);
+
+  if (res.kind === "needs-mapping") {
+    // Force the mapping modal open just like the upload path
+    onMappingRequired(res.missing || {});
+    return;
+  }
+
+  // Kick off a refresh; the pipeline thread will do the heavy lifting
+  loader.show({ progress: 5, message: "Resuming matching run…" });
+  kpiRefreshKey.value++;
 }
 
 /* ------------------------------------------------------------------
@@ -506,21 +480,50 @@ function onRunFailed(error: unknown) {
   console.error("[Dashboard] Run failed", error);
 }
 
+function handleRunChargeRequired(payload: { runId: string; estimate: any }) {
+  onRunChargeRequired(payload);
+}
+
 /* ------------------------------------------------------------------
- * Initialisation (URL ?run_id=…)
+ * Initialisation
  * ------------------------------------------------------------------ */
 
 onMounted(() => {
-  if (!auth.initialized && !auth.loading) {
-    void auth.fetchMe();
-  }
+  const init = async () => {
+    // Ensure auth.me is loaded
+    if (!auth.initialized && !auth.loading) {
+      await auth.fetchMe();
+    }
 
-  const qRunId = (route.query.run_id as string) || "";
-  if (qRunId) {
-    window.MT_CONTEXT = { ...(window.MT_CONTEXT || {}), run_id: qRunId };
-    runId.value = qRunId;
-    kpiRefreshKey.value++;
-  }
+    // 1) Existing run_id behavior (?run_id=...)
+    const qRunId = (route.query.run_id as string) || "";
+    if (qRunId) {
+      window.MT_CONTEXT = { ...(window.MT_CONTEXT || {}), run_id: qRunId };
+      runId.value = qRunId;
+      kpiRefreshKey.value++;
+    }
+
+    // 2) Subscription one-click checkout from query (?startCheckout=...)
+    await maybeStartCheckoutFromQuery();
+
+    // 3) Resume a run after per-run checkout
+    await maybeResumeRunAfterRunCheckout(startRunForId);
+
+    // 4) Fallback: if we still don't have a run, load the latest *finished* run
+    if (!runId.value) {
+      try {
+        const latest = await fetchLatestRun(true); // onlyDone = true
+        if (latest && latest.id) {
+          runId.value = latest.id;
+          kpiRefreshKey.value++;
+        }
+      } catch (err) {
+        console.error("[Dashboard] Failed to load latest run", err);
+      }
+    }
+  };
+
+  void init();
 });
 </script>
 
@@ -548,6 +551,25 @@ onMounted(() => {
         class="dash-main-inner"
         :class="{ 'dash-main-inner--blurred': isBillingOverlayActive }"
       >
+        <!-- Success banner after returning from Stripe -->
+        <div
+          v-if="showBillingSuccess"
+          class="mb-4 flex items-start justify-between gap-3 rounded-lg border border-emerald-300 bg-emerald-50 px-4 py-3 text-sm text-emerald-900"
+        >
+          <p class="mr-2">
+            Your MailTrace subscription is now active. Go ahead and add your CSVs
+            to be able to run matching.
+          </p>
+
+          <button
+            type="button"
+            class="ml-auto text-xs font-medium text-emerald-900/70 hover:text-emerald-900 hover:underline"
+            @click="dismissBillingSuccess"
+          >
+            Dismiss
+          </button>
+        </div>
+
         <!-- Upload + KPIs -->
         <div id="cmp-hero">
           <UploadCard
@@ -560,6 +582,7 @@ onMounted(() => {
             @run-failed="onRunFailed"
             @edit-mapping="openMapper"
             @require-subscription="onRequireSubscription"
+            @run-charge-required="handleRunChargeRequired"
           />
 
           <KpiSummaryCard
@@ -652,7 +675,7 @@ onMounted(() => {
   <!-- Billing paywall modal (driven by backend billing config) -->
   <PaywallModal
     v-model="showPaywall"
-    :config="billing?.paywall_config"
+    :config="paywallConfig"
     :loading="paywallBusy"
     @primary="onPaywallPrimary"
     @secondary="onPaywallSecondary"

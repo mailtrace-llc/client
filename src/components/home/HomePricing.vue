@@ -3,6 +3,11 @@ import { ref } from "vue";
 import check from "@/assets/home/check-icon.svg?url";
 import rightDown from "@/assets/home/right-down.svg?url";
 import { createCheckoutSession } from "@/api/billing";
+import { useAuthStore } from "@/stores/auth";
+import { AUTH_BASE } from "@/config/auth";
+
+const auth = useAuthStore();
+
 
 type Feature = { icon: string; label: string };
 
@@ -27,22 +32,32 @@ const starterBusy = ref(false);
 
 async function onStarterClick() {
   if (starterBusy.value) return;
+
+  // If not authenticated: go to Auth0 first, and ask backend to
+  // send us back to /dashboard with a flag to start checkout.
+  if (!auth.isAuthenticated) {
+    const params = new URLSearchParams({
+      next: "/dashboard?startCheckout=home_pricing",
+    });
+    const base = AUTH_BASE || ""; // dev: "", prod: "https://api.mailtrace.ai"
+    window.location.href = `${base}/auth/login?${params.toString()}`;
+    return;
+  }
+
+  // Already logged in → go straight to Stripe Checkout
   starterBusy.value = true;
 
   try {
-    const { url, checkout_url } = await createCheckoutSession("home_pricing");
-    const target = url || checkout_url;
-    if (target) {
-      window.location.href = target; // Stripe Checkout
+    const { url } = await createCheckoutSession("home_pricing");
+    if (url) {
+      window.location.href = url; // Stripe Checkout
     } else {
       console.error(
         "[HomePricing] No checkout URL received from createCheckoutSession"
       );
-      // optional: show toast / alert
     }
   } catch (err) {
     console.error("[HomePricing] Failed to start checkout", err);
-    // optional: show toast / alert
   } finally {
     starterBusy.value = false;
   }

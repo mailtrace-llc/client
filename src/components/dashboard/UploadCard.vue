@@ -20,6 +20,7 @@ const emit = defineEmits<{
   (e: "edit-mapping"): void;
   (e: "run-id", runId: string): void;
   (e: "require-subscription"): void;
+  (e: "run-charge-required", payload: { runId: string; estimate: any }): void;
 }>();
 
 /* ---- state --------------------------------------- */
@@ -166,31 +167,62 @@ async function onRun(ev?: Event) {
 
   emit("run-started");
 
+  let mappingHandled = false;
+
   try {
     await kickOffAndPoll(runId.value, (missing) => {
+      // 409 / needs-mapping → hand off to Dashboard
+      mappingHandled = true;
       log.warn("UI ▶ needs mapping (409)", { runId: runId.value, missing });
       emit("mapping-required", missing);
     });
 
+    // If run short-circuited into "needs mapping", don't treat as completed
+    if (mappingHandled) {
+      return;
+    }
+
+    // Normal successful completion
     emit("run-completed");
   } catch (err: any) {
+    const status = err?.status;
+    const errData = err?.data || {};
+    const code = errData?.error || errData?.code;
+
+    // 1) Subscription required → open subscription paywall
     if (
-      (err?.status === 402 || err?.status === 403) &&
-      err?.data?.error === "subscription_required"
+      (status === 402 || status === 403) &&
+      code === "subscription_required"
     ) {
       log.warn("UI ▶ subscription required for run", {
         runId: runId.value,
-        status: err?.status,
+        status,
+        code,
       });
 
-      // Tell Dashboard to open PaywallModal
       emit("require-subscription");
-
-      // Also treat as a run failure so loader gets hidden
       emit("run-failed", err);
       return;
     }
 
+    // 2) Run charge required → open run-charge paywall with estimate
+    if (status === 402 && code === "run_charge_required") {
+      log.warn("UI ▶ run charge required", {
+        runId: runId.value,
+        status,
+        estimate: errData?.estimate,
+      });
+
+      emit("run-charge-required", {
+        runId: runId.value,
+        estimate: errData?.estimate,
+      });
+
+      emit("run-failed", err);
+      return;
+    }
+
+    // 3) Any other error → generic failure
     log.error("UI ▶ run failed", err);
     emit("run-failed", err);
   }
@@ -294,6 +326,7 @@ function browseCrm() {
         />
       </div>
     </div>
+
     <div class="mt-2 text-sm text-slate-300" v-if="isUploading">
       <div class="h-2 bg-slate-800 rounded">
         <div
